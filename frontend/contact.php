@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head  -->
+<?php require_once __DIR__ . '/includes/head.php' ?>
+
+<body id="top">
+    <!-- Sidebar  -->
+    <?php require_once __DIR__ . '/includes/sidebar.php' ?>
+    <!-- Header  -->
+    <?php require_once __DIR__ . '/includes/header.php' ?>
+    <div class="floating_div_first fixed z-50 shadow-lg"><a
+            class="block w-100 hover:text-[var(--primary-color)] hover:bg-gray-100" href="">Our Team</a>
+    </div>
+    <div class="floating_div_second fixed z-50 shadow-lg">
+        <a class="block w-100 hover:text-[var(--primary-color)] hover:bg-gray-100" href="">Website Development</a>
+        <a class="block w-100 hover:text-[var(--primary-color)] hover:bg-gray-100" href="">Software Development</a>
+        <a class="block w-100 hover:text-[var(--primary-color)] hover:bg-gray-100" href="">Apps Development</a>
+    </div>
+    <section class="page_hero text-white">
+        <div class="page_hero_overlay">
+            <div class="container mx-auto px-20 text-center">
+                <h1>Contact</h1>
+                <p><a class="text-red-500" href="/">Home</a> / Contact</p>
+            </div>
+        </div>
+    </section>
+    <section class="contact_sec py-20 bg-white">
+        <div class="container mx-auto px-5 lg:px-20">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                <div
+                    class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md">
+                    <div class="card_icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl">Address</h3>
+                    <p class="font-medium text-zinc-500">184 Razia Plaza (4th floor), Senpara Parbata, Mirpur
+                        10, Dhaka 1216</p>
+                </div>
+                <div
+                    class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md">
+                    <div class="card_icon">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl">Phone</h3>
+                    <p class="font-medium text-zinc-500">184 Razia Plaza (4th floor), Senpara Parbata, Mirpur
+                        10, Dhaka 1216</p>
+                </div>
+                <div
+                    class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md">
+                    <div class="card_icon">
+                        <i class="fa-solid fa-envelope-open"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl">Email</h3>
+                    <p class="font-medium text-zinc-500">184 Razia Plaza (4th floor), Senpara Parbata, Mirpur
+                        10, Dhaka 1216</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact_form my-20">
+        <div class="container mx-auto px-5 lg:px-20 sm:flex justify-between">
+            <div class="form_info w-100">
+                <h2 class="mb-5"><span>Send Us a</span> message</h2>
+                <img class="lg:hidden" src="/frontend/assets/images/contact.PNG" alt="">
+                <form class="bg-white p-5 rounded-md shadow-lg w-100 flex flex-col" action="">
+                    <div>
+                        <p>Your Name</p>
+                        <input class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" type="text"
+                            placeholder="Enter your name">
+                    </div>
+                    <div>
+                        <p>Your Email</p>
+                        <input class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" type="email"
+                            placeholder="Enter your email">
+                    </div>
+                    <div>
+                        <p>Your Subject</p>
+                        <input class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" type="text"
+                            placeholder="Enter your subject">
+                    </div>
+                    <p>Your Message (optional)</p>
+                    <div class="w-100">
+                        <textarea class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" name="" id=""
+                            placeholder=" Write Your Message..."></textarea>
+                    </div>
+                    <input class="secondary_link" type="submit" value="Submit">
+                </form>
+            </div>
+            <div>
+                <img class="hidden lg:block" src="/frontend/assets/images/contact.PNG" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="locatioin">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3099.0389529184995!2d90.36740127457796!3d23.80431027863359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0d6aaa2cb19%3A0xb24da85cafcddc26!2sNebula%20IT!5e1!3m2!1sen!2sbd!4v1769452627556!5m2!1sen!2sbd"
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+    <!-- Footer  -->
+    <?php require_once __DIR__ . '/includes/footer.php' ?>
+    <!-- Back to top  -->
+    <a href="#top"><i class="fa-solid fa-angle-up"></i></a>
+    <!-- Javascript  -->
+    <?php require_once __DIR__ . '/includes/javascript.php' ?>
+</body>
+
+</html>

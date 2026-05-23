@@ -1,0 +1,46 @@
+.sideBar {
+    left: -110%;
+    transition: all .6s ease;
+}
+
+.sideBar_toggle {
+    left: 0;
+}
+
+@media screen and (max-width:640px) {
+    header nav {
+        display: none;
+    }
+
+    body h2 {
+        font-size: 1.7rem;
+    }
+
+    .hero {
+        height: auto;
+        padding-top: 4rem;
+    }
+
+    .hero_contact {
+        text-align: center;
+        display: block;
+        width: 8rem;
+        margin: 2rem auto 4rem;
+    }
+
+    .hero_img img {
+        width: 400rem;
+    }
+
+    footer .footer_about {
+        width: auto;
+    }
+
+    body h1 {
+        font-size: 2.3rem;
+    }
+
+    .form_info {
+        width: 100%;
+    }
+}
