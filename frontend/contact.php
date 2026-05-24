@@ -1,8 +1,55 @@
+<?php require_once __DIR__ . '/../backend/includes/db_connection.php';
+
+
+// $contactStmt = $pdo->prepare("SELECT * FROM settings WHERE id=:id");
+// $contactStmt->execute([':id' => 1]);
+// $settings = $contactStmt->fetch(PDO::FETCH_ASSOC);
+
+$name = $email = $subject = $message = "";
+$error = [];
+function sanitize(string $data)
+{
+    $data = trim(htmlspecialchars($data));
+    return $data;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = sanitize($_POST["name"]);
+    $email = sanitize($_POST["email"]);
+    $subject = sanitize($_POST["subject"]);
+    $message = sanitize($_POST["message"]);
+
+    if (empty($name)) {
+        $error["name"] = "Your name is required";
+    }
+    if (empty($email)) {
+        $error["email"] = "Email is required!";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error["email"] = "Invalid Email address!";
+    }
+
+    if (empty($error)) {
+        $sql = "INSERT INTO contacts (name, email, subject, message)
+                VALUES (:name, :email,:subject,:message)";
+        $result = $statement = $pdo->prepare($sql);
+        $statement->execute([
+            ':name' => $name,
+            ':email' => $email,
+            ':subject' => $subject,
+            ':message' => $message
+        ]);
+
+        echo "Data inserted successfully";
+    }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Head  -->
-<?php require_once __DIR__ . '/includes/head.php' ?>
+<?php require_once __DIR__ . '/includes/head.php'; ?>
 
 <body id="top">
     <!-- Sidebar  -->
@@ -63,26 +110,29 @@
             <div class="form_info w-100">
                 <h2 class="mb-5"><span>Send Us a</span> message</h2>
                 <img class="lg:hidden" src="/frontend/assets/images/contact.PNG" alt="">
-                <form class="bg-white p-5 rounded-md shadow-lg w-100 flex flex-col" action="">
+                <form class="bg-white p-5 rounded-md shadow-lg w-100 flex flex-col" action="" method="POST">
                     <div>
                         <p>Your Name</p>
                         <input class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" type="text"
-                            placeholder="Enter your name">
+                            placeholder="Enter your name" name="name" value="<?= $name ?>">
+                        <p><?= isset($error['name']) ? $error['name'] : ''; ?></p>
                     </div>
                     <div>
                         <p>Your Email</p>
                         <input class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" type="email"
-                            placeholder="Enter your email">
+                            placeholder="Enter your email" name="email" value="<?= $email ?>">
+                        <p><?= isset($error['email']) ? $error['email'] : ''; ?></p>
                     </div>
                     <div>
                         <p>Your Subject</p>
                         <input class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" type="text"
-                            placeholder="Enter your subject">
+                            placeholder="Enter your subject" name="subject" value="<?= $subject ?>">
+                        <p><?= isset($error['subject']) ? $error['subject'] : ''; ?></p>
                     </div>
                     <p>Your Message (optional)</p>
                     <div class="w-100">
-                        <textarea class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" name="" id=""
-                            placeholder=" Write Your Message..."></textarea>
+                        <textarea class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" id=""
+                            placeholder=" Write Your Message..." name="message"><?= $message ?></textarea>
                     </div>
                     <input class="secondary_link" type="submit" value="Submit">
                 </form>

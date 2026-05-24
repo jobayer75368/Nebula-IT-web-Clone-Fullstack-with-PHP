@@ -254,15 +254,36 @@ function createTable(PDO $pdo, string $table, string $sql)
 //     echo "Error Inserting Data:" . $sql . "<br>" . $e->getMessage();
 // }
 
-createTable($pdo, "users", "
-    CREATE TABLE users (
-        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(50) NOT NULL,
-        email VARCHAR(100) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
-        role VARCHAR(50) NOT NULL,
-        status ENUM('active','inactive') DEFAULT 'active',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-    )
-");
+// createTable($pdo, "users", "
+//     CREATE TABLE users (
+//         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+//         name VARCHAR(50) NOT NULL,
+//         email VARCHAR(100) NOT NULL UNIQUE,
+//         password VARCHAR(255) NOT NULL,
+//         role VARCHAR(50) NOT NULL,
+//         status ENUM('active','inactive') DEFAULT 'active',
+//         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//         updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+//     )
+// ");
+
+
+// try {
+//     $sql = "ALTER TABLE contacts
+//             DROP INDEX email;";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }
+
+
+// try {
+//     $sql = "ALTER TABLE contacts MODIFY message TEXT NULL;";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }
