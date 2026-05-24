@@ -1,9 +1,9 @@
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
     <div class="sidebar-brand-icon">
-      <img src="/backend/assets/img/logo/logo2.png">
+      <img src="/frontend/assets/images/NEBULAICON.png">
     </div>
-    <div class="sidebar-brand-text mx-3">BLOGGER</div>
+    <div class="sidebar-brand-text mx-3">Nebula IT</div>
   </a>
   <hr class="sidebar-divider my-0">
   <li class="nav-item active">

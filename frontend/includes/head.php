@@ -1,7 +1,12 @@
+<?php
+$currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nebula Web Service</title>
+    <title><?php echo isset($currentPage) ? ucfirst(($currentPage)) : '' . ' -'; ?> Nebula Web Service</title>
     <!-- Title icon  -->
     <link rel="shortcut icon" href="/frontend/assets/images/NEBULAICON.png" type="image/x-icon">
     <!-- tailwind cdn link  -->

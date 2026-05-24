@@ -1,27 +1,17 @@
 <?php
-require_once __DIR__ . "/../../session.php";
-require_once __DIR__ . "/../db_connection.php";
-require_once __DIR__ . "/../../config.php";
-require_once __DIR__ . "/../../restrict.php";
-
-$id = $_GET['id'] ?? null;
-
-$statement = $pdo->prepare("SELECT * FROM categories WHERE id=?");
-$statement->execute([$id]);
-$category = $statement->fetch(PDO::FETCH_ASSOC);
-if (!$category) {
-    die("Category not found");
-}
-//update
-$name = $slug = $status = "";
+require_once __DIR__ . "/../session.php";
+require_once __DIR__ . "/../includes/db_connection.php";
+require_once __DIR__ . "/../config.php";
+require_once __DIR__ . "/../restrict.php";
+$name = $slug = "";
 $errors = [];
+$status = 1;
 function sanitize(string $data)
 {
     $data = trim(htmlspecialchars($data));
     return $data;
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $status = $_POST['status'];
     if (!empty($_POST['name'])) {
         $name = sanitize($_POST['name']);
     } else {
@@ -35,9 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['slug'] = "Category Slug is required";
     }
     if (empty($errors)) {
-        $sql = "UPDATE categories SET name=?, slug=?,status=? WHERE id=?";
+        $sql = "INSERT INTO categories (name, slug,status)
+                    VALUES (?,?,?)";
+
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$name, $slug, $status, $id]);
+        $stmt->execute([$name, $slug, $status]);
         header("Location: /admin/category/list");
         exit();
     }
@@ -49,32 +41,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 
 <!-- head -->
-<?php require_once __DIR__ . "/../head.php" ?>
+<?php require_once __DIR__ . "/../includes/head.php" ?>
 <!-- head -->
 
 <body id="page-top">
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php require_once __DIR__ . "/../sidebar.php" ?>
+        <?php require_once __DIR__ . "/../includes/sidebar.php" ?>
         <!-- Sidebar -->
 
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
 
                 <!-- Topbar -->
-                <?php require_once __DIR__ . "/../topbar.php" ?>
+                <?php require_once __DIR__ . "/../includes/topbar.php" ?>
                 <!-- Topbar -->
 
                 <!-- Container Fluid-->
                 <div class="container-fluid" id="container-wrapper">
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Categroy Edit</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Create Category</h1>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="./">Home</a></li>
-                            <li class="breadcrumb-item">Category Manage</li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit Category</li>
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/category/list">Category List</a></li>
+                            <li class="breadcrumb-item">Category Create</li>
                         </ol>
                     </div>
 
@@ -84,30 +76,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="card">
 
                                 <div class="table-responsive p-3">
-                                    <form action="" method="POST" autocomplete="off">
+                                    <form action="" method="post" autocomplete="off">
                                         <div class="form-group mb-3">
                                             <label for="name">Category Name</label>
-                                            <input type="text" class="form-control" id="name" name="name" aria-describedby="name" placeholder="Enter Name" value="<?php echo $category['name'] ?>">
+                                            <input type="text" class="form-control" id="name" name="name" aria-describedby="name" placeholder="Enter Name" value="<?php echo $name ?>">
                                         </div>
                                         <p class="text-danger"><?php echo isset($errors['name']) ? $errors['name'] : ""; ?></p>
                                         <div class="form-group">
                                             <label for="slug">Category Slug</label>
-                                            <input type="text" class="form-control" id="slug" name="slug" aria-describedby="name" placeholder="Enter Slug" value="<?php echo $category['slug'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="status">Status</label>
-                                            <select class="form-control" name="status" id="status">
-                                                <option value="1"
-                                                    <?php echo $category['status'] == 1 ? 'selected' : ''; ?>>Active
-                                                </option>
-                                                <option value="0"
-                                                    <?php echo $category['status'] == 0 ? 'selected' : ''; ?>>Inactive
-                                                </option>
-                                            </select>
+                                            <input type="text" class="form-control" id="slug" name="slug" aria-describedby="name" placeholder="Enter Slug" value="<?php echo $slug ?>">
                                         </div>
                                         <p class="text-danger"><?php echo isset($errors['slug']) ? $errors['slug'] : ""; ?></p>
                                         <div class="mt-3">
-                                            <input class="btn btn-primary" type="submit" value="Update">
+                                            <input class="btn btn-primary" type="submit" value="submit">
                                         </div>
                                     </form>
                                 </div>
@@ -121,9 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <!---Container Fluid-->
             </div>
             <!-- modal  -->
-            <?php require_once __DIR__ . "/../modal.php"  ?>
+            <?php require_once __DIR__ . "/../includes/modal.php"  ?>
             <!-- Footer -->
-            <?php require_once __DIR__ . "/../footer.php" ?>
+            <?php require_once __DIR__ . "/../includes/footer.php" ?>
             <!-- footer -->
 
         </div>
@@ -133,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <?php require_once __DIR__ . "/../script.php" ?>
+    <?php require_once __DIR__ . "/../includes/script.php" ?>
 </body>
 
 </html>

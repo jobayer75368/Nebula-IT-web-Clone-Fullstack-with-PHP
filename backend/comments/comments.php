@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . "/../../session.php";
-require_once __DIR__ . "/../../config.php";
-require_once __DIR__ . "/../db_connection.php";
-require_once __DIR__ . "/../../restrict.php";
+require_once __DIR__ . "/../session.php";
+require_once __DIR__ . "/../includes/db_connection.php";
+require_once __DIR__ . "/../config.php";
+require_once __DIR__ . "/../restrict.php";
 
 try {
     $sql = "SELECT comments.*, blogs.title AS blog_title
@@ -19,7 +19,7 @@ try {
 <!DOCTYPE html>
 <html lang="en">
 <!-- head -->
-<?php require_once __DIR__ . "/../head.php" ?>
+<?php require_once __DIR__ . "/../includes/head.php" ?>
 
 <!-- head -->
 
@@ -27,14 +27,14 @@ try {
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php require_once __DIR__ . "/../sidebar.php" ?>
+        <?php require_once __DIR__ . "/../includes/sidebar.php" ?>
         <!-- Sidebar -->
 
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
 
                 <!-- Topbar -->
-                <?php require_once __DIR__ . "/../topbar.php" ?>
+                <?php require_once __DIR__ . "/../includes/topbar.php" ?>
                 <!-- Topbar -->
 
                 <!-- Container Fluid-->
@@ -122,9 +122,9 @@ try {
                 <!---Container Fluid-->
             </div>
             <!-- moda  -->
-            <?php require_once __DIR__ . "/../modal.php"  ?>
+            <?php require_once __DIR__ . "/../includes/modal.php"  ?>
             <!-- Footer -->
-            <?php require_once __DIR__ . "/../footer.php" ?>
+            <?php require_once __DIR__ . "/../includes/footer.php" ?>
             <!-- footer -->
 
         </div>
@@ -134,7 +134,7 @@ try {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <?php require_once __DIR__ . "/../script.php" ?>
+    <?php require_once __DIR__ . "/../includes/script.php" ?>
 </body>
 
 </html>

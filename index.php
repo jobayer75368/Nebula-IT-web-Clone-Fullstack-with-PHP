@@ -82,59 +82,59 @@ switch ($request) {
 
     // Contacts 
     case '/admin/contacts':
-        require_once __DIR__ . "/backend/includes/contacts/contact.php";
+        require_once __DIR__ . "/backend/contacts/contact.php";
         break;
     case '/admin/contacts/delete':
-        require_once __DIR__ . "/backend/includes/contacts/contact_delete.php";
+        require_once __DIR__ . "/backend/contacts/contact_delete.php";
         break;
     // Contacts end 
 
     //Categories
     case '/admin/category/list':
-        require_once __DIR__ . "/backend/includes/categories/category_list.php";
+        require_once __DIR__ . "/backend/categories/category_list.php";
         break;
     case '/admin/category/create':
-        require_once __DIR__ . "/backend/includes/categories/create_category.php";
+        require_once __DIR__ . "/backend/categories/create_category.php";
         break;
     case '/admin/category/edit':
-        require_once __DIR__ . "/backend/includes/categories/edit_category.php";
+        require_once __DIR__ . "/backend/categories/edit_category.php";
         break;
     case '/admin/category/delete':
-        require_once __DIR__ . "/backend/includes/categories/delete.php";
+        require_once __DIR__ . "/backend/categories/delete.php";
         break;
     // categories end 
 
     //BLOGS
     case '/admin/blog/list':
-        require_once __DIR__ . "/backend/includes/blogs/blog_list.php";
+        require_once __DIR__ . "/backend/blogs/blog_list.php";
         break;
     case '/admin/blog/create':
-        require_once __DIR__ . "/backend/includes/blogs/blog_create.php";
+        require_once __DIR__ . "/backend/blogs/blog_create.php";
         break;
     case '/admin/blog/edit':
-        require_once __DIR__ . "/backend/includes/blogs/blog_edit.php";
+        require_once __DIR__ . "/backend/blogs/blog_edit.php";
         break;
     case '/admin/blog/delete':
-        require_once __DIR__ . "/backend/includes/blogs/blog_delete.php";
+        require_once __DIR__ . "/backend/blogs/blog_delete.php";
         break;
     // Blogs end
 
     // Users
     case '/admin/users/list':
-        require_once __DIR__ . "/backend/includes/users/users_list.php";
+        require_once __DIR__ . "/backend/users/users_list.php";
         break;
     case '/admin/users/edit':
-        require_once __DIR__ . "/backend/includes/users/users_edit.php";
+        require_once __DIR__ . "/backend/users/users_edit.php";
         break;
     case '/admin/user/delete':
-        require_once __DIR__ . "/backend/includes/users/user_delete.php";
+        require_once __DIR__ . "/backend/users/user_delete.php";
         break;
     //User profile
     case '/admin/user/profile':
-        require_once __DIR__ . '/backend/includes/users/user_profile.php';
+        require_once __DIR__ . '/backend/users/user_profile.php';
         break;
     case '/admin/user/profile/update':
-        require_once __DIR__ . '/backend/includes/users/user_profile_update.php';
+        require_once __DIR__ . '/backend/users/user_profile_update.php';
         break;
 
 
@@ -142,19 +142,19 @@ switch ($request) {
 
     // Comments 
     case '/admin/comments':
-        require_once __DIR__ . '/backend/includes/comments/comments.php';
+        require_once __DIR__ . '/backend/comments/comments.php';
         break;
     case '/admin/comment/approve':
-        require_once __DIR__ . '/backend/includes/comments/comment_approve.php';
+        require_once __DIR__ . '/backend/comments/comment_approve.php';
         break;
 
     case '/admin/comment/delete':
-        require_once __DIR__ . "/backend/includes/comments/comment_delete.php";
+        require_once __DIR__ . "/backend/comments/comment_delete.php";
         break;
 
     // Settings 
     case '/admin/settings':
-        require_once __DIR__ . '/backend/includes/settings.php';
+        require_once __DIR__ . '/backend/settings.php';
         break;
 
     default:

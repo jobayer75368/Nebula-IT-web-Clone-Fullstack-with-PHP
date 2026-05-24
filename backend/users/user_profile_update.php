@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . "/../../session.php";
-require_once __DIR__ . "/../db_connection.php";
-require_once __DIR__ . "/../../config.php";
-require_once __DIR__ . "/../../restrict.php";
+require_once __DIR__ . "/../session.php";
+require_once __DIR__ . "/../includes/db_connection.php";
+require_once __DIR__ . "/../config.php";
+require_once __DIR__ . "/../restrict.php";
 
 $id = $_SESSION['user_id'] ?? null;
 
@@ -50,21 +50,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 
 <!-- head -->
-<?php require_once __DIR__ . "/../head.php" ?>
+<?php require_once __DIR__ . "/../includes/head.php" ?>
 <!-- head -->
 
 <body id="page-top">
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php require_once __DIR__ . "/../sidebar.php" ?>
+        <?php require_once __DIR__ . "/../includes/sidebar.php" ?>
         <!-- Sidebar -->
 
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
 
                 <!-- Topbar -->
-                <?php require_once __DIR__ . "/../topbar.php" ?>
+                <?php require_once __DIR__ . "/../includes/topbar.php" ?>
                 <!-- Topbar -->
 
                 <!-- Container Fluid-->
@@ -114,9 +114,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <!---Container Fluid-->
             </div>
             <!-- modal  -->
-            <?php require_once __DIR__ . "/../modal.php"  ?>
+            <?php require_once __DIR__ . "/../includes/modal.php"  ?>
             <!-- Footer -->
-            <?php require_once __DIR__ . "/../footer.php" ?>
+            <?php require_once __DIR__ . "/../includes/footer.php" ?>
             <!-- footer -->
 
         </div>
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <?php require_once __DIR__ . "/../script.php" ?>
+    <?php require_once __DIR__ . "/../includes/script.php" ?>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 <?php
-require_once __DIR__ . "/../../session.php";
-require_once __DIR__ . "/../db_connection.php";
-require_once __DIR__ . "/../../config.php";
-require_once __DIR__ . "/../../restrict.php";
+require_once __DIR__ . "/../session.php";
+require_once __DIR__ . "/../includes/db_connection.php";
+require_once __DIR__ . "/../config.php";
+require_once __DIR__ . "/../restrict.php";
 $contacts = [];
 try {
   $sql = "SELECT * FROM contacts ORDER BY id DESC;";
@@ -19,19 +19,19 @@ try {
 <html lang="en">
 
 <!-- head  -->
-<?php require_once __DIR__ . "/../head.php" ?>
+<?php require_once __DIR__ . "/../includes/head.php" ?>
 <!-- head  -->
 
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
 
-    <?php require_once __DIR__ . "/../sidebar.php" ?>
+    <?php require_once __DIR__ . "/../includes/sidebar.php" ?>
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
         <!-- TopBar -->
-        <?php require_once __DIR__ . "/../topbar.php" ?>
+        <?php require_once __DIR__ . "/../includes/topbar.php" ?>
 
         <!-- Topbar -->
 
@@ -95,13 +95,13 @@ try {
 
           <!-- Modal Logout -->
           <!-- modal  -->
-          <?php require_once __DIR__ . "/../modal.php"  ?>
+          <?php require_once __DIR__ . "/../includes/modal.php"  ?>
 
         </div>
         <!---Container Fluid-->
       </div>
       <!-- Footer -->
-      <?php require_once __DIR__ . "/../footer.php" ?>
+      <?php require_once __DIR__ . "/../includes/footer.php" ?>
 
       <!-- footer  -->
     </div>
@@ -109,7 +109,7 @@ try {
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-  <?php require_once __DIR__ . "/../script.php" ?>
+  <?php require_once __DIR__ . "/../includes/script.php" ?>
 </body>
 
 </html>
