@@ -13,6 +13,8 @@ function sanitize(string $data)
     return $data;
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (!empty($_POST['name'])) {
         $name = sanitize($_POST['name']);
     } else {
@@ -22,29 +24,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!empty($_FILES['image']['name'])) {
 
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
 
-        if (in_array($_FILES['image']['type'], $allowedTypes)) {
-            $fileName = time() . "-" . $_FILES['image']['name'];
-
-            $targetPath = __DIR__ . "/../../uploads/" . $fileName;
-            move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
-            $image = BASE_URL . "uploads/" . $fileName;
-        } else {
-            $errors['image'] = "Only JPG, PNG and WEBP images are allowed";
+        $uploadsDir = __DIR__ . "/../../uploads/clients";
+        if (!is_dir($uploadsDir)) {
+            mkdir($uploadsDir, 0755, true);
         }
-    } else {
 
-        $errors['image'] = "Client image is required";
-    }
+        $fileName = time() . "-" . $_FILES['image']['name'];
+        $targetPath = $uploadsDir . "/" . $fileName;
 
-    if (empty($errors)) {
-        $sql = "INSERT INTO clients (name,image)
-                    VALUES (?,?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$name, $image]);
-        header("Location: /admin/clients");
-        exit();
+        if (!in_array($_FILES['image']['type'], $allowedTypes)) {
+            $errors['image'] = "Only JPEG, PNG, WebP allowed";
+        } else if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+            $db_Path = "clients/" . $fileName;
+            $image = $db_Path;
+
+
+            $sql = "INSERT INTO clients (name, image)
+                    VALUES (:name, :image)";
+            $statement = $pdo->prepare($sql);
+            $result = $statement->execute([
+                ':name' => $name,
+                ':image' => $image
+            ]);
+            header("Location: /admin/clients");
+            exit;
+        }
     }
 }
 

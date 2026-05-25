@@ -1,7 +1,16 @@
+<?php
+
+require_once __DIR__ . "/../backend/includes/db_connection.php";
+require_once __DIR__ . "/../backend/config.php";
+
+$sql = "SELECT * FROM clients";
+$statement = $pdo->prepare($sql);
+$statement->execute();
+$clients = $statement->fetchAll(PDO::FETCH_ASSOC)
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
-
 
 <!-- Head  -->
 <?php require_once __DIR__ . '/includes/head.php' ?>
@@ -34,13 +43,17 @@
     <section class="client_grid my-20">
         <div class="container mx-auto px-5 lg:px-20">
             <div class="grid_cont grid grid-cols-2 lg:grid-cols-5 gap-10">
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-1.PNG" alt="">
-                    <div class="client_name">
-                        <p>Style echo</p>
-                    </div>
-                </div>
-                <div class="client_card">
+                <?php if (!empty($clients)): ?>
+                    <?php foreach ($clients as $client): ?>
+                        <div class="client_card">
+                            <img class="client_image" src="<?= !empty($client['image']) ? BASE_URL . 'uploads/' . $client['image'] : '/frontend/assets/images/no-image.png'; ?>" alt="">
+                            <div class="client_name">
+                                <p><?= $client['name'] ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- <div class="client_card">
                     <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-2.PNG" alt="">
                     <div class="client_name">
                         <p>Angel Rose Beauty Care BD</p>
@@ -141,7 +154,7 @@
                     <div class="client_name">
                         <p>cooking spaces</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

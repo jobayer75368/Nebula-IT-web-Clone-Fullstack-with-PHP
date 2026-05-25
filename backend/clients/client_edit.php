@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
         $fileName = time() . "-" . $_FILES['image']['name'];
-        $targetPath = __DIR__ . "/../../uploads/" . $fileName;
+        $targetPath = __DIR__ . "/../../uploads/clients/" . $fileName;
         move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
-        $image = BASE_URL . "uploads/" . $fileName;
+        $image = "clients/" . $fileName;
     }
 
     if (empty($errors)) {

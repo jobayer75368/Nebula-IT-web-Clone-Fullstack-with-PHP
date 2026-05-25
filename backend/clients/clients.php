@@ -72,11 +72,11 @@ try {
                                                 <?php foreach ($clients as $client): ?>
                                                     <tr>
                                                         <td><?= $client['id'] ?></td>
-                                                        <td><?= $client['name'] ?></td>
+                                                        <td><?= ucwords($client['name']) ?></td>
                                                         <td>
                                                             <img
                                                                 class="rounded"
-                                                                src="<?= $client['image']; ?>"
+                                                                src=" <?= empty($client['image']) ? '/frontend/assets/images/no-image.png' : BASE_URL . "uploads/" . $client['image']; ?>"
                                                                 height="80">
                                                         </td>
 

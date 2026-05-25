@@ -10,20 +10,34 @@ require_once __DIR__ . "/../restrict.php";
 
 $id = $_SESSION['user_id'] ?? null;
 
+
 // Upload Image
 if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_FILES['featured_image']['name'])) {
 
+  $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+  $uploadsDir = __DIR__ . "/../../uploads/users";
+  if (!is_dir($uploadsDir)) {
+    mkdir($uploadsDir, 0755, true);
+  }
+
   $fileName = time() . "-" . $_FILES['featured_image']['name'];
-  $targetPath = __DIR__ . "/../../uploads/" . $fileName;
-  move_uploaded_file($_FILES['featured_image']['tmp_name'], $targetPath);
-  $db_Path = "/uploads/" . $fileName;
-  // Update database
-  $sql = "UPDATE users SET featured_image = :featured_image WHERE id = :id";
-  $statement = $pdo->prepare($sql);
-  $statement->execute([
-    ':featured_image' => $db_Path,
-    ':id' => $id
-  ]);
+  $targetPath = $uploadsDir . "/" . $fileName;
+
+  if (!in_array($_FILES['featured_image']['type'], $allowedTypes)) {
+    $errors['featured_image'] = "Only JPEG, PNG, WebP allowed";
+  } else if (move_uploaded_file($_FILES['featured_image']['tmp_name'], $targetPath)) {
+    $db_Path = "users/" . $fileName;
+
+
+    $sql = "UPDATE users SET featured_image = :featured_image WHERE id = :id";
+    $statement = $pdo->prepare($sql);
+    $result = $statement->execute([
+      ':featured_image' => $db_Path,
+      ':id' => $id
+    ]);
+    header("Location: /admin/user/profile");
+    exit;
+  }
 }
 
 
@@ -73,7 +87,7 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);
 
                   <img
                     id="previewImg"
-                    src="<?= empty($user['featured_image']) ? '/frontend/assests/images/no-image.png' : BASE_URL . $user['featured_image']; ?>"
+                    src="<?= empty($user['featured_image']) ? '/frontend/assests/images/no-image.png' : BASE_URL . 'uploads/' . $user['featured_image']; ?>"
                     class="rounded-circle border border-dark"
                     width="150"
                     height="150">
