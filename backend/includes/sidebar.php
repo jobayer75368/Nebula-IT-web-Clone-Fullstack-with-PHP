@@ -17,6 +17,20 @@
   </div>
 
   <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClient" aria-expanded="true"
+      aria-controls="collapseClient">
+      <i class="fa-solid fa-user-tag"></i>
+      <span>Client Manage</span>
+    </a>
+    <div id="collapseClient" class="collapse" aria-labelledby="headingClient" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Clients</h6>
+        <a class="collapse-item" href="/admin/clients">Client List</a>
+        <a class="collapse-item" href="/admin/client/create">Client Create</a>
+      </div>
+    </div>
+  </li>
+  <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePost" aria-expanded="true"
       aria-controls="collapsePost">
       <i class="fas fa-fw fa-blog"></i>

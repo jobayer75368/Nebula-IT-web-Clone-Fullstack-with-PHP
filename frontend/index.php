@@ -199,7 +199,7 @@
         </div>
     </section>
     <div class="w-100 text-center">
-        <a class="primary_link" href="">View More</a>
+        <a class="primary_link" href="/portfolio">View More</a>
     </div>
     <section class="clients_section mt-20 py-8">
         <div class="container mx-auto px-20">

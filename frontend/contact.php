@@ -40,7 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ':message' => $message
         ]);
         $name = $email = $subject = $message = "";
-        $sent = '<p class="bg-green-400 p-4 rounded-lg">Message Sent Successfully!</p>';
+
+        $sent = '<p class="bg-green-300 p-4 rounded-lg font-semibold">Message Sent Successfully!</p>';
+    } else {
+        $sent = '<p class="bg-red-300 p-4 rounded-lg font-semibold">Error!</p>';
     }
 }
 

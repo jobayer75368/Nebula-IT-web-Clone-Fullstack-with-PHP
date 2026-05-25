@@ -76,8 +76,23 @@ switch ($request) {
     case '/admin/blank':
         require_once __DIR__ . "/backend/blank.php";
         break;
+
+    // Logout handelling 
     case '/admin/logout':
         require_once __DIR__ . "/backend/logout.php";
+        break;
+    // Clients 
+    case '/admin/clients':
+        require_once __DIR__ . "/backend/clients/clients.php";
+        break;
+    case '/admin/client/create':
+        require_once __DIR__ . "/backend/clients/client_create.php";
+        break;
+    case '/admin/client/edit':
+        require_once __DIR__ . "/backend/clients/client_edit.php";
+        break;
+    case '/admin/client/delete':
+        require_once __DIR__ . "/backend/clients/client_delete.php";
         break;
 
     // Contacts 

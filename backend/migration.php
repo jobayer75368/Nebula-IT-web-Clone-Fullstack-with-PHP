@@ -287,3 +287,13 @@ function createTable(PDO $pdo, string $table, string $sql)
 // } catch (PDOException $e) {
 //     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
 // }
+
+createTable($pdo, "clients", "
+    CREATE TABLE clients (
+        id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(50) NOT NULL,
+        image VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+    )
+");
