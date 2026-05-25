@@ -7,6 +7,7 @@
 
 $name = $email = $subject = $message = "";
 $error = [];
+$sent = "";
 function sanitize(string $data)
 {
     $data = trim(htmlspecialchars($data));
@@ -38,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ':subject' => $subject,
             ':message' => $message
         ]);
-
-        echo "Data inserted successfully";
+        $name = $email = $subject = $message = "";
+        $sent = '<p class="bg-green-400 p-4 rounded-lg">Message Sent Successfully!</p>';
     }
 }
 
@@ -111,27 +112,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h2 class="mb-5"><span>Send Us a</span> message</h2>
                 <img class="lg:hidden" src="/frontend/assets/images/contact.PNG" alt="">
                 <form class="bg-white p-5 rounded-md shadow-lg w-100 flex flex-col" action="" method="POST">
-                    <div>
-                        <p>Your Name</p>
-                        <input class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" type="text"
+                    <?= $sent; ?>
+                    <div class="mb-4 mt-5">
+                        <label for="name">Your Name</label>
+                        <input id="name" class="w-100 px-4 py-2 border border-gray-300 rounded-lg mt-2" type="text"
                             placeholder="Enter your name" name="name" value="<?= $name ?>">
-                        <p><?= isset($error['name']) ? $error['name'] : ''; ?></p>
+                        <p class="text-red-700"><?= isset($error['name']) ? $error['name'] : ''; ?></p>
                     </div>
-                    <div>
-                        <p>Your Email</p>
-                        <input class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" type="email"
+                    <div class="mb-4">
+                        <label for="email">Your Email</label>
+                        <input id="email" class="w-100 px-4 py-2 border border-gray-300 rounded-lg mt-2" type="email"
                             placeholder="Enter your email" name="email" value="<?= $email ?>">
-                        <p><?= isset($error['email']) ? $error['email'] : ''; ?></p>
+                        <p class="text-red-700"><?= isset($error['email']) ? $error['email'] : ''; ?></p>
                     </div>
-                    <div>
-                        <p>Your Subject</p>
-                        <input class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" type="text"
+                    <div class="mb-4">
+                        <label for="subject">Your Subject</label>
+                        <input id="subject" class="w-100 px-4 py-2 border border-gray-300 rounded-lg mt-2" type="text"
                             placeholder="Enter your subject" name="subject" value="<?= $subject ?>">
-                        <p><?= isset($error['subject']) ? $error['subject'] : ''; ?></p>
                     </div>
-                    <p>Your Message (optional)</p>
-                    <div class="w-100">
-                        <textarea class="w-100 px-4 py-2 border border-gray-300 rounded-lg mb-8" id=""
+                    <div class="w-100 mb-4">
+                        <label for="message">Your Message (optional)</label>
+                        <textarea id="message" class="w-100 px-4 py-2 border border-gray-300 rounded-lg mt-2"
                             placeholder=" Write Your Message..." name="message"><?= $message ?></textarea>
                     </div>
                     <input class="secondary_link" type="submit" value="Submit">
