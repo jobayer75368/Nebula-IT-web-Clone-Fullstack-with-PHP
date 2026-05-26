@@ -145,8 +145,8 @@ $categories = $categoryStmt->fetchAll(PDO::FETCH_ASSOC)
                                             <p class="text-danger"><?php echo isset($errors['short_description']) ? $errors['short_description'] : ""; ?></p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="long_description">Long Description</label>
-                                            <textarea class="form-control" id="long_description" name="long_description"><?= $long_description ?></textarea>
+                                            <label for="summernote">Long Description</label>
+                                            <textarea class="form-control" id="summernote" name="long_description"><?= $long_description ?></textarea>
 
                                             <p class="text-danger"><?php echo isset($errors['long_description']) ? $errors['long_description'] : ""; ?></p>
                                         </div>

@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="card">
 
                                 <div class="table-responsive p-3">
-                                    <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                                    <form action="" method="Post" autocomplete="off" enctype="multipart/form-data">
                                         <div class="form-group mb-3">
                                             <label for="title">Blog Title</label>
                                             <input type="text" class="form-control" id="title" name="title" aria-describedby="title" placeholder="Enter Title" value="<?php echo $blog['title'] ?>">
@@ -143,8 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <p class="text-danger"><?php echo isset($errors['short_description']) ? $errors['short_description'] : ""; ?></p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="long_description">Long Description</label>
-                                            <textarea class="form-control" id="long_Description" name="long_description" aria-describedby="long_description"><?php echo $blog['long_description']; ?>
+                                            <label for="summernote">Long Description</label>
+                                            <textarea id="summernote" name="long_description" aria-describedby="long_description"><?php echo $blog['long_description']; ?>
                                             </textarea>
 
                                             <p class="text-danger"><?php echo isset($errors['long_description']) ? $errors['long_description'] : ""; ?></p>
