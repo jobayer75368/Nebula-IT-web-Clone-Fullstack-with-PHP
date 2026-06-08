@@ -4,23 +4,7 @@ require_once __DIR__ . "/db_connection.php";
 require_once __DIR__ . "/../config.php";
 
 $id = $_SESSION['user_id'];
-$user = [];
 
-// Upload Image
-if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_FILES['featured_image']['name'])) {
-
-  $fileName = time() . "-" . $_FILES['featured_image']['name'];
-  $targetPath = __DIR__ . "/uploads/" . $fileName;
-  move_uploaded_file($_FILES['featured_image']['tmp_name'], $targetPath);
-  $db_Path = "uploads/" . $fileName;
-  // Update database
-  $sql = "UPDATE users SET featured_image = :featured_image WHERE id = :id";
-  $statement = $pdo->prepare($sql);
-  $statement->execute([
-    ':featured_image' => $db_Path,
-    ':id' => $id
-  ]);
-}
 try {
 
   $sql = "SELECT * FROM users WHERE id = :id";
@@ -197,7 +181,7 @@ try {
     <li class="nav-item dropdown no-arrow">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        <img class="img-profile rounded-circle" src="<?= empty($user['featured_image']) ? '/frontend/assests/images/no-image.png' : BASE_URL . $user['featured_image']; ?>" style="max-width: 60px">
+        <img class="img-profile rounded-circle" src="<?= empty($user['featured_image']) ? '/frontend/assests/images/no-image.png' : BASE_URL . "uploads/" . $user['featured_image']; ?>" style="max-width: 60px">
         <span class="ml-2 d-none d-lg-inline text-white small"><?php echo $user["name"] ?></span>
       </a>
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

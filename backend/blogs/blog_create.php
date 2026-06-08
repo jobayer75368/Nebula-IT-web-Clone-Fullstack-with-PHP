@@ -5,7 +5,7 @@ require_once __DIR__ . "/../config.php";
 require_once __DIR__ . "/../restrict.php";
 
 
-$title = $slug = $short_description = $long_description = $featured_image = $categoryID = $status = "";
+$title = $slug = $short_description = $long_description = $featured_image  = $status = "";
 $errors = [];
 $created_by = $_SESSION['user_id'];
 function sanitize(string $data)
@@ -39,11 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['long_description'] = "Long Description is required";
     }
 
-    if (!empty($_POST['category_id'])) {
-        $categoryID = sanitize($_POST['category_id']);
-    } else {
-        $errors['category_id'] = "category is required";
-    }
 
     if (!empty($_POST['status'])) {
         $status = sanitize($_POST['status']);
@@ -70,19 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        $sql = "INSERT INTO blogs (title, slug, short_description, long_description,featured_image,category_id, status, created_by)
-                    VALUES (?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO blogs (title, slug, short_description, long_description,featured_image, status, created_by)
+                    VALUES (?,?,?,?,?,?,?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$title, $slug, $short_description, $long_description, $featured_image, $categoryID, $status, $created_by]);
+        $stmt->execute([$title, $slug, $short_description, $long_description, $featured_image, $status, $created_by]);
         header("Location: /admin/blog/list");
         exit();
     }
 }
-
-$categorySql = "SELECT * FROM categories";
-$categoryStmt = $pdo->prepare($categorySql);
-$categoryStmt->execute();
-$categories = $categoryStmt->fetchAll(PDO::FETCH_ASSOC)
 
 ?>
 
@@ -156,14 +146,7 @@ $categories = $categoryStmt->fetchAll(PDO::FETCH_ASSOC)
 
                                             <p class="text-danger"><?php echo isset($errors['featured_image']) ? $errors['featured_image'] : ""; ?></p>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="category">Category</label>
-                                            <select class="form-control" name="category_id" id="category">
-                                                <?php foreach ($categories as $category) : ?>
-                                                    <option value="<?= $category['id']; ?>"><?= $category['name'] ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
+
                                         <div class="form-group">
                                             <label for="status">Status</label>
                                             <select class="form-control" name="status" id="status">
