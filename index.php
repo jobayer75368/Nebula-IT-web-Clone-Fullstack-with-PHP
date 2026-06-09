@@ -22,6 +22,9 @@ switch ($request) {
     case '/blogs':
         require_once __DIR__ . '/frontend/blogs.php';
         break;
+    case '/single_blog':
+        require_once __DIR__ . '/frontend/single_blog.php';
+        break;
     case '/contact':
         require_once __DIR__ . '/frontend/contact.php';
         break;

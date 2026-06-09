@@ -33,7 +33,7 @@
                 <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative">
                     <div class="img_overlay">
                         <img src="/frontend/assets/images/blog/blog_03.jpg.bv.webp" alt="">
-                        <a href="">
+                        <a href="/single_blog">
                             <div class="blog_overlay">
                                 <div class="bg-blue-500 text-white text-sm inline-block px-2 py-1 rounded-sm ml-3 mt-2">
                                     Blog
