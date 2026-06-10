@@ -44,19 +44,7 @@
       </div>
     </div>
   </li>
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="true"
-      aria-controls="collapseCategories">
-      <i class="fas fa-fw fa-layer-group"></i>
-      <span>Category Manage</span>
-    </a>
-    <div id="collapseCategories" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/admin/category/list">Category List</a>
-        <a class="collapse-item" href="/admin/category/create">Create Category</a>
-      </div>
-    </div>
-  </li>
+
   <hr class="sidebar-divider">
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContact" aria-expanded="true"

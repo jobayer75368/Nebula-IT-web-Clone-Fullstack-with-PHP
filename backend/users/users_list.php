@@ -21,7 +21,6 @@ try {
   die("Error fetching users: " . $e->getMessage());
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +89,7 @@ try {
                               <td><?= $user['id'] ?></td>
                               <td><span><img class="rounded-circle border border-dark mr-2"
                                     width="60"
-                                    height="60" src=" <?= empty($user['featured_image']) ? '/frontend/assests/images/no-image.png' : BASE_URL . $user['featured_image']; ?>" alt=""></span>
+                                    height="60" src=" <?= empty($user['featured_image']) ? '/frontend/assests/images/no-image.png' : BASE_URL . "uploads/" . $user['featured_image']; ?>" alt=""></span>
                                 <span> <?= $user['name'] ?></span>
                               </td>
                               <td><?= $user['email'] ?></td>

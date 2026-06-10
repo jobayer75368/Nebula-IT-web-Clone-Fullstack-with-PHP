@@ -158,51 +158,53 @@
                     </div>
 
                     <!-- Leave a Comment -->
-                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-1">Leave a Comment</h2>
-                        <p class="text-sm text-gray-500 mb-5">Your email address will not be published. Required fields are marked *</p>
+                    <form action="" method="POST">
+                        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                            <h2 class="text-xl not-italic font-bold text-gray-800 mb-1">Leave a Comment</h2>
+                            <p class="text-sm text-gray-500 mb-5">Your email address will not be published. Required fields are marked *</p>
 
-                        <div class="space-y-4">
-                            <!-- Comment Textarea -->
-                            <div>
-                                <textarea
-                                    rows="6"
-                                    placeholder="Type here..."
-                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[var(--primary-color)] focus:ring-1 focus:ring-[var(--primary-color)] transition-colors"></textarea>
-                            </div>
+                            <div class="space-y-4">
+                                <!-- Comment Textarea -->
+                                <div>
+                                    <textarea
+                                        rows="6"
+                                        placeholder="Type here..."
+                                        class="w-full border border-gray-300 px-4 py-3 text-sm text-gray-700 placeholder-gray-400"></textarea>
+                                </div>
 
-                            <!-- Name, Email, Website -->
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <input
-                                    type="text"
-                                    placeholder="Name*"
-                                    class="border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[var(--primary-color)] focus:ring-1 focus:ring-[var(--primary-color)] transition-colors">
-                                <input
-                                    type="email"
-                                    placeholder="Email*"
-                                    class="border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[var(--primary-color)] focus:ring-1 focus:ring-[var(--primary-color)] transition-colors">
-                                <input
-                                    type="url"
-                                    placeholder="Website"
-                                    class="border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[var(--primary-color)] focus:ring-1 focus:ring-[var(--primary-color)] transition-colors">
-                            </div>
+                                <!-- Name, Email, Website -->
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <input
+                                        type="text"
+                                        placeholder="Name*"
+                                        class="border border-gray-300 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400">
+                                    <input
+                                        type="email"
+                                        placeholder="Email*"
+                                        class="border border-gray-300 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 ">
+                                    <input
+                                        type="url"
+                                        placeholder="Website"
+                                        class="border border-gray-300 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 ">
+                                </div>
 
-                            <!-- Save checkbox -->
-                            <label class="flex items-center gap-3 cursor-pointer text-sm text-gray-600">
-                                <input type="checkbox" class="w-4 h-4 accent-blue-700 cursor-pointer ">
-                                <span>Save my name, email, and website in this browser for the next time I comment.</span>
-                            </label>
+                                <!-- Save checkbox -->
+                                <label class="flex items-center gap-3 cursor-pointer text-sm text-gray-600">
+                                    <input type="checkbox" class="w-4 h-4 accent-blue-700 cursor-pointer ">
+                                    <span>Save my name, email, and website in this browser for the next time I comment.</span>
+                                </label>
 
-                            <!-- Submit -->
-                            <div>
-                                <button
-                                    type="button"
-                                    class="bg-blue-700 hover:opacity-90 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-opacity cursor-pointer">
-                                    Post Comment
-                                </button>
+                                <!-- Submit -->
+                                <div>
+                                    <button
+                                        type="submit"
+                                        class="bg-blue-700 hover:opacity-90 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-opacity cursor-pointer">
+                                        Post Comment
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
 
                 </div><!-- end main content -->
 

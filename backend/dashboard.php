@@ -13,12 +13,12 @@ $statement->execute();
 $blogs = $statement->fetch(PDO::FETCH_ASSOC);
 
 // For Categories 
-$categorySql = "SELECT categories.*,
-                COUNT(categories.id) AS total_categories
-                FROM categories";
-$categoryStmt = $pdo->prepare($categorySql);
-$categoryStmt->execute();
-$categories = $categoryStmt->fetch(PDO::FETCH_ASSOC);
+// $categorySql = "SELECT categories.*,
+//                 COUNT(categories.id) AS total_categories
+//                 FROM categories";
+// $categoryStmt = $pdo->prepare($categorySql);
+// $categoryStmt->execute();
+// $categories = $categoryStmt->fetch(PDO::FETCH_ASSOC);
 
 // For Counting Users 
 $userSql = "SELECT users.*,
@@ -100,26 +100,7 @@ $comments = $statement->fetch(PDO::FETCH_ASSOC);
                   </div>
                 </div>
               </div>
-              <!-- Earnings (Annual) Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-uppercase mb-1">Total number of Categories</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $categories['total_categories'] ?></div>
-                        <div class="mt-2 mb-0 text-muted text-xs">
-                          <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                          <span>Since last years</span>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-layer-group fa-2x text-success"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <!-- New User Card Example -->
               <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card h-100">
