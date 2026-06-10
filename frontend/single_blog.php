@@ -19,7 +19,7 @@
         <a class="block w-100 hover:text-[var(--primary-color)] hover:bg-gray-100" href="">Apps Development</a>
     </div>
 
-    <section class="blog_sec my-20">
+    <section class="blog_sec mx-auto px-5 lg:px-20 my-10">
         <div class="container mx-auto px-4 max-w-7xl">
             <div class="flex flex-col lg:flex-row gap-10">
 
@@ -29,7 +29,7 @@
                     <!-- Featured Image -->
                     <div class="mb-6 rounded-lg overflow-hidden shadow-sm">
                         <img
-                            src="/frontend/assets/images/blog/blog_01.jpg.bv.webp"
+                            src="/frontend/assets/images/blog/blog_03.jpg.bv.webp"
                             alt="Best Choice"
                             class="w-full h-64 md:h-80 object-cover">
                     </div>
@@ -39,12 +39,12 @@
                         Nebula IT vs. Competitors – What Makes Them the Best Choice?
                     </h1>
                     <p class="text-sm text-[var(--primary-color)] mb-8">
-                        By <span class="font-semibold">nidoop</span> / <span>April 30, 2025</span>
+                        <span class="text-blue-700">By</span> nidoop <span class="text-blue-600">/</span>April 30, 2025</span>
                     </p>
 
                     <!-- Introduction -->
                     <div class="mb-8">
-                        <h2 class="text-xl font-bold text-gray-800 mb-3">Introduction</h2>
+                        <h2 class="text-xl font-bold not-italic text-gray-800 mb-3">Introduction</h2>
                         <p class="text-gray-600 leading-relaxed">
                             Choosing the right web service provider can make or break your digital success. While many companies
                             offer web solutions, <strong>Nebula IT</strong> distinguishes itself through
@@ -54,47 +54,51 @@
 
                     <!-- Key Differentiators -->
                     <div class="mb-8">
-                        <h2 class="text-xl font-bold text-gray-800 mb-4">Key Differentiators</h2>
-                        <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
-                            <table class="w-full text-sm text-left text-gray-700">
-                                <thead class="bg-gray-50 border-b border-gray-200">
+                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-4">Key Differentiators</h2>
+                        <div class="overflow-x-auto rounded-lg border border-black shadow-sm">
+                            <table class="w-full text-sm text-left text-gray-700 border border-black border-collapse">
+                                <thead>
                                     <tr>
-                                        <th class="px-4 py-3 font-semibold text-gray-800">Feature</th>
-                                        <th class="px-4 py-3 font-semibold text-gray-800">Nebula IT</th>
-                                        <th class="px-4 py-3 font-semibold text-gray-800">Competitor A</th>
-                                        <th class="px-4 py-3 font-semibold text-gray-800">Competitor B</th>
+                                        <th class="border border-black px-4 py-3 font-semibold text-gray-800">Feature</th>
+                                        <th class="border border-black px-4 py-3 font-semibold text-gray-800">Nebula IT</th>
+                                        <th class="border border-black px-4 py-3 font-semibold text-gray-800">Competitor A</th>
+                                        <th class="border border-black px-4 py-3 font-semibold text-gray-800">Competitor B</th>
                                     </tr>
                                 </thead>
-                                <tbody class="divide-y divide-gray-100">
+                                <tbody>
                                     <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="px-4 py-3">Custom Solutions</td>
-                                        <td class="px-4 py-3 text-green-600">✅ Yes</td>
-                                        <td class="px-4 py-3 text-red-500">❌ Limited</td>
-                                        <td class="px-4 py-3 text-yellow-500">⚠️ Partial</td>
+                                        <td class="border border-black px-4 py-3">Custom Solutions</td>
+                                        <td class="border border-black px-4 py-3 ">✅ Yes</td>
+                                        <td class="border border-black px-4 py-3 ">❌ Limited</td>
+                                        <td class="border border-black px-4 py-3 ">⚠️ Partial</td>
                                     </tr>
+
                                     <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="px-4 py-3">Security</td>
-                                        <td class="px-4 py-3 text-green-600">🔒 Advanced Encryption</td>
-                                        <td class="px-4 py-3 text-gray-500">Basic SSL</td>
-                                        <td class="px-4 py-3 text-gray-500">Moderate</td>
+                                        <td class="border border-black px-4 py-3">Security</td>
+                                        <td class="border border-black px-4 py-3">🔒 Advanced Encryption</td>
+                                        <td class="border border-black px-4 py-3 text-gray-500">Basic SSL</td>
+                                        <td class="border border-black px-4 py-3 text-gray-500">Moderate</td>
                                     </tr>
+
                                     <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="px-4 py-3">Support</td>
-                                        <td class="px-4 py-3 text-green-600">✅ 24/7 Dedicated Team</td>
-                                        <td class="px-4 py-3 text-gray-500">Business Hours Only</td>
-                                        <td class="px-4 py-3 text-gray-500">Email Only</td>
+                                        <td class="border border-black px-4 py-3">Support</td>
+                                        <td class="border border-black px-4 py-3 ">✅ 24/7 Dedicated Team</td>
+                                        <td class="border border-black px-4 py-3 text-gray-500">Business Hours Only</td>
+                                        <td class="border border-black px-4 py-3 text-gray-500">Email Only</td>
                                     </tr>
+
                                     <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="px-4 py-3">AI Integration</td>
-                                        <td class="px-4 py-3 text-green-600">✅ Full AI & ML</td>
-                                        <td class="px-4 py-3 text-red-500">❌ No</td>
-                                        <td class="px-4 py-3 text-yellow-500">⚠️ Limited</td>
+                                        <td class="border border-black px-4 py-3">AI Integration</td>
+                                        <td class="border border-black px-4 py-3 ">✅ Full AI & ML</td>
+                                        <td class="border border-black px-4 py-3 ">❌ No</td>
+                                        <td class="border border-black px-4 py-3 ">⚠️ Limited</td>
                                     </tr>
+
                                     <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="px-4 py-3">Pricing</td>
-                                        <td class="px-4 py-3 text-green-600">💲 Competitive & Transparent</td>
-                                        <td class="px-4 py-3 text-gray-500">💲 Expensive</td>
-                                        <td class="px-4 py-3 text-gray-500">💲 Hidden Fees</td>
+                                        <td class="border border-black px-4 py-3">Pricing</td>
+                                        <td class="border border-black px-4 py-3 ">💲 Competitive & Transparent</td>
+                                        <td class="border border-black px-4 py-3 text-gray-500">💲 Expensive</td>
+                                        <td class="border border-black px-4 py-3 text-gray-500">💲 Hidden Fees</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -103,7 +107,7 @@
 
                     <!-- Client-Centric Benefits -->
                     <div class="mb-8">
-                        <h2 class="text-xl font-bold text-gray-800 mb-4">Client-Centric Benefits</h2>
+                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-4">Client-Centric Benefits</h2>
                         <ul class="space-y-2 text-gray-700">
                             <li class="flex items-start gap-2">
                                 <span class="text-green-500 mt-0.5">✔</span>
@@ -122,7 +126,7 @@
 
                     <!-- Why Businesses Prefer Nebula IT -->
                     <div class="mb-8">
-                        <h2 class="text-xl font-bold text-gray-800 mb-4">Why Businesses Prefer Nebula IT</h2>
+                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-4">Why Businesses Prefer Nebula IT</h2>
                         <ul class="list-disc list-inside space-y-2 text-gray-600">
                             <li>Faster load times (under 2 seconds).</li>
                             <li>Higher Google rankings with SEO-optimized structures.</li>
@@ -132,7 +136,7 @@
 
                     <!-- Final Verdict -->
                     <div class="mb-10 p-5 bg-gray-50 border-l-4 border-[var(--primary-color)] rounded-r-lg">
-                        <h2 class="text-xl font-bold text-gray-800 mb-3">Final Verdict</h2>
+                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-3">Final Verdict</h2>
                         <p class="text-gray-700 leading-relaxed">
                             When comparing web service providers, <strong>Nebula IT emerges as the clear leader</strong> due to its
                             <strong>cutting-edge technology, unmatched support, and proven results</strong>.
@@ -155,7 +159,7 @@
 
                     <!-- Leave a Comment -->
                     <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                        <h2 class="text-xl font-bold text-gray-800 mb-1">Leave a Comment</h2>
+                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-1">Leave a Comment</h2>
                         <p class="text-sm text-gray-500 mb-5">Your email address will not be published. Required fields are marked *</p>
 
                         <div class="space-y-4">
@@ -164,7 +168,7 @@
                                 <textarea
                                     rows="6"
                                     placeholder="Type here..."
-                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[var(--primary-color)] focus:ring-1 focus:ring-[var(--primary-color)] resize-none transition-colors"></textarea>
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-[var(--primary-color)] focus:ring-1 focus:ring-[var(--primary-color)] transition-colors"></textarea>
                             </div>
 
                             <!-- Name, Email, Website -->
@@ -184,8 +188,8 @@
                             </div>
 
                             <!-- Save checkbox -->
-                            <label class="flex items-start gap-2 cursor-pointer text-sm text-gray-600">
-                                <input type="checkbox" class="mt-0.5 accent-[var(--primary-color)]">
+                            <label class="flex items-center gap-3 cursor-pointer text-sm text-gray-600">
+                                <input type="checkbox" class="w-4 h-4 accent-blue-700 cursor-pointer ">
                                 <span>Save my name, email, and website in this browser for the next time I comment.</span>
                             </label>
 
@@ -193,7 +197,7 @@
                             <div>
                                 <button
                                     type="button"
-                                    class="bg-[var(--primary-color)] hover:opacity-90 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-opacity cursor-pointer">
+                                    class="bg-blue-700 hover:opacity-90 text-white text-sm font-semibold px-6 py-2.5 rounded-lg transition-opacity cursor-pointer">
                                     Post Comment
                                 </button>
                             </div>
@@ -206,21 +210,10 @@
                 <!-- ===================== SIDEBAR ===================== -->
                 <aside class="w-full lg:w-[30%]">
 
-                    <!-- Categories -->
-                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 mb-6">
-                        <h3 class="text-lg font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">Categories</h3>
-                        <ul class="space-y-2">
-                            <li>
-                                <a href="#" class="flex items-center justify-between text-sm text-gray-600 hover:text-[var(--primary-color)] transition-colors py-1 group">
-                                    <span class="group-hover:translate-x-1 transition-transform">Blog</span>
-                                    <span class="bg-gray-100 text-gray-500 text-xs px-2 py-0.5 rounded-full">3</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
 
                     <!-- Recent Posts -->
-                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-5">
+                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sticky top-24">
                         <h3 class="text-lg font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">Recent Posts</h3>
                         <div class="space-y-4">
 
