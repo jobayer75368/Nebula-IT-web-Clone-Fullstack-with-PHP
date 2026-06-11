@@ -2,9 +2,16 @@
 require_once __DIR__ . '/../backend/includes/db_connection.php';
 require_once __DIR__ . '/../backend/config.php';
 
-$statement = $pdo->prepare("SELECT * FROM blogs");
-$statement->execute();
-$blog = $statement->fetch(PDO::FETCH_ASSOC);
+$slug = $_GET['slug'] ?? '';
+
+$sql = "SELECT blogs.*, users.name AS posted_by
+FROM blogs
+LEFT JOIN users ON blogs.created_by = users.id
+WHERE slug=? AND blogs.status='published' LIMIT 1";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$slug]);
+
+$blog = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -41,122 +48,30 @@ $blog = $statement->fetch(PDO::FETCH_ASSOC);
                     <div class="mb-6 rounded-lg overflow-hidden shadow-sm">
                         <img
                             src="<?= !empty($blog["featured_image"]) ? BASE_URL . 'uploads/' . $blog["featured_image"] : '/frontend/assets/images/no-image.png';  ?>" alt="">
-                        <a href="/blog/<?= $blog['slug']; ?> ?>"
+                        <a href="/blogs/<?= $blog['slug']; ?> ?>"
                             alt="Best Choice"
-                            class="w-full h-64 md:h-80 object-cover">
+                            class="w-full h-64 md:h-80 object-cover"></a>
                     </div>
 
                     <!-- Post Header -->
                     <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3 leading-snug">
-                        Nebula IT vs. Competitors – What Makes Them the Best Choice?
+                        <?= $blog['title']; ?>
                     </h1>
                     <p class="text-sm text-[var(--primary-color)] mb-8">
-                        <span class="text-blue-700">By</span> nidoop <span class="text-blue-600">/</span>April 30, 2025</span>
+                        <span class="text-blue-700">By</span> <a href=""><?= $blog['posted_by'] ?></a> <span class="text-blue-600">/</span><?= date("d M Y", strtotime($blog['created_at'])) ?></span>
                     </p>
 
-                    <!-- Introduction -->
+                    <!-- Short Description -->
                     <div class="mb-8">
-                        <h2 class="text-xl font-bold not-italic text-gray-800 mb-3">Introduction</h2>
-                        <p class="text-gray-600 leading-relaxed">
-                            Choosing the right web service provider can make or break your digital success. While many companies
-                            offer web solutions, <strong>Nebula IT</strong> distinguishes itself through
-                            <strong>innovation, reliability, and customer-centric approaches</strong>.
-                        </p>
+                        <?= $blog['short_description'] ?>
                     </div>
 
-                    <!-- Key Differentiators -->
+                    <!--Long Description -->
                     <div class="mb-8">
-                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-4">Key Differentiators</h2>
-                        <div class="overflow-x-auto rounded-lg border border-black shadow-sm">
-                            <table class="w-full text-sm text-left text-gray-700 border border-black border-collapse">
-                                <thead>
-                                    <tr>
-                                        <th class="border border-black px-4 py-3 font-semibold text-gray-800">Feature</th>
-                                        <th class="border border-black px-4 py-3 font-semibold text-gray-800">Nebula IT</th>
-                                        <th class="border border-black px-4 py-3 font-semibold text-gray-800">Competitor A</th>
-                                        <th class="border border-black px-4 py-3 font-semibold text-gray-800">Competitor B</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="border border-black px-4 py-3">Custom Solutions</td>
-                                        <td class="border border-black px-4 py-3 ">✅ Yes</td>
-                                        <td class="border border-black px-4 py-3 ">❌ Limited</td>
-                                        <td class="border border-black px-4 py-3 ">⚠️ Partial</td>
-                                    </tr>
-
-                                    <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="border border-black px-4 py-3">Security</td>
-                                        <td class="border border-black px-4 py-3">🔒 Advanced Encryption</td>
-                                        <td class="border border-black px-4 py-3 text-gray-500">Basic SSL</td>
-                                        <td class="border border-black px-4 py-3 text-gray-500">Moderate</td>
-                                    </tr>
-
-                                    <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="border border-black px-4 py-3">Support</td>
-                                        <td class="border border-black px-4 py-3 ">✅ 24/7 Dedicated Team</td>
-                                        <td class="border border-black px-4 py-3 text-gray-500">Business Hours Only</td>
-                                        <td class="border border-black px-4 py-3 text-gray-500">Email Only</td>
-                                    </tr>
-
-                                    <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="border border-black px-4 py-3">AI Integration</td>
-                                        <td class="border border-black px-4 py-3 ">✅ Full AI & ML</td>
-                                        <td class="border border-black px-4 py-3 ">❌ No</td>
-                                        <td class="border border-black px-4 py-3 ">⚠️ Limited</td>
-                                    </tr>
-
-                                    <tr class="hover:bg-gray-50 transition-colors">
-                                        <td class="border border-black px-4 py-3">Pricing</td>
-                                        <td class="border border-black px-4 py-3 ">💲 Competitive & Transparent</td>
-                                        <td class="border border-black px-4 py-3 text-gray-500">💲 Expensive</td>
-                                        <td class="border border-black px-4 py-3 text-gray-500">💲 Hidden Fees</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <?= $blog['long_description']; ?>
                     </div>
 
-                    <!-- Client-Centric Benefits -->
-                    <div class="mb-8">
-                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-4">Client-Centric Benefits</h2>
-                        <ul class="space-y-2 text-gray-700">
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-500 mt-0.5">✔</span>
-                                <span><strong>Tailored Strategies</strong> – No one-size-fits-all; solutions are customized.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-500 mt-0.5">✔</span>
-                                <span><strong>Seamless Scalability</strong> – Grow without tech limitations.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-green-500 mt-0.5">✔</span>
-                                <span><strong>Proactive Security</strong> – Real-time threat monitoring.</span>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <!-- Why Businesses Prefer Nebula IT -->
-                    <div class="mb-8">
-                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-4">Why Businesses Prefer Nebula IT</h2>
-                        <ul class="list-disc list-inside space-y-2 text-gray-600">
-                            <li>Faster load times (under 2 seconds).</li>
-                            <li>Higher Google rankings with SEO-optimized structures.</li>
-                            <li>Transparent pricing with no surprises.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Final Verdict -->
-                    <div class="mb-10 p-5 bg-gray-50 border-l-4 border-[var(--primary-color)] rounded-r-lg">
-                        <h2 class="text-xl not-italic font-bold text-gray-800 mb-3">Final Verdict</h2>
-                        <p class="text-gray-700 leading-relaxed">
-                            When comparing web service providers, <strong>Nebula IT emerges as the clear leader</strong> due to its
-                            <strong>cutting-edge technology, unmatched support, and proven results</strong>.
-                        </p>
-                        <p class="mt-3 font-semibold text-[var(--primary-color)]">
-                            Join the Nebula IT revolution today! 🚀
-                        </p>
-                    </div>
 
                     <!-- Post Navigation -->
                     <div class="border-t border-gray-200 pt-6 mb-10">

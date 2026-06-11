@@ -1,4 +1,3 @@
-```php
 <?php
 require_once __DIR__ . "/../session.php";
 require_once __DIR__ . "/../includes/db_connection.php";
@@ -129,7 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-```
 
 
 <!DOCTYPE html>
@@ -187,14 +185,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                         <div class="form-group">
                                             <label for="short_description">Short Description</label>
-                                            <textarea class="form-control" id="short_description" name="short_description" aria-describedby="short_description"><?php echo $blog['short_description'] ?>
+                                            <textarea class="summernote" id="short_description" name="short_description" aria-describedby="short_description"><?php echo $blog['short_description'] ?>
                                                 </textarea>
 
                                             <p class="text-danger"><?php echo isset($errors['short_description']) ? $errors['short_description'] : ""; ?></p>
                                         </div>
                                         <div class="form-group">
                                             <label for="summernote">Long Description</label>
-                                            <textarea id="summernote" name="long_description" aria-describedby="long_description"><?php echo $blog['long_description']; ?>
+                                            <textarea id="summernote" class="summernote" name="long_description" aria-describedby="long_description"><?php echo $blog['long_description']; ?>
                                             </textarea>
 
                                             <p class="text-danger"><?php echo isset($errors['long_description']) ? $errors['long_description'] : ""; ?></p>

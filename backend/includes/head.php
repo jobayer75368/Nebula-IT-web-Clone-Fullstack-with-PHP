@@ -12,6 +12,7 @@
   <link href="/backend/assets/css/ruang-admin.min.css" rel="stylesheet">
   <link href="/backend/assets/css/ruang-admin.css" rel="stylesheet">
   <!-- include summernote css/js -->
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css">
 
 </head>

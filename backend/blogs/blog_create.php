@@ -134,13 +134,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                         <div class="form-group">
                                             <label for="short_description">Short Description</label>
-                                            <textarea class="form-control" id="short_description" name="short_description"><?= $short_description ?></textarea>
+                                            <textarea class="form-control summernote" id="short_description" name="short_description"><?= $short_description ?></textarea>
 
                                             <p class="text-danger"><?php echo isset($errors['short_description']) ? $errors['short_description'] : ""; ?></p>
                                         </div>
                                         <div class="form-group">
                                             <label for="summernote">Long Description</label>
-                                            <textarea class="form-control" id="summernote" name="long_description"><?= $long_description ?></textarea>
+                                            <textarea class="form-control summernote" id="summernote" name="long_description"><?= $long_description ?></textarea>
 
                                             <p class="text-danger"><?php echo isset($errors['long_description']) ? $errors['long_description'] : ""; ?></p>
                                         </div>
@@ -183,7 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
     <?php require_once __DIR__ . "/../includes/script.php" ?>
 </body>
 
