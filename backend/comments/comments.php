@@ -63,6 +63,8 @@ try {
                                             <tr>
                                                 <th>SL</th>
                                                 <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Website</th>
                                                 <th>Comment</th>
                                                 <th>Blog</th>
                                                 <th>Status</th>
@@ -76,6 +78,8 @@ try {
                                                     <tr>
                                                         <td><?= $comment['id'] ?></td>
                                                         <td><?= $comment['name'] ?></td>
+                                                        <td><?= $comment['email'] ?></td>
+                                                        <td><?= $comment['website'] ?></td>
                                                         <td><?= $comment['comment'] ?></td>
                                                         <td><?= $comment['blog_title'] ?></td>
                                                         <td>

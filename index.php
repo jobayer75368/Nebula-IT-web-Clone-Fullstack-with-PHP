@@ -31,7 +31,7 @@ switch ($request) {
 
 
     // single blog page 
-    case (preg_match('#^/blog/([a-zA-Z0-9-]+)$#', $request, $matches) ? true : false):
+    case (preg_match('#^/blogs/([a-zA-Z0-9-]+)$#', $request, $matches) ? true : false):
         $_GET['slug'] = $matches[1];
         require_once __DIR__ . '/frontend/single_blog.php';
         break;

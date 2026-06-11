@@ -46,7 +46,7 @@ $blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
                         <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative">
                             <div class="img_overlay">
                                 <img src="<?= !empty($blog["featured_image"]) ? BASE_URL . 'uploads/' . $blog["featured_image"] : '/frontend/assets/images/no-image.png';  ?>" alt="">
-                                <a href="/blog/<?= $blog['slug']; ?>">
+                                <a href="/blogs/<?= $blog['slug']; ?>">
                                     <div class="blog_overlay">
                                         <div class="bg-blue-500 text-white text-sm inline-block px-2 py-1 rounded-sm ml-3 mt-2">
                                             Blog

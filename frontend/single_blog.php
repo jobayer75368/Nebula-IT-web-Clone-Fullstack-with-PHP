@@ -4,14 +4,59 @@ require_once __DIR__ . '/../backend/config.php';
 
 $slug = $_GET['slug'] ?? '';
 
-$sql = "SELECT blogs.*, users.name AS posted_by
+$stmt = $pdo->prepare("SELECT blogs.*, users.name AS posted_by
 FROM blogs
 LEFT JOIN users ON blogs.created_by = users.id
-WHERE slug=? AND blogs.status='published' LIMIT 1";
-$stmt = $pdo->prepare($sql);
+WHERE slug=? AND blogs.status='published'");
 $stmt->execute([$slug]);
 
 $blog = $stmt->fetch(PDO::FETCH_ASSOC);
+$blogs = $pdo->query("SELECT * FROM blogs ORDER BY created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
+
+function sanitize(string $data)
+{
+    return htmlspecialchars(trim($data));
+}
+
+$name = $email = $website = $comment = '';
+$errors = [];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = sanitize($_POST['name']);
+    $email = sanitize($_POST['email']);
+    $website = sanitize($_POST['website']);
+    $comment = sanitize($_POST['comment']);
+    if (empty($name)) {
+        $errors['name'] = 'Name is required';
+    }
+
+    if (empty($email)) {
+        $error["email"] = "Email is required!";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error["email"] = "Invalid Email!";
+    }
+
+    if (empty($comment)) {
+        $errors['comment'] = "Comment is required";
+    }
+
+    if (empty($errors)) {
+        $cmtStmt = $pdo->prepare("INSERT INTO comments (blog_id,name,email,website,comment) VALUES(?,?,?,?,?)");
+        $cmtStmt->execute([
+            $blog['id'],
+            $name,
+            $email,
+            $website,
+            $comment
+        ]);
+        header("Location: /blogs/" . $blog['slug']);
+        exit();
+    }
+}
+$statement = $pdo->prepare("SELECT * FROM comments
+WHERE blog_id=? AND comments.status='approved' 
+ORDER BY created_at DESC");
+$statement->execute([$blog['id']]);
+$comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -71,8 +116,6 @@ $blog = $stmt->fetch(PDO::FETCH_ASSOC);
                         <?= $blog['long_description']; ?>
                     </div>
 
-
-
                     <!-- Post Navigation -->
                     <div class="border-t border-gray-200 pt-6 mb-10">
                         <a href="#" class="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--primary-color)] transition-colors">
@@ -93,7 +136,7 @@ $blog = $stmt->fetch(PDO::FETCH_ASSOC);
                             <div class="space-y-4">
                                 <!-- Comment Textarea -->
                                 <div>
-                                    <textarea
+                                    <textarea name="comment"
                                         rows="6"
                                         placeholder="Type here..."
                                         class="w-full border border-gray-300 px-4 py-3 text-sm text-gray-700 placeholder-gray-400"></textarea>
@@ -101,18 +144,18 @@ $blog = $stmt->fetch(PDO::FETCH_ASSOC);
 
                                 <!-- Name, Email, Website -->
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <input
+                                    <input name="name"
                                         type="text"
                                         placeholder="Name*"
-                                        class="border border-gray-300 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400">
-                                    <input
+                                        class="border border-gray-300 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400" Required>
+                                    <input name="email"
                                         type="email"
                                         placeholder="Email*"
-                                        class="border border-gray-300 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 ">
-                                    <input
+                                        class="border border-gray-300 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400" Required>
+                                    <input name="website"
                                         type="url"
                                         placeholder="Website"
-                                        class="border border-gray-300 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 ">
+                                        class="border border-gray-300 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400">
                                 </div>
 
                                 <!-- Save checkbox -->
@@ -132,6 +175,36 @@ $blog = $stmt->fetch(PDO::FETCH_ASSOC);
                             </div>
                         </div>
                     </form>
+                    <!-- Comment List  -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4">
+                                Comments (<?= count($comments); ?>)
+                            </h3>
+                            <?php if (!empty($comments)): ?>
+                                <?php foreach ($comments as $singleComment): ?>
+                                    <div class="border-bottom pb-3 mb-3">
+                                        <h6 class="mb-1 fw-bold">
+                                            <?= htmlspecialchars($singleComment['name']); ?>
+                                        </h6>
+                                        <small class="text-muted d-block mb-2">
+                                            <?= date('F d, Y h:i A', strtotime($singleComment['created_at'])); ?>
+                                        </small>
+                                        <p class="mb-0">
+                                            <?= nl2br(htmlspecialchars($singleComment['comment'])); ?>
+                                        </p>
+                                    </div>
+                                    <hr class="border-gray-400 mt-0 mb-10">
+                                <?php endforeach; ?>
+                            <?php else: ?>
+
+                                <p class="text-muted mb-0">
+                                    No comments yet.
+                                </p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
 
                 </div><!-- end main content -->
 
@@ -140,68 +213,36 @@ $blog = $stmt->fetch(PDO::FETCH_ASSOC);
                 <aside class="w-full lg:w-[30%]">
 
 
-
                     <!-- Recent Posts -->
                     <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sticky top-24">
                         <h3 class="text-lg font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">Recent Posts</h3>
                         <div class="space-y-4">
 
-                            <!-- Recent Post 1 -->
-                            <a href="#" class="flex gap-3 group">
-                                <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                                    <img
-                                        src="/frontend/assets/images/blog/blog_01.jpg.bv.webp"
-                                        alt="Post thumbnail"
-                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-700 group-hover:text-[var(--primary-color)] transition-colors leading-snug line-clamp-2">
-                                        Nebula IT vs. Competitors – What Makes Them the Best Choice?
-                                    </p>
-                                    <span class="text-xs text-gray-400 mt-1 block">April 30, 2025</span>
-                                </div>
-                            </a>
+                            <?php if (!empty($blogs)): ?>
+                                <?php foreach ($blogs as $recBlog): ?>
+                                    <a href="#" class="flex gap-3 group">
+                                        <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                                            <img
+                                                src="<?= !empty($recBlog['featured_image']) ? BASE_URL . 'uploads/' . $recBlog['featured_image'] : '/frontend/assets/images/no-image.png'; ?>"
+                                                alt="Post thumbnail"
+                                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm font-medium text-gray-700 group-hover:text-[var(--primary-color)] transition-colors leading-snug line-clamp-2">
+                                                <?= $recBlog['title']; ?>
+                                            </p>
+                                            <span class="text-xs text-gray-400 mt-1 block"><?= date("d M Y", strtotime($recBlog['created_at'])) ?></span>
+                                        </div>
+                                    </a>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
 
                             <hr class="border-gray-100">
-
-                            <!-- Recent Post 2 -->
-                            <a href="#" class="flex gap-3 group">
-                                <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                                    <img
-                                        src="/frontend/assets/images/blog/blog_01.jpg.bv.webp"
-                                        alt="Post thumbnail"
-                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-700 group-hover:text-[var(--primary-color)] transition-colors leading-snug line-clamp-2">
-                                        Nebula IT Web Services – Revolutionizing Digital Solutions for Businesses
-                                    </p>
-                                    <span class="text-xs text-gray-400 mt-1 block">April 30, 2025</span>
-                                </div>
-                            </a>
-
-                            <hr class="border-gray-100">
-
-                            <!-- Recent Post 3 -->
-                            <a href="#" class="flex gap-3 group">
-                                <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                                    <img
-                                        src="/frontend/assets/images/blog/blog_01.jpg.bv.webp"
-                                        alt="Post thumbnail"
-                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-700 group-hover:text-[var(--primary-color)] transition-colors leading-snug line-clamp-2">
-                                        The Future of Web Services – How Nebula IT is Leading the Way
-                                    </p>
-                                    <span class="text-xs text-gray-400 mt-1 block">April 30, 2025</span>
-                                </div>
-                            </a>
 
                         </div>
                     </div>
 
-                </aside><!-- end sidebar -->
+                </aside>
 
             </div>
         </div>

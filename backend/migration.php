@@ -299,11 +299,21 @@ function createTable(PDO $pdo, string $table, string $sql)
 // ");
 
 // ALTER TABLE table_name DROP COLUMN column_name;
-try {
-    $sql = "ALTER TABLE blogs DROP COLUMN category_id;";
-    $statement = $pdo->prepare($sql);
-    $statement->execute();
-    echo "Successful";
-} catch (PDOException $e) {
-    echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
-}
+// try {
+//     $sql = "ALTER TABLE blogs DROP COLUMN category_id;";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }
+// try {
+//     $sql = "ALTER TABLE comments
+//     ADD email VARCHAR(100) NOT NULL UNIQUE,
+//     ADD website VARCHAR(255) NULL";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }
