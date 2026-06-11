@@ -40,7 +40,8 @@ $blog = $statement->fetch(PDO::FETCH_ASSOC);
                     <!-- Featured Image -->
                     <div class="mb-6 rounded-lg overflow-hidden shadow-sm">
                         <img
-                            src="<?= ?>"
+                            src="<?= !empty($blog["featured_image"]) ? BASE_URL . 'uploads/' . $blog["featured_image"] : '/frontend/assets/images/no-image.png';  ?>" alt="">
+                        <a href="/blog/<?= $blog['slug']; ?> ?>"
                             alt="Best Choice"
                             class="w-full h-64 md:h-80 object-cover">
                     </div>

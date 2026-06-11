@@ -46,18 +46,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['status'] = "Status is required";
     }
 
-    if (!empty($_FILES['featured_image']['name'])) {
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_FILES['featured_image']['name'])) {
 
         $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        $uploadsDir = __DIR__ . "/../../uploads/blogs";
+        if (!is_dir($uploadsDir)) {
+            mkdir($uploadsDir, 0755, true);
+        }
 
-        if (in_array($_FILES['featured_image']['type'], $allowedTypes)) {
-            $fileName = time() . "-" . $_FILES['featured_image']['name'];
+        $fileName = time() . "-" . $_FILES['featured_image']['name'];
+        $targetPath = $uploadsDir . "/" . $fileName;
 
-            $targetPath = __DIR__ . "/../../uploads/" . $fileName;
-            move_uploaded_file($_FILES['featured_image']['tmp_name'], $targetPath);
-            $featured_image = BASE_URL . "uploads/" . $fileName;
-        } else {
-            $errors['featured_image'] = "Only JPG, PNG and WEBP images are allowed";
+        if (!in_array($_FILES['featured_image']['type'], $allowedTypes)) {
+            $errors['featured_image'] = "Only JPEG, PNG, WebP allowed";
+        } else if (move_uploaded_file($_FILES['featured_image']['tmp_name'], $targetPath)) {
+            $db_Path = "blogs/" . $fileName;
+            $featured_image = $db_Path;
         }
     } else {
 

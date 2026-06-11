@@ -1,27 +1,34 @@
+```php
 <?php
 require_once __DIR__ . "/../session.php";
 require_once __DIR__ . "/../includes/db_connection.php";
 require_once __DIR__ . "/../config.php";
 require_once __DIR__ . "/../restrict.php";
+
 $id = $_GET['id'] ?? null;
 
-$statement = $pdo->prepare("SELECT * FROM blogs WHERE id=?");
+$statement = $pdo->prepare("SELECT * FROM blogs WHERE id = ?");
 $statement->execute([$id]);
 $blog = $statement->fetch(PDO::FETCH_ASSOC);
+
 if (!$blog) {
     die("Blog not found");
 }
+
+// Keep old image by default
 $featured_image = $blog['featured_image'];
-//update
+
 $title = $slug = $short_description = $long_description = $status = "";
 $errors = [];
 $created_by = $_SESSION['user_id'];
+
 function sanitize(string $data)
 {
-    $data = trim(htmlspecialchars($data));
-    return $data;
+    return trim($data);
 }
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     if (!empty($_POST['title'])) {
         $title = sanitize($_POST['title']);
     } else {
@@ -53,34 +60,77 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['status'] = "Status is required";
     }
 
+    // Handle image upload
     if (!empty($_FILES['featured_image']['name'])) {
 
-        // delete old image
-        if (!empty($blog['featured_image'])) {
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
 
-            $oldImagePath = __DIR__ . "/../../../" . ltrim($blog['featured_image'], '/');
+        if (!in_array($_FILES['featured_image']['type'], $allowedTypes)) {
 
-            if (file_exists($oldImagePath)) {
-                unlink($oldImagePath);
+            $errors['featured_image'] = "Only JPEG, PNG and WebP allowed";
+        } else {
+
+            $uploadsDir = __DIR__ . "/../../uploads/blogs";
+
+            if (!is_dir($uploadsDir)) {
+                mkdir($uploadsDir, 0755, true);
+            }
+
+            $fileName = time() . "-" . basename($_FILES['featured_image']['name']);
+            $targetPath = $uploadsDir . "/" . $fileName;
+
+            if (move_uploaded_file($_FILES['featured_image']['tmp_name'], $targetPath)) {
+
+                // Delete old image after successful upload
+                if (!empty($blog['featured_image'])) {
+
+                    $oldImagePath = __DIR__ . "/../../uploads/" . $blog['featured_image'];
+
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $featured_image = "blogs/" . $fileName;
+            } else {
+
+                $errors['featured_image'] = "Image upload failed";
             }
         }
-        $fileName = time() . "-" . $_FILES['featured_image']['name'];
-        $targetPath = __DIR__ . "/../../uploads/" . $fileName;
-        move_uploaded_file($_FILES['featured_image']['tmp_name'], $targetPath);
-        $featured_image = BASE_URL . "uploads/" . $fileName;
     }
 
     if (empty($errors)) {
-        $sql = "UPDATE blogs SET title=?, slug=?, short_description=?, long_description=?,featured_image=?, status=?, created_by=?  WHERE id=?";
+
+        $sql = "UPDATE blogs
+                SET title = ?,
+                    slug = ?,
+                    short_description = ?,
+                    long_description = ?,
+                    featured_image = ?,
+                    status = ?,
+                    created_by = ?
+                WHERE id = ?";
 
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$title, $slug, $short_description, $long_description, $featured_image, $status, $created_by, $id]);
+
+        $stmt->execute([
+            $title,
+            $slug,
+            $short_description,
+            $long_description,
+            $featured_image,
+            $status,
+            $created_by,
+            $id
+        ]);
+
         header("Location: /admin/blog/list");
         exit();
     }
 }
-
 ?>
+```
+
 
 <!DOCTYPE html>
 <html lang="en">
