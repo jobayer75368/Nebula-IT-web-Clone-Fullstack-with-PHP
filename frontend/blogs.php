@@ -1,3 +1,14 @@
+<?php
+require_once __DIR__ . '/../backend/includes/db_connection.php';
+require_once __DIR__ . '/../backend/config.php';
+
+$statement = $pdo->prepare("SELECT * FROM blogs");
+$statement->execute();
+$blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,27 +41,31 @@
     <section class="blog_sec my-20">
         <div class="container mx-auto px-5 lg:px-20">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative">
-                    <div class="img_overlay">
-                        <img src="/frontend/assets/images/blog/blog_03.jpg.bv.webp" alt="">
-                        <a href="/single_blog">
-                            <div class="blog_overlay">
-                                <div class="bg-blue-500 text-white text-sm inline-block px-2 py-1 rounded-sm ml-3 mt-2">
-                                    Blog
-                                </div>
-                                <div class="date m-0">30<span class="text-sm font-normal m-0">Apr</span></div>
+                <?php if (!empty($blogs)): ?>
+                    <?php foreach ($blogs as $blog) : ?>
+                        <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative">
+                            <div class="img_overlay">
+                                <img src="<?= !empty($blog["featured_image"]) ? $blog["featured_image"] : '/frontend/assets/images/no-image.png';  ?>" alt="">
+                                <a href="/blog/<?= $blog['slug']; ?>">
+                                    <div class="blog_overlay">
+                                        <div class="bg-blue-500 text-white text-sm inline-block px-2 py-1 rounded-sm ml-3 mt-2">
+                                            Blog
+                                        </div>
+                                        <div class="date m-0"><?= date("d", strtotime($blog['created_at'])) ?><span class="text-sm font-normal m-0"><?= date("M", strtotime($blog['created_at'])) ?></span></div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <div class="p-4 mt-6">
-                        <p class="font-semibold blog_head transition-all duration-300">Nebula IT vs. Competitors- What
-                            Makes Them The Best Choice?
-                        </p>
-                        <a class="secondary_link mt-7 inline-block" href="">Learn more</a>
-                    </div>
+                            <div class="p-4 mt-6">
+                                <p class="font-semibold blog_head transition-all duration-300">Nebula IT vs. Competitors- What
+                                    Makes Them The Best Choice?
+                                </p>
+                                <a class="secondary_link mt-7 inline-block" href="">Learn more</a>
+                            </div>
 
-                </div>
-                <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative">
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <!-- <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative">
                     <div class="img_overlay">
                         <img src="/frontend/assets/images/blog/blog_01.jpg.bv.webp" alt="">
                         <a href="">
@@ -89,7 +104,7 @@
                         <a class="secondary_link mt-7 inline-block" href="">Learn more</a>
                     </div>
 
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

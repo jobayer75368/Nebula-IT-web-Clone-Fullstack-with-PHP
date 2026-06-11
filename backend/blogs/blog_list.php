@@ -83,7 +83,7 @@ try {
                                                             <img
                                                                 class="rounded"
                                                                 src="<?= !empty($blog['featured_image'])
-                                                                            ? $blog['featured_image']
+                                                                            ? BASE_URL . 'uploads/' . $blog['featured_image']
                                                                             : '/frontend/assests/images/no-image.png'; ?>"
                                                                 height="80">
                                                         </td>

@@ -1,3 +1,14 @@
+<?php
+require_once __DIR__ . '/../backend/includes/db_connection.php';
+require_once __DIR__ . '/../backend/config.php';
+
+$statement = $pdo->prepare("SELECT * FROM blogs");
+$statement->execute();
+$blog = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +40,7 @@
                     <!-- Featured Image -->
                     <div class="mb-6 rounded-lg overflow-hidden shadow-sm">
                         <img
-                            src="/frontend/assets/images/blog/blog_03.jpg.bv.webp"
+                            src="<?= ?>"
                             alt="Best Choice"
                             class="w-full h-64 md:h-80 object-cover">
                     </div>
