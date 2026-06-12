@@ -202,6 +202,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <label for="featured_image">Featured Image</label>
                                             <input type="file" class="form-control" id="featured_image" name="featured_image" aria-describedby="featured_image" placeholder="Enter Featured image" value="<?php echo $blog['featured_image'] ?>">
 
+                                            <!-- Image preview  -->
+                                            <img id="image-preview" src="<?= BASE_URL . 'uploads/' . $blog['featured_image'] ?>" height="100" class="rounded border">
+
+
                                             <p class="text-danger"><?php echo isset($errors['featured_image']) ? $errors['featured_image'] : ""; ?></p>
                                         </div>
                                         <div class="form-group">
@@ -240,6 +244,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </a>
 
     <?php require_once __DIR__ . "/../includes/script.php" ?>
+    <script>
+        previewImage('featured_image', 'image-preview');
+    </script>
 </body>
 
 </html>

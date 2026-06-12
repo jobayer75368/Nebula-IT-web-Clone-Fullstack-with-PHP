@@ -109,6 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <label for="image">Client Image</label>
                                             <input type="file" class="form-control" id="image" name="image" aria-describedby="image" placeholder="Enter Client image" value="<?php echo $client['image'] ?>">
 
+                                            <!-- Image preview  -->
+                                            <img id="image-preview" src="<?= BASE_URL . 'uploads/' . $client['image'] ?>" height="100" class="rounded border">
+
                                             <p class="text-danger"><?php echo isset($errors['image']) ? $errors['image'] : ""; ?></p>
                                         </div>
 
@@ -139,7 +142,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <i class="fas fa-angle-up"></i>
     </a>
 
+
     <?php require_once __DIR__ . "/../includes/script.php" ?>
+    <script>
+        previewImage('image', 'image-preview');
+    </script>
 </body>
 
 </html>

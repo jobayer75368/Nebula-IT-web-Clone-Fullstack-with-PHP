@@ -13,42 +13,43 @@ function sanitize(string $data)
     return $data;
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+    $name = sanitize($_POST['name']);
     $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
-    if (!empty($_POST['name'])) {
-        $name = sanitize($_POST['name']);
-    } else {
+    if (empty($_POST['name'])) {
+
         $errors['name'] = "Client Name is required";
     }
 
 
-    if (!empty($_FILES['image']['name'])) {
+    if (empty($errors)) {
+        if (!empty($_FILES['image']['name'])) {
 
 
-        $uploadsDir = __DIR__ . "/../../uploads/clients";
-        if (!is_dir($uploadsDir)) {
-            mkdir($uploadsDir, 0755, true);
-        }
+            $uploadsDir = __DIR__ . "/../../uploads/clients";
+            if (!is_dir($uploadsDir)) {
+                mkdir($uploadsDir, 0755, true);
+            }
 
-        $fileName = time() . "-" . $_FILES['image']['name'];
-        $targetPath = $uploadsDir . "/" . $fileName;
+            $fileName = time() . "-" . $_FILES['image']['name'];
+            $targetPath = $uploadsDir . "/" . $fileName;
 
-        if (!in_array($_FILES['image']['type'], $allowedTypes)) {
-            $errors['image'] = "Only JPEG, PNG, WebP allowed";
-        } else if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
-            $db_Path = "clients/" . $fileName;
-            $image = $db_Path;
+            if (!in_array($_FILES['image']['type'], $allowedTypes)) {
+                $errors['image'] = "Only JPEG, PNG, WebP allowed";
+            } else if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+                $db_Path = "clients/" . $fileName;
+                $image = $db_Path;
 
 
-            $sql = "INSERT INTO clients (name, image)
+                $sql = "INSERT INTO clients (name, image)
                     VALUES (:name, :image)";
-            $statement = $pdo->prepare($sql);
-            $result = $statement->execute([
-                ':name' => $name,
-                ':image' => $image
-            ]);
-            header("Location: /admin/clients");
-            exit;
+                $statement = $pdo->prepare($sql);
+                $result = $statement->execute([
+                    ':name' => $name,
+                    ':image' => $image
+                ]);
+                header("Location: /admin/clients");
+                exit;
+            }
         }
     }
 }
@@ -105,6 +106,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="form-group">
                                             <label for="image">Client Image</label>
                                             <input type="file" class="form-control" id="image" name="image" aria-describedby="image" placeholder="Enter Client Image" value="<?php echo $image ?>">
+                                            <!-- Image Preview -->
+                                            <div id="preview-wrapper" style="display:none;">
+                                                <img id="image-preview" src="#" height="100" class="rounded border">
+                                            </div>
 
                                             <p class="text-danger"><?php echo isset($errors['image']) ? $errors['image'] : ""; ?></p>
                                         </div>
@@ -134,6 +139,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </a>
 
     <?php require_once __DIR__ . "/../includes/script.php" ?>
+    <script>
+        previewImage('image', 'image-preview', 'preview-wrapper');
+    </script>
 </body>
 
 </html>

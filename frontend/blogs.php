@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../backend/includes/db_connection.php';
 require_once __DIR__ . '/../backend/config.php';
 
-$statement = $pdo->prepare("SELECT * FROM blogs");
+$statement = $pdo->prepare("SELECT * FROM blogs WHERE blogs.status ='published'");
 $statement->execute();
 $blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
 

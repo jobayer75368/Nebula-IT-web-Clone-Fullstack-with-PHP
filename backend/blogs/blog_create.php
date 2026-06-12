@@ -14,37 +14,33 @@ function sanitize(string $data)
     return $data;
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!empty($_POST['title'])) {
-        $title = sanitize($_POST['title']);
-    } else {
+
+    $title = sanitize($_POST['title']);
+    $slug = sanitize($_POST['slug']);
+    $slug = strtolower(str_replace(' ', '-', $slug));
+    $short_description = htmlspecialchars($_POST['short_description']);
+    $long_description = htmlspecialchars($_POST['long_description']);
+    $status = sanitize($_POST['status']);
+    if (empty($_POST['title'])) {
         $errors['title'] = "Blog Title is required";
     }
 
-    if (!empty($_POST['slug'])) {
-        $slug = sanitize($_POST['slug']);
-        $slug = strtolower(str_replace(' ', '-', $slug));
-    } else {
+    if (empty($_POST['slug'])) {
         $errors['slug'] = "Slug is required";
     }
 
-    if (!empty($_POST['short_description'])) {
-        $short_description = sanitize($_POST['short_description']);
-    } else {
+    if (empty(strip_tags($_POST['short_description']))) {
         $errors['short_description'] = "Short Description is required";
     }
 
-    if (!empty($_POST['long_description'])) {
-        $long_description = sanitize($_POST['long_description']);
-    } else {
+    if (empty(strip_tags($_POST['long_description']))) {
         $errors['long_description'] = "Long Description is required";
     }
 
-
-    if (!empty($_POST['status'])) {
-        $status = sanitize($_POST['status']);
-    } else {
+    if (empty($_POST['status'])) {
         $errors['status'] = "Status is required";
     }
+
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_FILES['featured_image']['name'])) {
 
@@ -77,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -148,6 +143,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <label for="featured_image">Featured Image</label>
                                             <input type="file" class="form-control" id="featured_image" name="featured_image" aria-describedby="featured_image" placeholder="Enter Featured image" value="<?php echo $featured_image ?>">
 
+                                            <!-- Image Preview -->
+                                            <div id="preview-wrapper" style="display:none;">
+                                                <img id="image-preview" src="#" height="100" class="rounded border">
+                                            </div>
+
                                             <p class="text-danger"><?php echo isset($errors['featured_image']) ? $errors['featured_image'] : ""; ?></p>
                                         </div>
 
@@ -184,6 +184,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <i class="fas fa-angle-up"></i>
     </a>
     <?php require_once __DIR__ . "/../includes/script.php" ?>
+    <?php require_once __DIR__ . "/../includes/script.php" ?>
+    <script>
+        $(document).ready(function() {
+
+            // Init Summernote
+            $('.summernote').summernote();
+
+            previewImage('featured_image', 'image-preview', 'preview-wrapper');
+
+            // Fix for FakeFiller + Summernote conflict
+            $('form').on('submit', function() {
+                $('.summernote').each(function() {
+                    var $textarea = $(this);
+                    var summernoteContent = $textarea.summernote('code');
+                    var directContent = $textarea.val();
+
+                    // Check if Summernote is empty but FakeFiller injected directly
+                    var plainText = summernoteContent.replace(/<[^>]*>/g, '').trim();
+
+                    if (plainText === '' && directContent.trim() !== '') {
+                        $textarea.summernote('code', directContent);
+                    }
+
+                    // Sync final content to textarea for PHP
+                    $textarea.val($textarea.summernote('code'));
+                });
+            });
+
+        });
+    </script>
 </body>
 
 </html>
