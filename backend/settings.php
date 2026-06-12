@@ -245,20 +245,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <form action="" method="POST">
                                             <div class="form-group">
                                                 <label>Phone</label>
-                                                <input
+                                                <textarea
                                                     type="tel"
                                                     name="phone"
                                                     class="form-control"
-                                                    placeholder="Enter phone number" value="<?= $settings['phone'] ?>">
+                                                    placeholder="Enter phone number">
+                                                    <?= trim($settings['phone']) ?></textarea>
                                                 <p class="text-danger"><?= isset($errors["phone"]) ? $errors["phone"] : ''; ?></p>
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input
+                                                <textarea
                                                     type="email"
                                                     name="email"
                                                     class="form-control"
-                                                    placeholder="Enter website email" value="<?= $settings['email'] ?>">
+                                                    placeholder="Enter website email">
+                                                    <?= trim($settings['email']) ?></textarea>
                                                 <p class="text-danger"><?= isset($errors["email"]) ? $errors["email"] : ''; ?></p>
                                             </div>
                                             <div class="form-group">

@@ -10,14 +10,21 @@ $currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
         </div>
         <nav class="font-semibold">
             <ul class="flex gap-8">
+
                 <li><a class=" <?php if ($currentPage == '/') echo 'active_page'; ?>" href="/">Home</a></li>
+
                 <li><a class="about_p <?php if ($currentPage == '/about') echo 'active_page'; ?>" href="/about">About</a><i class="fa-solid fa-chevron-down text-xs"></i>
                 </li>
+
                 <li><a class="service_p <?php if ($currentPage == '/services') echo 'active_page'; ?>" href="/services">Services</a><i
                         class="fa-solid fa-chevron-down text-xs"></i></li>
+
                 <li><a class="<?php if ($currentPage == '/portfolio') echo 'active_page'; ?>" href="/portfolio">Portfolio</a></li>
+
                 <li><a class="<?php if ($currentPage == '/clients') echo 'active_page'; ?>" href="/clients">Our Clients</a></li>
-                <li><a class="<?php if ($currentPage == '/blogs') echo 'active_page'; ?>" href="/blogs">Blog</a></li>
+
+                <li><a class="<?php if ($currentPage == '/blogs' || str_starts_with($currentPage, '/blogs/')) echo 'active_page'; ?>" href="/blogs">Blog</a></li>
+
                 <li><a class="<?php if ($currentPage == '/contact') echo 'active_page'; ?>" href="/contact">Contact</a></li>
             </ul>
         </nav>

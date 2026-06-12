@@ -1,9 +1,11 @@
 <?php require_once __DIR__ . '/../backend/includes/db_connection.php';
 
+// contact info from settings
+$stmt = $pdo->prepare("SELECT * FROM settings WHERE id=:id");
+$stmt->execute([':id' => 1]);
+$settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// $contactStmt = $pdo->prepare("SELECT * FROM settings WHERE id=:id");
-// $contactStmt->execute([':id' => 1]);
-// $settings = $contactStmt->fetch(PDO::FETCH_ASSOC);
+// Contact 
 
 $name = $email = $subject = $message = "";
 $error = [];
@@ -85,8 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <i class="fa-solid fa-location-dot"></i>
                     </div>
                     <h3 class="font-semibold text-2xl">Address</h3>
-                    <p class="font-medium text-zinc-500">184 Razia Plaza (4th floor), Senpara Parbata, Mirpur
-                        10, Dhaka 1216</p>
+                    <p class="font-medium text-zinc-500"><?= $settings['location'] ?></p>
                 </div>
                 <div
                     class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md">
@@ -94,8 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <i class="fa-solid fa-phone-volume"></i>
                     </div>
                     <h3 class="font-semibold text-2xl">Phone</h3>
-                    <p class="font-medium text-zinc-500">184 Razia Plaza (4th floor), Senpara Parbata, Mirpur
-                        10, Dhaka 1216</p>
+                    <p class="font-medium text-zinc-500"><?= $settings['phone'] ?></p>
                 </div>
                 <div
                     class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md">
@@ -103,8 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <i class="fa-solid fa-envelope-open"></i>
                     </div>
                     <h3 class="font-semibold text-2xl">Email</h3>
-                    <p class="font-medium text-zinc-500">184 Razia Plaza (4th floor), Senpara Parbata, Mirpur
-                        10, Dhaka 1216</p>
+                    <p class="font-medium text-zinc-500"><?= $settings['email'] ?></p>
                 </div>
             </div>
         </div>
