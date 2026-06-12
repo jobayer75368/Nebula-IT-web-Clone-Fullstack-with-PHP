@@ -36,10 +36,10 @@ switch ($request) {
         require_once __DIR__ . '/frontend/single_blog.php';
         break;
     // single category page 
-    case (preg_match('#^/category/([a-zA-Z0-9-]+)$#', $request, $matches) ? true : false):
-        $_GET['slug'] = $matches[1];
-        require_once __DIR__ . '/frontend/category.php';
-        break;
+    // case (preg_match('#^/category/([a-zA-Z0-9-]+)$#', $request, $matches) ? true : false):
+    //     $_GET['slug'] = $matches[1];
+    //     require_once __DIR__ . '/frontend/category.php';
+    //     break;
     // frontend end 
 
     // backend 

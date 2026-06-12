@@ -17,72 +17,52 @@
   </div>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClient" aria-expanded="true"
-      aria-controls="collapseClient">
+    <a class="nav-link collapsed" href="/admin/clients">
       <i class="fa-solid fa-user-tag"></i>
       <span>Client Manage</span>
     </a>
-    <div id="collapseClient" class="collapse" aria-labelledby="headingClient" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Clients</h6>
-        <a class="collapse-item" href="/admin/clients">Client List</a>
-        <a class="collapse-item" href="/admin/client/create">Client Create</a>
-      </div>
-    </div>
   </li>
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePost" aria-expanded="true"
-      aria-controls="collapsePost">
+  <hr class="sidebar-divider">
+  <li class="nav-item mx-0">
+    <a href="/admin/blog/list" class="nav-link collapsed">
       <i class="fas fa-fw fa-blog"></i>
       <span>Blog Manage</span>
     </a>
-    <div id="collapsePost" class="collapse" aria-labelledby="headingPost" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Posts</h6>
-        <a class="collapse-item" href="/admin/blog/list">Blog List</a>
-        <a class="collapse-item" href="/admin/blog/create">Blog Create</a>
-      </div>
-    </div>
   </li>
 
   <hr class="sidebar-divider">
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContact" aria-expanded="true"
-      aria-controls="collapseContact">
+    <a class="nav-link collapsed" href="/admin/contacts">
       <i class="fas fa-fw fa-address-book"></i>
       <span>Contact Mange</span>
     </a>
-    <div id="collapseContact" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/admin/contacts">Contact List</a>
-      </div>
-    </div>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true"
-      aria-controls="collapseUsers">
-      <i class="fas fa-fw fa-users"></i>
-      <span>Users Manage</span>
-    </a>
-    <div id="collapseUsers" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/admin/users/list">Users Table</a>
-      </div>
-    </div>
   </li>
   <hr class="sidebar-divider">
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseComments" aria-expanded="true"
+    <a class="nav-link collapsed" href="/admin/users/list">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Users Manage</span>
+    </a>
+  </li>
+  <hr class="sidebar-divider">
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="/admin/comments">
+      <i class="fas fa-fw fa-comments"></i>
+      <span>Comments Mange</span>
+    </a>
+  </li>
+  <!-- <li class="nav-item">
+    <a class="nav-link collapsed" href="/admin/comments" data-toggle="collapse" data-target="#collapseComments" aria-expanded="true"
       aria-controls="collapseComments">
       <i class="fas fa-fw fa-comments"></i>
       <span>Comments Mange</span>
     </a>
     <div id="collapseComments" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/admin/comments">Comments</a>
+        <a class="collapse-item" href="">Comments</a>
       </div>
     </div>
-  </li>
+  </li> -->
   <hr class="sidebar-divider">
 
   <li class="nav-item">

@@ -116,17 +116,6 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
                         <?= $blog['long_description']; ?>
                     </div>
 
-                    <!-- Post Navigation -->
-                    <div class="border-t border-gray-200 pt-6 mb-10">
-                        <a href="#" class="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[var(--primary-color)] transition-colors">
-                            <i class="fa-solid fa-arrow-left text-xs"></i>
-                            <div>
-                                <div class="text-xs text-gray-400 uppercase tracking-wide">Previous</div>
-                                <div class="font-medium">Nebula IT Web Services – Revolutionizing…</div>
-                            </div>
-                        </a>
-                    </div>
-
                     <!-- Leave a Comment -->
                     <form action="" method="POST">
                         <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
