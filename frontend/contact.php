@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <i class="fa-solid fa-phone-volume"></i>
                     </div>
                     <h3 class="font-semibold text-2xl">Phone</h3>
-                    <p class="font-medium text-zinc-500"><?= $settings['phone'] ?></p>
+                    <p class="font-medium text-zinc-500 w-[12rem]"><?= $settings['phone'] ?></p>
                 </div>
                 <div
                     class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md">
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <i class="fa-solid fa-envelope-open"></i>
                     </div>
                     <h3 class="font-semibold text-2xl">Email</h3>
-                    <p class="font-medium text-zinc-500"><?= $settings['email'] ?></p>
+                    <p class="font-medium text-zinc-500 w-[18rem]"><?= $settings['email'] ?></p>
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container mx-auto px-5 lg:px-20 sm:flex justify-between">
             <div class="form_info w-100">
                 <h2 class="mb-5"><span>Send Us a</span> message</h2>
-                <img class="lg:hidden" src="/frontend/assets/images/contact.PNG" alt="">
+                <img class="lg:hidden" src="<?= !empty($settings['contact_image']) ?  $settings['contact_image'] : '' ?>" alt="Contact Image">
                 <form class="bg-white p-5 rounded-md shadow-lg w-100 flex flex-col" action="" method="POST">
                     <?= $sent; ?>
                     <div class="mb-4 mt-5">

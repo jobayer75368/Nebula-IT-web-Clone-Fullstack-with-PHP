@@ -15,7 +15,7 @@ $statement = $pdo->prepare("SELECT * FROM settings WHERE id=:id");
 $statement->execute([':id' => 1]);
 $settings = $statement->fetch(PDO::FETCH_ASSOC);
 
-$websiteName = $websiteFooter = $aboutTitle = $aboutDetails = $aboutImg = $phone = $email = $location = "";
+$websiteName = $websiteFooter = $aboutTitle = $aboutDetails = $aboutImg = $phone = $email = $location = $contactImage = "";
 $errors = [];
 function sanitize(string $data)
 {
@@ -32,7 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $settings['phone'] ?? '';
     $email = $settings['email'] ?? '';
     $location = $settings['location'] ?? '';
-    $aboutImg = $settings['about_image'];
+    $aboutImg = $settings['about_image'] ?? '';
+    $contactImage = $settings['contact_image'] ?? '';
 
 
     if (isset($_POST['general_settings'])) {
@@ -59,9 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if (isset($_POST['contact_settings'])) {
-        $phone = sanitize($_POST["phone"] ?? '');
-        $email = sanitize($_POST["email"] ?? '');
+        $phone = htmlspecialchars($_POST["phone"] ?? '');
+        $email = htmlspecialchars($_POST["email"] ?? '');
         $location = sanitize($_POST["location"] ?? '');
+        $contactImage = $_POST["contact_image"] ?? '';
 
         if (empty($phone)) {
             $errors['phone'] = "Phone Number is Required";
@@ -76,26 +78,85 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty($_FILES['about_image']['name'])) {
 
-        // delete old image
-        if (!empty($settings['about_image'])) {
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
 
-            $oldImagePath = __DIR__ . "/../../../" . ltrim($settings['about_image'], '/');
+        if (!in_array($_FILES['about_image']['type'], $allowedTypes)) {
 
-            if (file_exists($oldImagePath)) {
-                unlink($oldImagePath);
+            $errors['about_image'] = "Only JPEG, PNG and WebP allowed";
+        } else {
+
+            $uploadsDir = __DIR__ . '/../uploads/settings';
+
+            if (!is_dir($uploadsDir)) {
+                mkdir($uploadsDir, 0755, true);
+            }
+
+            $fileName = time() . "-" . basename($_FILES['about_image']['name']);
+            $targetPath = $uploadsDir . "/" . $fileName;
+
+            if (move_uploaded_file($_FILES['about_image']['tmp_name'], $targetPath)) {
+
+                // Delete old image after successful upload
+                if (!empty($blog['about_image'])) {
+
+                    $oldImagePath = __DIR__ . "/../uploads/" . $settings['about_image'];
+
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $aboutImg = "settings/" . $fileName;
+            } else {
+
+                $errors['about_image'] = "Image upload failed";
             }
         }
-        $fileName = time() . "-" . $_FILES['about_image']['name'];
-        $targetPath = __DIR__ . "/../uploads/" . $fileName;
-        move_uploaded_file($_FILES['about_image']['tmp_name'], $targetPath);
-        $aboutImg = BASE_URL . "uploads/" . $fileName;
+    }
+
+    if (!empty($_FILES['contact_image']['name'])) {
+
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+        if (!in_array($_FILES['contact_image']['type'], $allowedTypes)) {
+
+            $errors['contact_image'] = "Only JPEG, PNG and WebP allowed";
+        } else {
+
+            $uploadsDir = __DIR__ . '/../uploads/settings';
+
+            if (!is_dir($uploadsDir)) {
+                mkdir($uploadsDir, 0755, true);
+            }
+
+            $fileName = time() . "-" . basename($_FILES['contact_image']['name']);
+            $targetPath = $uploadsDir . "/" . $fileName;
+
+            if (move_uploaded_file($_FILES['contact_image']['tmp_name'], $targetPath)) {
+
+                // Delete old image after successful upload
+                if (!empty($blog['contact_image'])) {
+
+                    $oldImagePath = __DIR__ . "/../uploads/" . $settings['contact_image'];
+
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                $contactImage = "settings/" . $fileName;
+            } else {
+
+                $errors['contact_image'] = "Image upload failed";
+            }
+        }
     }
 
 
     if (empty($errors)) {
-        $sql = "UPDATE settings SET website_name =?, website_footer =?, about_title =?, about_details =?, about_image=?,phone = ?, email =?, location=? WHERE id=1";
+        $sql = "UPDATE settings SET website_name =?, website_footer =?, about_title =?, about_details =?, about_image=?,phone = ?, email =?, location=?,contact_image=? WHERE id=1";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$websiteName, $websiteFooter, $aboutTitle, $aboutDetails, $aboutImg, $phone, $email, $location]);
+        $stmt->execute([$websiteName, $websiteFooter, $aboutTitle, $aboutDetails, $aboutImg, $phone, $email, $location, $contactImage]);
         header("Location: /admin/settings");
         exit();
     }
@@ -219,15 +280,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             </div>
                                             <div class="form-group">
                                                 <label for="about_image">About Image</label>
-                                                <input type="file" class="form-control" id="fileUpload" name="about_image" aria-describedby="about_image">
+                                                <input type="file" class="form-control fileUpload" name="about_image" aria-describedby="about_image">
 
 
                                                 <?php if (!empty($settings['about_image'])) : ?>
-                                                    <img
-                                                        id="previewImg"
-                                                        src="<?= $settings['about_image'] ?>"
-                                                        width="120"
-                                                        class="mb-2 d-block">
+                                                    <img src="<?= BASE_URL . 'uploads/' . $settings['about_image'] ?>"
+                                                        width="300"
+                                                        class="mb-2 d-block previewImg" style="display:<?= !empty($settings['about_image']) ? 'block' : 'none' ?>">
                                                 <?php endif; ?>
                                             </div>
 
@@ -240,17 +299,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div>
 
                                     <!-- Contact Page Settings -->
+
                                     <div class="card-body" id="contactDiv">
 
-                                        <form action="" method="POST">
+                                        <form action="" method="POST" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label>Phone</label>
                                                 <textarea
                                                     type="tel"
                                                     name="phone"
                                                     class="form-control"
-                                                    placeholder="Enter phone number">
-                                                    <?= trim($settings['phone']) ?></textarea>
+                                                    placeholder="Enter phone number"><?= $settings['phone'] ?></textarea>
+
                                                 <p class="text-danger"><?= isset($errors["phone"]) ? $errors["phone"] : ''; ?></p>
                                             </div>
                                             <div class="form-group">
@@ -259,8 +319,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     type="email"
                                                     name="email"
                                                     class="form-control"
-                                                    placeholder="Enter website email">
-                                                    <?= trim($settings['email']) ?></textarea>
+                                                    placeholder="Enter website email"><?= trim($settings['email']) ?></textarea>
                                                 <p class="text-danger"><?= isset($errors["email"]) ? $errors["email"] : ''; ?></p>
                                             </div>
                                             <div class="form-group">
@@ -273,6 +332,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <p class="text-danger"><?= isset($errors["location"]) ? $errors["location"] : ''; ?></p>
                                             </div>
 
+                                            <div class="form-group">
+                                                <label for="contact_image">Contact Image</label>
+                                                <input type="file" class="form-control fileUpload" name="contact_image" aria-describedby="contact_image">
+
+
+                                                <?php if (!empty($settings['contact_image'])) : ?>
+                                                    <img
+
+                                                        src="<?= BASE_URL . 'uploads/' . $settings['contact_image']; ?>"
+                                                        width="300"
+                                                        class="mb-2 d-block previewImg" style="display:<?= !empty($settings['contact_image']) ? 'block' : 'none' ?>">
+                                                <?php endif; ?>
+                                            </div>
+
                                             <button type="submit" name="contact_settings" class="btn btn-primary">
                                                 Save Settings
                                             </button>
@@ -280,6 +353,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </form>
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -359,23 +433,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         })
 
 
-        const fileUpload = document.getElementById('fileUpload');
-        const previewImg = document.getElementById('previewImg');
-
-        fileUpload.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function(event) {
-
-                    previewImg.src = event.target.result;
-
-                };
-
-                reader.readAsDataURL(file);
-            }
+        document.querySelectorAll('.fileUpload').forEach(function(input) {
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const preview = e.target.closest('.form-group').querySelector('.previewImg');
+                    if (preview) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            preview.src = event.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
         });
     </script>
 </body>
