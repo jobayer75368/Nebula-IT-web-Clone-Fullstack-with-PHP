@@ -1,4 +1,5 @@
 <?php require_once __DIR__ . '/../backend/includes/db_connection.php';
+require_once __DIR__ . '/../backend/config.php';
 
 // contact info from settings
 $stmt = $pdo->prepare("SELECT * FROM settings WHERE id=:id");
@@ -112,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container mx-auto px-5 lg:px-20 sm:flex justify-between">
             <div class="form_info w-100">
                 <h2 class="mb-5"><span>Send Us a</span> message</h2>
-                <img class="lg:hidden" src="<?= !empty($settings['contact_image']) ?  $settings['contact_image'] : '' ?>" alt="Contact Image">
+                <img class="lg:hidden" src="<?= BASE_URL . 'uploads/' . $settings['contact_image']; ?>" alt="Contact Image">
                 <form class="bg-white p-5 rounded-md shadow-lg w-100 flex flex-col" action="" method="POST">
                     <?= $sent; ?>
                     <div class="mb-4 mt-5">
@@ -141,15 +142,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
             </div>
             <div>
-                <img class="hidden lg:block" src="/frontend/assets/images/contact.PNG" alt="">
+                <img class="hidden lg:block" src="<?= BASE_URL . 'uploads/' . $settings['contact_image'] ?>" alt="">
             </div>
         </div>
     </section>
-    <section class="locatioin">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3099.0389529184995!2d90.36740127457796!3d23.80431027863359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0d6aaa2cb19%3A0xb24da85cafcddc26!2sNebula%20IT!5e1!3m2!1sen!2sbd!4v1769452627556!5m2!1sen!2sbd"
-            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <section class="location flex justify-center">
+        <?= !empty($settings['map_location']) ? $settings['map_location'] : 'Error: Map did not load'; ?>
     </section>
     <!-- Footer  -->
     <?php require_once __DIR__ . '/includes/footer.php' ?>

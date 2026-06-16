@@ -320,7 +320,7 @@ function createTable(PDO $pdo, string $table, string $sql)
 
 try {
     $sql = "ALTER TABLE settings
-    ADD contact_image VARCHAR(255) NULL";
+    ADD map_location TEXT NULL";
     $statement = $pdo->prepare($sql);
     $statement->execute();
     echo "Successful";

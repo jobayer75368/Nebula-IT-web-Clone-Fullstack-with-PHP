@@ -106,6 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="form-group">
                                             <label for="image">Client Image</label>
                                             <input type="file" class="form-control" id="image" name="image" aria-describedby="image" placeholder="Enter Client Image" value="<?php echo $image ?>">
+
                                             <!-- Image Preview -->
                                             <div id="preview-wrapper" style="display:none;">
                                                 <img id="image-preview" src="#" height="100" class="rounded border">

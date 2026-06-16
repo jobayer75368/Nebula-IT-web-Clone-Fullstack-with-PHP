@@ -15,7 +15,7 @@ $statement = $pdo->prepare("SELECT * FROM settings WHERE id=:id");
 $statement->execute([':id' => 1]);
 $settings = $statement->fetch(PDO::FETCH_ASSOC);
 
-$websiteName = $websiteFooter = $aboutTitle = $aboutDetails = $aboutImg = $phone = $email = $location = $contactImage = "";
+$websiteName = $websiteFooter = $aboutTitle = $aboutDetails = $aboutImg = $phone = $email = $location = $contactImage = $mapLocation = "";
 $errors = [];
 function sanitize(string $data)
 {
@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $location = $settings['location'] ?? '';
     $aboutImg = $settings['about_image'] ?? '';
     $contactImage = $settings['contact_image'] ?? '';
+    $mapLocation = $settings['map_location'] ?? '';
 
 
     if (isset($_POST['general_settings'])) {
@@ -63,7 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $phone = htmlspecialchars($_POST["phone"] ?? '');
         $email = htmlspecialchars($_POST["email"] ?? '');
         $location = sanitize($_POST["location"] ?? '');
-        $contactImage = $_POST["contact_image"] ?? '';
+        // $contactImage = $_POST["contact_image"] ?? '';
+        $mapLocation = trim($_POST['map_location'] ?? '');
 
         if (empty($phone)) {
             $errors['phone'] = "Phone Number is Required";
@@ -97,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (move_uploaded_file($_FILES['about_image']['tmp_name'], $targetPath)) {
 
                 // Delete old image after successful upload
-                if (!empty($blog['about_image'])) {
+                if (!empty($settings['about_image'])) {
 
                     $oldImagePath = __DIR__ . "/../uploads/" . $settings['about_image'];
 
@@ -135,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (move_uploaded_file($_FILES['contact_image']['tmp_name'], $targetPath)) {
 
                 // Delete old image after successful upload
-                if (!empty($blog['contact_image'])) {
+                if (!empty($settings['contact_image'])) {
 
                     $oldImagePath = __DIR__ . "/../uploads/" . $settings['contact_image'];
 
@@ -154,9 +156,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (empty($errors)) {
-        $sql = "UPDATE settings SET website_name =?, website_footer =?, about_title =?, about_details =?, about_image=?,phone = ?, email =?, location=?,contact_image=? WHERE id=1";
+        $sql = "UPDATE settings SET website_name =?, website_footer =?, about_title =?, about_details =?, about_image=?,phone = ?, email =?, location=?,contact_image=?,map_location=? WHERE id=1";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$websiteName, $websiteFooter, $aboutTitle, $aboutDetails, $aboutImg, $phone, $email, $location, $contactImage]);
+        $stmt->execute([$websiteName, $websiteFooter, $aboutTitle, $aboutDetails, $aboutImg, $phone, $email, $location, $contactImage, $mapLocation]);
         header("Location: /admin/settings");
         exit();
     }
@@ -340,10 +342,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <?php if (!empty($settings['contact_image'])) : ?>
                                                     <img
 
-                                                        src="<?= BASE_URL . 'uploads/' . $settings['contact_image']; ?>"
+                                                        src="<?= !empty($settings['contact_image']) ? BASE_URL . 'uploads/' . $settings['contact_image'] : ''; ?>"
                                                         width="300"
                                                         class="mb-2 d-block previewImg" style="display:<?= !empty($settings['contact_image']) ? 'block' : 'none' ?>">
                                                 <?php endif; ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Map Location</label>
+                                                <textarea
+                                                    type="text"
+                                                    name="map_location"
+                                                    class="form-control" style="height: 8rem;"
+                                                    placeholder="Enter location link"><?= $settings['map_location']; ?></textarea>
+
                                             </div>
 
                                             <button type="submit" name="contact_settings" class="btn btn-primary">
