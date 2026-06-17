@@ -318,12 +318,34 @@ function createTable(PDO $pdo, string $table, string $sql)
 //     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
 // }
 
-try {
-    $sql = "ALTER TABLE settings
-    ADD map_location TEXT NULL";
-    $statement = $pdo->prepare($sql);
-    $statement->execute();
-    echo "Successful";
-} catch (PDOException $e) {
-    echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
-}
+// try {
+//     $sql = "ALTER TABLE settings
+//     ADD map_location TEXT NULL";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }
+
+// createTable($pdo, "services", "
+//     CREATE TABLE services (
+//         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+//         title VARCHAR(255) NOT NULL,
+//         short_description  TEXT NULL,
+//         long_description  TEXT NULL,
+//         image VARCHAR(255) NOT NULL,
+//         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//         updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+//     )
+// ");
+
+// try {
+//     $sql = "ALTER TABLE services
+//     CHANGE image featured_image VARCHAR(255) NOT NULL";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }

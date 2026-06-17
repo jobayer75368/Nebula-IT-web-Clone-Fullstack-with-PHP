@@ -32,6 +32,13 @@
 
   <hr class="sidebar-divider">
   <li class="nav-item">
+    <a class="nav-link collapsed" href="/admin/comments">
+      <i class="fas fa-fw fa-comments"></i>
+      <span>Comments Mange</span>
+    </a>
+  </li>
+  <hr class="sidebar-divider">
+  <li class="nav-item">
     <a class="nav-link collapsed" href="/admin/contacts">
       <i class="fas fa-fw fa-address-book"></i>
       <span>Contact Mange</span>
@@ -46,11 +53,12 @@
   </li>
   <hr class="sidebar-divider">
   <li class="nav-item">
-    <a class="nav-link collapsed" href="/admin/comments">
-      <i class="fas fa-fw fa-comments"></i>
-      <span>Comments Mange</span>
+    <a class="nav-link collapsed" href="/admin/services">
+      <i class="fa-solid fa-screwdriver-wrench"></i>
+      <span>Service Manage</span>
     </a>
   </li>
+  <hr class="sidebar-divider">
   <!-- <li class="nav-item">
     <a class="nav-link collapsed" href="/admin/comments" data-toggle="collapse" data-target="#collapseComments" aria-expanded="true"
       aria-controls="collapseComments">

@@ -137,6 +137,18 @@ switch ($request) {
         break;
     // Blogs end
 
+    // Comments 
+    case '/admin/comments':
+        require_once __DIR__ . '/backend/comments/comments.php';
+        break;
+    case '/admin/comment/approve':
+        require_once __DIR__ . '/backend/comments/comment_approve.php';
+        break;
+
+    case '/admin/comment/delete':
+        require_once __DIR__ . "/backend/comments/comment_delete.php";
+        break;
+
     // Users
     case '/admin/users/list':
         require_once __DIR__ . "/backend/users/users_list.php";
@@ -155,19 +167,19 @@ switch ($request) {
         require_once __DIR__ . '/backend/users/user_profile_update.php';
         break;
 
+    //  services 
 
-    // Tables end  
-
-    // Comments 
-    case '/admin/comments':
-        require_once __DIR__ . '/backend/comments/comments.php';
+    case '/admin/services':
+        require_once __DIR__ . '/backend/services/services.php';
         break;
-    case '/admin/comment/approve':
-        require_once __DIR__ . '/backend/comments/comment_approve.php';
+    case '/admin/service/edit':
+        require_once __DIR__ . '/backend/services/service_edit.php';
         break;
-
-    case '/admin/comment/delete':
-        require_once __DIR__ . "/backend/comments/comment_delete.php";
+    case '/admin/service/create':
+        require_once __DIR__ . '/backend/services/service_create.php';
+        break;
+    case '/admin/service/delete':
+        require_once __DIR__ . '/backend/services/service_delete.php';
         break;
 
     // Settings 
