@@ -13,6 +13,9 @@ switch ($request) {
     case '/services':
         require_once __DIR__ . '/frontend/service.php';
         break;
+    case '/single_service':
+        require_once __DIR__ . '/frontend/single_service.php';
+        break;
     case '/portfolio':
         require_once __DIR__ . '/frontend/portfolio.php';
         break;
@@ -35,11 +38,11 @@ switch ($request) {
         $_GET['slug'] = $matches[1];
         require_once __DIR__ . '/frontend/single_blog.php';
         break;
-    // single category page 
-    // case (preg_match('#^/category/([a-zA-Z0-9-]+)$#', $request, $matches) ? true : false):
-    //     $_GET['slug'] = $matches[1];
-    //     require_once __DIR__ . '/frontend/category.php';
-    //     break;
+    // single service page 
+    case (preg_match('#^/services/([a-zA-Z0-9-]+)$#', $request, $matches) ? true : false):
+        $_GET['slug'] = $matches[1];
+        require_once __DIR__ . '/frontend/single_service.php';
+        break;
     // frontend end 
 
     // backend 

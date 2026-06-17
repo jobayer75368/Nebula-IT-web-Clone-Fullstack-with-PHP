@@ -1,7 +1,19 @@
 <?php
+
+require_once __DIR__ . '/../../backend/includes/db_connection.php';
+
 $currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
+
+
+
+$statement = $pdo->prepare("SELECT * FROM services WHERE services.status ='active'");
+$statement->execute();
+$services = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
+
 
 <header class="h-20 bg-white flex items-center shadow-md shadow-black/15 sticky top-0 z-40">
     <div class="container mx-auto px-5 lg:px-20 flex justify-between items-center">
@@ -39,3 +51,17 @@ $currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
     </div>
 </header>
+
+<!-- floating divs  -->
+<div class="floating_div_first fixed z-50 shadow-lg"><a
+        class="block w-100 hover:text-[var(--primary-color)] hover:bg-gray-100" href="">Our Team</a>
+</div>
+<div class="floating_div_second fixed z-50 shadow-lg">
+
+    <?php if (!empty($services)): ?>
+        <?php foreach ($services as $service): ?>
+            <a class="block w-100 hover:text-[var(--primary-color)] hover:bg-gray-100" href="/services/<?= $service['slug']; ?>"><?= $service['title'] ?></a>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+</div>

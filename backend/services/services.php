@@ -39,10 +39,10 @@ try {
                 <div class="container-fluid" id="container-wrapper">
 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Services Manage</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Services</h1>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
-                            <li class="breadcrumb-item">Service List</li>
+                            <li class="breadcrumb-item">Services </li>
                             <li class="breadcrumb-item active" aria-current="page"><a href="/admin/service/create">Service Create</a></li>
                         </ol>
                     </div>
@@ -82,17 +82,15 @@ try {
                                                         <td>
                                                             <img
                                                                 class="rounded"
-                                                                src="<?= !empty($service['image'])
-                                                                            ? BASE_URL . 'uploads/' . $service['image']
-                                                                            : '/frontend/assests/images/no-image.png'; ?>"
+                                                                src="<?= empty($service['featured_image'])
+                                                                            ? '/frontend/assests/images/no-image.png' : BASE_URL . 'uploads/' . $service['featured_image'] ?>"
                                                                 height="80">
                                                         </td>
                                                         <td>
                                                             <?php
                                                             $statusClass = match ($service['status']) {
-                                                                'draft' => 'badge-secondary',
-                                                                'pending' => 'badge-warning',
-                                                                'published' => 'badge-success',
+                                                                'active' => 'badge-success',
+                                                                'inactive' => 'badge-danger',
                                                                 default => 'badge-dark'
                                                             };
                                                             ?>
@@ -101,7 +99,6 @@ try {
                                                                 <?= ucfirst($service['status']); ?>
                                                             </span>
                                                         </td>
-                                                        <td><?= $service['posted_by'] ?></td>
                                                         <td>
                                                             <?= date("d M Y", strtotime($service['created_at'])) ?>
                                                         </td>

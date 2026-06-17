@@ -349,3 +349,23 @@ function createTable(PDO $pdo, string $table, string $sql)
 // } catch (PDOException $e) {
 //     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
 // }
+
+// try {
+//     $sql = "ALTER TABLE services
+//     ADD detail_title VARCHAR(255) NOT NULL,
+//     ADD featured_description TEXT NULL";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }
+try {
+    $sql = "ALTER TABLE services
+    ADD service_icon VARCHAR(200) NULL";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+    echo "Successful";
+} catch (PDOException $e) {
+    echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+}
