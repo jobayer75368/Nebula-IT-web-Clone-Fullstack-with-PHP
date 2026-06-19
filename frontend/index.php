@@ -29,7 +29,7 @@
                     strategies. Our professional team is committed to delivering high-quality services tailored to
                     your unique goals. From web development to digital marketing and IT consulting, we provide the
                     tools and support you need to succed in a competitive market.</p>
-                <a class="primary_link hero_contact" href="">Contact Us</a>
+                <a class="primary_link hero_contact" href="/contact">Contact Us</a>
             </div>
             <div>
                 <img class="hero_img hidden lg:block" src="/frontend/assets/images/hero_img.PNG" alt="">
