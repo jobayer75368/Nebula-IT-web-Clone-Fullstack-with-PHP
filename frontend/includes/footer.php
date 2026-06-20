@@ -1,3 +1,22 @@
+<?php
+
+
+require_once __DIR__ . '/../../backend/includes/db_connection.php';
+require_once __DIR__ . '/../../backend/config.php';
+
+// Services 
+$statement = $pdo->prepare("SELECT * FROM services WHERE services.status ='active'");
+$statement->execute();
+$services = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+// From settings 
+$settingsStmt = $pdo->prepare("SELECT * FROM settings WHERE id=1");
+$settingsStmt->execute();
+$setting = $settingsStmt->fetch(PDO::FETCH_ASSOC);
+
+
+?>
+
 <footer class="text-white">
     <div class="container mx-auto px-5 lg:px-20">
         <div class="flex flex-col lg:flex-row gap-10 lg:gap-16">
@@ -55,9 +74,11 @@
             <div class="links_2 flex flex-col gap-5">
                 <h4 class="font-semibold">Services</h4>
                 <ul class="flex flex-col gap-2">
-                    <li><a href="/">Website Development</a></li>
-                    <li><a href="/services">Software Development</a></li>
-                    <li><a href="/about">App Development</a></li>
+                    <?php if (!empty($services)): ?>
+                        <?php foreach ($services as $service): ?>
+                            <li><a href="/services/<?= $service['slug']; ?>"><?= $service['title'] ?></a></li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
             <div class="flex flex-col gap-5">
@@ -66,17 +87,16 @@
                     <li class="flex items-center gap-7">
                         <i class="fa-solid fa-location-dot text-[var(--secondary-color)] text-2xl"></i>
                         <p class=" hover:text-[var(--primary-color)] transition duration-300">
-                            184 Razia Plaza (4th floor), Senpara Parbata, Mirpur
-                            10, Dhaka 1216</p>
+                            <?= $setting['location'] ?></p>
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fa-regular fa-envelope text-[var(--secondary-color)] text-2xl"></i>
-                        <p class=" hover:text-[var(--primary-color)] transition duration-300">info@nebulaitbd.com
+                        <p class=" hover:text-[var(--primary-color)] transition duration-300"><?= $setting['email'] ?>
                         </p>
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fa-solid fa-phone text-[var(--secondary-color)] text-2xl"></i>
-                        <p class=" hover:text-[var(--primary-color)] transition duration-300">+880 1886 927829</p>
+                        <p class=" hover:text-[var(--primary-color)] transition duration-300"><?= $setting['phone'] ?></p>
                     </li>
                 </ul>
             </div>
