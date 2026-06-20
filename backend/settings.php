@@ -343,7 +343,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     <img
 
                                                         src="<?= !empty($settings['contact_image']) ? BASE_URL . 'uploads/' . $settings['contact_image'] : ''; ?>"
-                                                        width="300"
+                                                        width="200"
                                                         class="mb-2 d-block previewImg" style="display:<?= !empty($settings['contact_image']) ? 'block' : 'none' ?>">
                                                 <?php endif; ?>
                                             </div>

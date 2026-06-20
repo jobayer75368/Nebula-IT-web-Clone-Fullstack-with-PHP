@@ -371,16 +371,32 @@ function createTable(PDO $pdo, string $table, string $sql)
 // }
 
 
-try {
-    $sql = "ALTER TABLE settings
-    ADD website_logo VARCHAR(255) NULL,
-    ADD hero_title VARCHAR(255) NULL,
-    ADD hero_details TEXT NULL,
-    ADD hero_image TEXT NULL,
-    ADD hero_cover TEXT NULL";
-    $statement = $pdo->prepare($sql);
-    $statement->execute();
-    echo "Successful";
-} catch (PDOException $e) {
-    echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
-}
+// try {
+//     $sql = "ALTER TABLE settings
+//     ADD website_logo VARCHAR(255) NULL,
+//     ADD hero_title VARCHAR(255) NULL,
+//     ADD hero_details TEXT NULL,
+//     ADD hero_image TEXT NULL,
+//     ADD hero_cover TEXT NULL";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }
+
+// try {
+//     $sql = "ALTER TABLE settings
+//     CHANGE about_title who_we_are TEXT NULL,
+//     CHANGE about_image image_1 VARCHAR(255) NULL,
+//     CHANGE about_details our_goal TEXT NULL,
+//     ADD image_2 VARCHAR(255) NULL,
+//     ADD origin_story TEXT NULL,
+//     ADD image_3 VARCHAR(255) NULL,
+//     ADD why_choose_us TEXT NULL";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }

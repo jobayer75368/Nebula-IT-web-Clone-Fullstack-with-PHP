@@ -84,17 +84,17 @@ $setting = $settingsStmt->fetch(PDO::FETCH_ASSOC);
             <div class="flex flex-col gap-5">
                 <h4 class="font-semibold">Contact Us</h4>
                 <ul class="flex flex-col gap-5">
-                    <li class="flex items-center gap-7">
+                    <li class="flex items-center gap-5">
                         <i class="fa-solid fa-location-dot text-[var(--secondary-color)] text-2xl"></i>
                         <p class=" hover:text-[var(--primary-color)] transition duration-300">
                             <?= $setting['location'] ?></p>
                     </li>
-                    <li class="flex items-center gap-3">
+                    <li class="flex items-center gap-4">
                         <i class="fa-regular fa-envelope text-[var(--secondary-color)] text-2xl"></i>
                         <p class=" hover:text-[var(--primary-color)] transition duration-300"><?= $setting['email'] ?>
                         </p>
                     </li>
-                    <li class="flex items-center gap-3">
+                    <li class="flex items-center gap-4">
                         <i class="fa-solid fa-phone text-[var(--secondary-color)] text-2xl"></i>
                         <p class=" hover:text-[var(--primary-color)] transition duration-300"><?= $setting['phone'] ?></p>
                     </li>
