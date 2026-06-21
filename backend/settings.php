@@ -440,7 +440,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (empty($errors)) {
-        $sql = "UPDATE settings SET website_name =?,website_logo=?, footer_logo=?,hero_title =?,hero_details=?,hero_image=?,hero_cover=?, who_we_are =?,image_1=?, our_goal =?,image_2,origin_story=?,image_3,image_4=? ,phone = ?, email =?, location=?,contact_image=?,map_location=? WHERE id=1";
+        $sql = "UPDATE settings SET website_name =?,website_logo=?, footer_logo=?,hero_title =?,hero_details=?,hero_image=?,hero_cover=?, who_we_are =?,image_1=?, our_goal =?,image_2=?,origin_story=?,image_3=?,image_4=? ,phone = ?, email =?, location=?,contact_image=?,map_location=? WHERE id=1";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$websiteName, $websiteLogo, $footerLogo, $heroTitle, $heroDetails, $heroImage, $heroCover, $who_we_are, $image_1, $our_goal, $image_2, $origin_story, $image_3, $image_4, $phone, $email, $location, $contactImage, $mapLocation]);
         header("Location: /admin/settings");

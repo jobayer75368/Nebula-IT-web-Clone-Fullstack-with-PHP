@@ -1,3 +1,22 @@
+<?php
+
+
+require_once __DIR__ . '/../backend/includes/db_connection.php';
+require_once __DIR__ . '/../backend/config.php';
+
+// Services 
+$statement = $pdo->prepare("SELECT * FROM services WHERE services.status ='active'");
+$statement->execute();
+$services = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+// From settings 
+$settingsStmt = $pdo->prepare("SELECT * FROM settings WHERE id=1");
+$settingsStmt->execute();
+$settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,21 +33,13 @@
     <section class="hero bg-violet-70 flex items-center mb-8">
         <div class="container mx-auto px-5 lg:px-20 sm:flex items-center justify-between gap-10">
             <div>
-                <h2 class=" mb-5">
-                    <span>We Are </span>Professional <span>To Grow Your </span>Business
-                </h2>
+                <div class="capitalize mb-5">
+                    <?= $settings['hero_title'] ?>
+                </div>
                 <div>
                     <img class="hero_img lg:hidden w-100" src="/frontend/assets/images/hero_img.PNG" alt="">
                 </div>
-                <p class="mt-5 mb-5 leading-8 text-justify">At <span class="font-semibold">Nebula IT</span>, we
-                    specialize in
-                    helping
-                    businesses grow with smart
-                    digital solutions and
-                    expert
-                    strategies. Our professional team is committed to delivering high-quality services tailored to
-                    your unique goals. From web development to digital marketing and IT consulting, we provide the
-                    tools and support you need to succed in a competitive market.</p>
+                <div class="mt-5 mb-5 leading-8 text-justify"><?= $settings['hero_details'] ?></div>
                 <a class="primary_link hero_contact" href="/contact">Contact Us</a>
             </div>
             <div>

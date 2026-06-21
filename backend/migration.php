@@ -400,3 +400,12 @@ function createTable(PDO $pdo, string $table, string $sql)
 // } catch (PDOException $e) {
 //     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
 // }
+try {
+    $sql = "ALTER TABLE settings
+    CHANGE why_choose_us image_4 VARCHAR(255) NULL";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+    echo "Successful";
+} catch (PDOException $e) {
+    echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+}

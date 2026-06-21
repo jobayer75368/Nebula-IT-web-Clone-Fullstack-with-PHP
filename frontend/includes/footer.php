@@ -12,104 +12,140 @@ $services = $statement->fetchAll(PDO::FETCH_ASSOC);
 // From settings 
 $settingsStmt = $pdo->prepare("SELECT * FROM settings WHERE id=1");
 $settingsStmt->execute();
-$setting = $settingsStmt->fetch(PDO::FETCH_ASSOC);
+$settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
 
 
 ?>
 
-<footer class="text-white">
-    <div class="container mx-auto px-5 lg:px-20">
-        <div class="flex flex-col lg:flex-row gap-10 lg:gap-16">
-            <div class="footer_about">
-                <div>
-                    <img src="/frontend/assets/images/footer_logo.png" alt="">
-                </div>
-                <div>
-                    <p class="mt-5 mb-5 leading-8 sm:text-justify text-white">At <span class="font-semibold">Nebula
-                            IT</span>, we
-                        specialize in
-                        helping
-                        businesses grow with smart
-                        digital solutions and
-                        expert
-                        strategies. Our professional team is committed to delivering high-quality
-                        services
-                        tailored
-                        to
-                        your unique goals. From web development to digital marketing and IT consulting, we
-                        provide
-                        the
-                        tools and support you need to succed in a competitive market.
-                    </p>
-                </div>
-                <div class="flex gap-2">
+<footer class="text-white overflow-hidden">
+    <div class="container mx-auto px-5 lg:px-20 py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+            <!-- About -->
+            <div>
+                <img src="/frontend/assets/images/footer_logo.png" alt="">
+
+                <p class="mt-5 mb-5 leading-6 text-justify">
+                    At <span class="font-semibold">Nebula IT</span>, we specialize in helping
+                    businesses grow with smart digital solutions and expert strategies.
+                    Our professional team is committed to delivering high-quality
+                    services tailored to your unique goals. From web development
+                    to digital marketing and IT consulting, we provide the tools
+                    and support you need to succeed in a competitive market.
+                </p>
+
+                <div class="flex gap-3 flex-wrap">
                     <div class="social_links">
-                        <a href=""><i class="fa-brands fa-facebook-f text-2xl"></i></a>
+                        <a href=""><i class="fa-brands fa-facebook-f text-xl"></i></a>
                     </div>
+
                     <div class="social_links">
-                        <a href=""><i class="fa-brands fa-twitter text-2xl"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter text-xl"></i></a>
                     </div>
+
                     <div class="social_links">
-                        <a href=""><i class="fa-brands fa-linkedin-in text-2xl"></i></a>
+                        <a href=""><i class="fa-brands fa-linkedin-in text-xl"></i></a>
                     </div>
+
                     <div class="social_links">
-                        <a href="">
-                            <i class="fa-solid fa-basketball text-2xl"></i>
-                        </a>
+                        <a href=""><i class="fa-solid fa-basketball text-xl"></i></a>
                     </div>
+
                     <div class="social_links">
-                        <a href=""><i class="fa-brands fa-instagram text-2xl"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram text-xl"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="links_1 flex flex-col gap-5">
-                <h4 class="font-semibold">Useful Links</h4>
-                <ul class="flex flex-col gap-2">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/services">Services</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="links_2 flex flex-col gap-5">
-                <h4 class="font-semibold">Services</h4>
-                <ul class="flex flex-col gap-2">
-                    <?php if (!empty($services)): ?>
+
+            <div class="flex lg:flex-row gap-10">
+                <!-- Useful Links -->
+                <div>
+                    <h4 class="font-semibold mb-5">Useful Links</h4>
+
+                    <ul class="space-y-3">
+                        <li><a class="hover:text-[var(--primary-color)]" href="/">Home</a></li>
+                        <li><a class="hover:text-[var(--primary-color)]" href="/services">Services</a></li>
+                        <li><a class="hover:text-[var(--primary-color)]" href="/about">About Us</a></li>
+                        <li><a class="hover:text-[var(--primary-color)]" href="/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-semibold mb-5">Services</h4>
+
+                    <ul class="space-y-3">
                         <?php foreach ($services as $service): ?>
-                            <li><a href="/services/<?= $service['slug']; ?>"><?= $service['title'] ?></a></li>
+                            <li>
+                                <a class="hover:text-[var(--primary-color)]" href="/services/<?= $service['slug']; ?>">
+                                    <?= $service['title'] ?>
+                                </a>
+                            </li>
                         <?php endforeach; ?>
-                    <?php endif; ?>
-                </ul>
+                    </ul>
+                </div>
             </div>
-            <div class="flex flex-col gap-5">
-                <h4 class="font-semibold">Contact Us</h4>
-                <ul class="flex flex-col gap-5">
-                    <li class="flex items-center gap-5">
-                        <i class="fa-solid fa-location-dot text-[var(--secondary-color)] text-2xl"></i>
-                        <p class=" hover:text-[var(--primary-color)] transition duration-300">
-                            <?= $setting['location'] ?></p>
-                    </li>
-                    <li class="flex items-center gap-4">
-                        <i class="fa-regular fa-envelope text-[var(--secondary-color)] text-2xl"></i>
-                        <p class=" hover:text-[var(--primary-color)] transition duration-300"><?= $setting['email'] ?>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-semibold mb-5">Contact Us</h4>
+
+                <ul class="space-y-5">
+
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-location-dot text-2xl text-[var(--secondary-color)] mt-1 flex-shrink-0"></i>
+
+                        <p class="break-words hover:text-[var(--primary-color)] duration-300">
+                            <?= $settings['location'] ?>
                         </p>
                     </li>
-                    <li class="flex items-center gap-4">
-                        <i class="fa-solid fa-phone text-[var(--secondary-color)] text-2xl"></i>
-                        <p class=" hover:text-[var(--primary-color)] transition duration-300"><?= $setting['phone'] ?></p>
+
+                    <li class="flex items-start gap-4">
+                        <i class="fa-regular fa-envelope text-2xl text-[var(--secondary-color)] mt-1 flex-shrink-0"></i>
+
+                        <p class="break-all hover:text-[var(--primary-color)] duration-300">
+                            <?= $settings['email'] ?>
+                        </p>
                     </li>
+
+                    <li class="flex items-start gap-4">
+                        <i class="fa-solid fa-phone text-2xl text-[var(--secondary-color)] mt-1 flex-shrink-0"></i>
+
+                        <p class="break-words hover:text-[var(--primary-color)] duration-300">
+                            <?= $settings['phone'] ?>
+                        </p>
+                    </li>
+
                 </ul>
             </div>
+
         </div>
     </div>
-    <hr class="mt-20">
-    <div class="container mx-auto px-20 my-8">
-        <div class="sm:flex justify-between">
-            <p>@2016 <span class="text-[var(--primary-color)]">Nebula IT</span>. All Rights Reserved.</p>
-            <p class="flex 
-                gap-3"><a class="hover:text-[var(--primary-color)]" href="">Team & Condition</a>
-                <a class="hover:text-[var(--primary-color)]" href="">Privacy Policy</a>
+    <hr class="my-10">
+
+    <!-- Bottom -->
+    <div class="container mx-auto px-5 lg:px-20 my-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+
+            <p>
+                @2016
+                <span class="text-[var(--primary-color)]">
+                    <a href="/"><?= $settings['website_name'] ?></a>
+                </span>.
+                All Rights Reserved.
             </p>
+
+            <div class="flex flex-wrap justify-center gap-5">
+                <a class="hover:text-[var(--primary-color)]" href="">
+                    Terms & Conditions
+                </a>
+
+                <a class="hover:text-[var(--primary-color)]" href="">
+                    Privacy Policy
+                </a>
+            </div>
+
         </div>
     </div>
+
 </footer>
