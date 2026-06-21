@@ -18,7 +18,8 @@ $settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
 $sql = "SELECT * FROM clients";
 $clientStatement = $pdo->prepare($sql);
 $clientStatement->execute();
-$clients = $clientStatement->fetchAll(PDO::FETCH_ASSOC)
+$clients = $clientStatement->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 ?>

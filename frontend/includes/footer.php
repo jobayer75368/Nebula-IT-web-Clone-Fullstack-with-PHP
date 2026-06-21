@@ -23,7 +23,7 @@ $settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
 
             <!-- About -->
             <div>
-                <img src="/frontend/assets/images/footer_logo.png" alt="">
+                <img src="<?= !empty($settings['footer_logo']) ? BASE_URL . 'uploads/' . $settings['footer_logo'] : ''; ?>" alt="">
 
                 <p class="mt-5 mb-5 leading-6 text-justify">
                     <?= trim(htmlspecialchars($settings['footer_details'])) ?>
@@ -70,13 +70,15 @@ $settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
                     <h4 class="font-semibold mb-5">Services</h4>
 
                     <ul class="space-y-3">
-                        <?php foreach ($services as $service): ?>
-                            <li>
-                                <a class="hover:text-[var(--primary-color)]" href="/services/<?= $service['slug']; ?>">
-                                    <?= $service['title'] ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
+                        <?php if (!empty($services)): ?>
+                            <?php foreach ($services as $service): ?>
+                                <li>
+                                    <a class="hover:text-[var(--primary-color)]" href="/services/<?= $service['slug']; ?>">
+                                        <?= $service['title'] ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>

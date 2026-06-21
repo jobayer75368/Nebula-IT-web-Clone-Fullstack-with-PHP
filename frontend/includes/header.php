@@ -18,7 +18,7 @@ $currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 <header class="h-20 bg-white flex items-center shadow-md shadow-black/15 sticky top-0 z-40">
     <div class="container mx-auto px-5 lg:px-20 flex justify-between items-center">
         <div class="logo">
-            <a href="/"><img src="/frontend/assets/images/header_logo.png" alt="NebulaIT img"></a>
+            <a href="/"><img src="<?= !empty($settings['website_logo']) ? BASE_URL . 'uploads/' . $settings['website_logo'] : ''; ?>" alt="NebulaIT img"></a>
         </div>
         <nav class="font-semibold">
             <ul class="flex gap-8">
