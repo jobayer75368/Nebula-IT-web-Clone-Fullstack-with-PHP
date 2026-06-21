@@ -7,9 +7,9 @@ $currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 
 
-$statement = $pdo->prepare("SELECT * FROM services WHERE services.status ='active'");
-$statement->execute();
-$services = $statement->fetchAll(PDO::FETCH_ASSOC);
+// $statement = $pdo->prepare("SELECT * FROM services WHERE services.status ='active'");
+// $statement->execute();
+// $services = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>

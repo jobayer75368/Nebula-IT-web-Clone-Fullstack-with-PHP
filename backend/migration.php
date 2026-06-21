@@ -400,12 +400,25 @@ function createTable(PDO $pdo, string $table, string $sql)
 // } catch (PDOException $e) {
 //     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
 // }
-try {
-    $sql = "ALTER TABLE settings
-    ADD footer_details TEXT NULL";
-    $statement = $pdo->prepare($sql);
-    $statement->execute();
-    echo "Successful";
-} catch (PDOException $e) {
-    echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
-}
+// try {
+//     $sql = "ALTER TABLE settings
+//     ADD footer_details TEXT NULL";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }
+
+// Portfolio
+
+// createTable($pdo, "portfolios", "
+//     CREATE TABLE portfolios (
+//         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+//         website_name VARCHAR(100) NOT NULL,
+//         website_link  VARCHAR(255) NOT NULL,
+//         type VARCHAR(50) NULL,
+//         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//         updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+//     )
+// ");

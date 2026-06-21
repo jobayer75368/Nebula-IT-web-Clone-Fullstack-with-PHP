@@ -11,7 +11,7 @@ switch ($request) {
         break;
 
     case '/services':
-        $pageName = "Servici";
+        $pageName = "Services";
         break;
 
     case '/portfolio':

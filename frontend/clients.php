@@ -3,10 +3,10 @@
 require_once __DIR__ . "/../backend/includes/db_connection.php";
 require_once __DIR__ . "/../backend/config.php";
 
-$sql = "SELECT * FROM clients";
-$statement = $pdo->prepare($sql);
-$statement->execute();
-$clients = $statement->fetchAll(PDO::FETCH_ASSOC)
+// $sql = "SELECT * FROM clients";
+// $statement = $pdo->prepare($sql);
+// $statement->execute();
+// $clients = $statement->fetchAll(PDO::FETCH_ASSOC)
 
 ?>
 <!DOCTYPE html>
@@ -39,108 +39,7 @@ $clients = $statement->fetchAll(PDO::FETCH_ASSOC)
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                <!-- <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-2.PNG" alt="">
-                    <div class="client_name">
-                        <p>Angel Rose Beauty Care BD</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-3.PNG" alt="">
-                    <div class="client_name">
-                        <p>into study abroad</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-4.PNG" alt="">
-                    <div class="client_name">
-                        <p>taskin interior</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-5.PNG" alt="">
-                    <div class="client_name">
-                        <p>m. elas & co</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-6.PNG" alt="">
-                    <div class="client_name">
-                        <p>arc fire safety & controls LTD</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-7.PNG" alt="">
-                    <div class="client_name">
-                        <p>sunrise Education Consultants</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-8.PNG" alt="">
-                    <div class="client_name">
-                        <p>study abroad in italy</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-9.PNG" alt="">
-                    <div class="client_name">
-                        <p>global rise international</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-10.PNG" alt="">
-                    <div class="client_name">
-                        <p>trip travello</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-11.PNG" alt="">
-                    <div class="client_name">
-                        <p>beauty ever</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-12.PNG" alt="">
-                    <div class="client_name">
-                        <p>seki beauty</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-13.PNG" alt="">
-                    <div class="client_name">
-                        <p>khalid bazar</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-14.PNG" alt="">
-                    <div class="client_name">
-                        <p>institute of healthcare & development</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-15.PNG" alt="">
-                    <div class="client_name">
-                        <p>lighthouse paramount LTD</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-16.PNG" alt="">
-                    <div class="client_name">
-                        <p>SRG bangladesh LTD (SRGB)</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-17.PNG" alt="">
-                    <div class="client_name">
-                        <p>innovator IT</p>
-                    </div>
-                </div>
-                <div class="client_card">
-                    <img class="client_image" src="/frontend/assets/images/Clients/Our Clients/C-18.PNG" alt="">
-                    <div class="client_name">
-                        <p>cooking spaces</p>
-                    </div>
-                </div> -->
+
             </div>
         </div>
     </section>

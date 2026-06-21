@@ -21,7 +21,7 @@
                     </div>
                     <div class="grid_text flex flex-col justify-center items-center">
                         <h4 class="font-semibold">Fashion (eCommerce)</h4>
-                        <a class="secondary_link" href="">Visit Website</a>
+                        <a class="secondary_link" href="https://styleecho.net/" target="_blank">Visit Website</a>
                     </div>
                 </div>
                 <div class="preview_card p-4">

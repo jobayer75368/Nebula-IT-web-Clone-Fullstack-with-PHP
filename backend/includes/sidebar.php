@@ -59,6 +59,13 @@
     </a>
   </li>
   <hr class="sidebar-divider">
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="/admin/portfolio">
+      <i class="fa-solid fa-briefcase"></i>
+      <span>Portfolio Manage</span>
+    </a>
+  </li>
+  <hr class="sidebar-divider">
   <!-- <li class="nav-item">
     <a class="nav-link collapsed" href="/admin/comments" data-toggle="collapse" data-target="#collapseComments" aria-expanded="true"
       aria-controls="collapseComments">

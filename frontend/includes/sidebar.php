@@ -11,7 +11,7 @@
                 class="fa-solid fa-chevron-down text-xs"></i>
         </li>
         <li class="hover:text-[var(--primary-color)] transition-all duration-300"><a
-                href="/servic">Services</a><i class="fa-solid fa-chevron-down text-xs"></i>
+                href="/services">Services</a><i class="fa-solid fa-chevron-down text-xs"></i>
         </li>
         <li class="hover:text-[var(--primary-color)]"><a href="/portfolio">Portfolio</a></li>
         <li class="hover:text-[var(--primary-color)]"><a href="/clients">Our Clients</a></li>

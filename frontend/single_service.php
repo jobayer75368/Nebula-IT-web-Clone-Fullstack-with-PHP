@@ -8,7 +8,6 @@ $slug = $_GET['slug'] ?? '';
 
 $stmt = $pdo->prepare("SELECT * FROM services WHERE slug=? AND status='active'");
 $stmt->execute([$slug]);
-
 $singleService = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
@@ -28,14 +27,8 @@ $singleService = $stmt->fetch(PDO::FETCH_ASSOC);
     <!-- Header  -->
     <?php require_once __DIR__ . '/includes/header.php' ?>
 
-    <section class="page_hero text-white">
-        <div class="page_hero_overlay">
-            <div class="container mx-auto px-20 text-center">
-                <h1>Services</h1>
-                <p><a class="text-red-500" href="/">Home</a> / Services</p>
-            </div>
-        </div>
-    </section>
+    <?php require_once __DIR__ . '/includes/page_hero.php'; ?>
+
     <section class="service_section my-20">
         <div class="container mx-auto my-10 px-5 lg:px-20">
 

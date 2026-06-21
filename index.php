@@ -185,6 +185,21 @@ switch ($request) {
         require_once __DIR__ . '/backend/services/service_delete.php';
         break;
 
+    //  Portfolio
+
+    case '/admin/portfolio':
+        require_once __DIR__ . '/backend/portfolio/portfolio.php';
+        break;
+    case '/admin/portfolio/create':
+        require_once __DIR__ . '/backend/portfolio/portfolio_create.php';
+        break;
+    case '/admin/portfolio/edit':
+        require_once __DIR__ . '/backend/portfolio/portfolio_edit.php';
+        break;
+    case '/admin/portfolio/delete':
+        require_once __DIR__ . '/backend/portfolio/portfolio_delete.php';
+        break;
+
     // Settings 
     case '/admin/settings':
         require_once __DIR__ . '/backend/settings.php';

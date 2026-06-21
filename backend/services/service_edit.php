@@ -182,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="service_icon">Service Icon</label>
-                                            <input type="text" class="form-control" id="service_icon" name="service_icon" aria-describedby="service_icon" placeholder="Enter Icon" value="<?= $service['service_icon'] ?>">
+                                            <input type="text" class="form-control" id="service_icon" name="service_icon" aria-describedby="service_icon" placeholder="Enter Icon" value="<?= htmlspecialchars($service['service_icon']) ?>">
 
                                             <p class="text-danger"><?php echo isset($errors['service_icon']) ? $errors['service_icon'] : ""; ?></p>
                                         </div>

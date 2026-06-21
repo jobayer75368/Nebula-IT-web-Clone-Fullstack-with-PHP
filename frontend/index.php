@@ -28,6 +28,8 @@
             </div>
         </div>
     </section>
+
+    <!-- Services  -->
     <section class="service_section">
         <div class="container mx-auto my-10 px-5 lg:px-20 ">
             <div class="my-10 flex flex-col items-center">
@@ -37,32 +39,22 @@
                         class="udot"></span><span class="uline"></span></div>
             </div>
             <div class="service_grid grid grid-cols-1 lg:grid-cols-3 gap-6 my-10">
-                <div class="shadow shadow-black/35 p-10 w-100 rounded-md ">
-                    <i class="fa-solid fa-globe text-5xl my-5"></i>
-                    <h4 class="font-semibold my-3">Website Development</h4>
-                    <p class="my-3">Reach your business goals with expert strategies & tailored web
-                        solutions. Boost
-                        growth,
-                        efficiency, & success. Achive excellence together. Start now!</p>
-                    <a class="secondary_link" href="">Learn more</a>
-                </div>
-                <div class="shadow shadow-black/35 p-10 w-100 rounded-md">
-                    <i class="fa-solid fa-mobile-screen-button text-5xl my-5"></i>
-                    <h4 class="font-semibold my-3">Apps Development</h4>
-                    <p class="my-3">Reach your business goals faster with our app's tailored solutions. Streamline
-                        operations, boost growth, and track real-time progress. Elevate success now!</p>
-                    <a class="secondary_link" href="">Learn more</a>
-                </div>
-                <div class="shadow shadow-black/35 p-10 w-100 rounded-md">
-                    <i class="fa-solid fa-gears text-5xl my-5"></i>
-                    <h4 class="font-semibold my-3">Software Development</h4>
-                    <p class="my-3">Drive business success with custom software. Optimize workflows, accelerate growth,
-                        scale smarter. Expert solutions for measurable results.</p>
-                    <a class="secondary_link" href="">Learn more</a>
-                </div>
+                <?php if (!empty($services)): ?>
+                    <?php foreach ($services as $service) : ?>
+                        <div class="shadow shadow-black/35 p-10 w-full rounded-md">
+                            <h2 class="my-5"><?= $service['service_icon'] ?></h2>
+                            <h4 class="font-semibold my-3"><?= $service['title'] ?></h4>
+                            <p class="my-3 text-justify"><?= $service['featured_description'] ?></p>
+                            <a class="secondary_link" href="/services/<?= $service['slug']; ?>">Learn more</a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </section>
+
+    <!-- expertise  -->
+
     <section class="expertise_section py-8 bg-[var(--expertise-color)]">
         <div class="container mx-auto pb-8 px-5 lg:px-20">
             <div class="my-10 flex flex-col items-center">
@@ -184,6 +176,8 @@
     <div class="w-100 text-center">
         <a class="primary_link" href="/portfolio">View More</a>
     </div>
+
+    <!-- Our Clients  -->
     <section class="clients_section mt-20 py-8">
         <div class="container mx-auto px-20">
             <div class="my-10 flex flex-col items-center">
@@ -196,34 +190,15 @@
                 <!-- Carousel wrapper -->
                 <div class="relative h-56 overflow-hidden rounded-base md:h-96">
                     <!-- Item 1 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="/frontend/assets/images/Clients/client-1.PNG"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="/frontend/assets/images/Clients/client-2.PNG"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="/frontend/assets/images/Clients/client-3.PNG"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div>
-                    <!-- Item 4 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="/frontend/assets/images/Clients/client-4.PNG"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div>
-                    <!-- Item 5 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="/frontend/assets/images/Clients/client-5.PNG"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div>
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="/frontend/assets/images/Clients/client-6.PNG"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div>
+                    <?php if (!empty($clients)): ?>
+                        <?php foreach ($clients as $client): ?>
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                <img src="<?= !empty($client['image']) ? BASE_URL . 'uploads/' . $client['image'] : ''; ?>"
+                                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
                 </div>
 
                 <!-- Slider controls -->
@@ -255,7 +230,7 @@
                 </button>
             </div>
             <div class="w-100 text-center mb-8">
-                <a class="primary_link" href="">View More</a>
+                <a class="primary_link" href="/clients">View More</a>
             </div>
         </div>
     </section>

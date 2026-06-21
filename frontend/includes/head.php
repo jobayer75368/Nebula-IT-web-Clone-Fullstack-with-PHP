@@ -5,14 +5,20 @@ require_once __DIR__ . '/../../backend/includes/db_connection.php';
 require_once __DIR__ . '/../../backend/config.php';
 
 // Services 
-// $statement = $pdo->prepare("SELECT * FROM services WHERE services.status ='active'");
-// $statement->execute();
-// $services = $statement->fetchAll(PDO::FETCH_ASSOC);
+$statement = $pdo->prepare("SELECT * FROM services WHERE services.status ='active'");
+$statement->execute();
+$services = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-// From settings 
+// settings 
 $settingsStmt = $pdo->prepare("SELECT * FROM settings WHERE id=1");
 $settingsStmt->execute();
 $settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
+
+// Our Clients 
+$sql = "SELECT * FROM clients";
+$clientStatement = $pdo->prepare($sql);
+$clientStatement->execute();
+$clients = $clientStatement->fetchAll(PDO::FETCH_ASSOC)
 
 
 ?>
