@@ -28,7 +28,7 @@ $currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
                 <li><a class="about_p <?php if ($currentPage == '/about') echo 'active_page'; ?>" href="/about">About</a><i class="fa-solid fa-chevron-down text-xs"></i>
                 </li>
 
-                <li><a class="service_p <?php if ($currentPage == '/services') echo 'active_page'; ?>" href="/services">Services</a><i
+                <li><a class="service_p <?php if ($currentPage == '/services' || str_starts_with($currentPage, '/services/')) echo 'active_page'; ?>" href="/services">Services</a><i
                         class="fa-solid fa-chevron-down text-xs"></i></li>
 
                 <li><a class="<?php if ($currentPage == '/portfolio') echo 'active_page'; ?>" href="/portfolio">Portfolio</a></li>
