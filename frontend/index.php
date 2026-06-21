@@ -1,22 +1,3 @@
-<?php
-
-
-require_once __DIR__ . '/../backend/includes/db_connection.php';
-require_once __DIR__ . '/../backend/config.php';
-
-// Services 
-$statement = $pdo->prepare("SELECT * FROM services WHERE services.status ='active'");
-$statement->execute();
-$services = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-// From settings 
-$settingsStmt = $pdo->prepare("SELECT * FROM settings WHERE id=1");
-$settingsStmt->execute();
-$settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +24,7 @@ $settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
                 <a class="primary_link hero_contact" href="/contact">Contact Us</a>
             </div>
             <div>
-                <img class="hero_img hidden lg:block" src="/frontend/assets/images/hero_img.PNG" alt="">
+                <img class="hero_img hidden lg:block" src="<?= !empty($settings['hero_image']) ? BASE_URL . 'uploads/' . $settings['hero_image'] : ''; ?>" alt="">
             </div>
         </div>
     </section>

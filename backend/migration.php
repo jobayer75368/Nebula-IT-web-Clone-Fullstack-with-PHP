@@ -402,7 +402,7 @@ function createTable(PDO $pdo, string $table, string $sql)
 // }
 try {
     $sql = "ALTER TABLE settings
-    CHANGE why_choose_us image_4 VARCHAR(255) NULL";
+    ADD footer_details TEXT NULL";
     $statement = $pdo->prepare($sql);
     $statement->execute();
     echo "Successful";

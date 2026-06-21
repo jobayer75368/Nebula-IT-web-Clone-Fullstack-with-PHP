@@ -22,14 +22,9 @@ $blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
     <!-- Header  -->
     <?php require_once __DIR__ . '/includes/header.php' ?>
 
-    <section class="page_hero text-white">
-        <div class="page_hero_overlay">
-            <div class="container mx-auto px-20 text-center">
-                <h1>Blog</h1>
-                <p><a class="text-red-500" href="/">Home</a> / Blog</p>
-            </div>
-        </div>
-    </section>
+    <!-- page hero  -->
+    <?php require_once __DIR__ . '/includes/page_hero.php' ?>
+
     <section class="blog_sec my-20">
         <div class="container mx-auto px-5 lg:px-20">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -57,46 +52,7 @@ $blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                <!-- <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative">
-                    <div class="img_overlay">
-                        <img src="/frontend/assets/images/blog/blog_01.jpg.bv.webp" alt="">
-                        <a href="">
-                            <div class="blog_overlay">
-                                <div class="bg-blue-500 text-white text-sm inline-block px-2 py-1 rounded-sm ml-3 mt-2">
-                                    Blog
-                                </div>
-                                <div class="date m-0">30<span class="text-sm font-normal m-0">Apr</span></div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="p-4 mt-6">
-                        <p class="font-semibold blog_head transition-all duration-300">Nebula IT vs. Competitors- What
-                            Makes Them The Best Choice?
-                        </p>
-                        <a class="secondary_link mt-7 inline-block" href="">Learn more</a>
-                    </div>
 
-                </div>
-                <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative">
-                    <div class="img_overlay">
-                        <img src="/frontend/assets/images/blog/blog_02.jpg.bv.webp" alt="">
-                        <a href="">
-                            <div class="blog_overlay">
-                                <div class="bg-blue-500 text-white text-sm inline-block px-2 py-1 rounded-sm ml-3 mt-2">
-                                    Blog
-                                </div>
-                                <div class="date m-0">30<span class="text-sm font-normal m-0">Apr</span></div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="p-4 mt-6">
-                        <p class="font-semibold blog_head transition-all duration-300">Nebula IT vs. Competitors- What
-                            Makes Them The Best Choice?
-                        </p>
-                        <a class="secondary_link mt-7 inline-block" href="">Learn more</a>
-                    </div>
-
-                </div> -->
             </div>
         </div>
     </section>

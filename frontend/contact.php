@@ -64,14 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Header  -->
     <?php require_once __DIR__ . '/includes/header.php' ?>
 
-    <section class="page_hero text-white">
-        <div class="page_hero_overlay">
-            <div class="container mx-auto px-20 text-center">
-                <h1>Contact</h1>
-                <p><a class="text-red-500" href="/">Home</a> / Contact</p>
-            </div>
-        </div>
-    </section>
+    <!-- page hero  -->
+    <?php require_once __DIR__ . '/includes/page_hero.php' ?>
+
     <section class="contact_sec py-20 bg-white">
         <div class="container mx-auto px-5 lg:px-20">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">

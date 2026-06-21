@@ -268,12 +268,8 @@ footer .footer_about {
 }
 
 /* About Page start  */
-.page_hero {
-    background: url(../Assets/images/page_hero.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
+
 
 .page_hero .page_hero_overlay {
     height: 100%;

@@ -1,4 +1,22 @@
 <?php
+
+
+require_once __DIR__ . '/../../backend/includes/db_connection.php';
+require_once __DIR__ . '/../../backend/config.php';
+
+// Services 
+// $statement = $pdo->prepare("SELECT * FROM services WHERE services.status ='active'");
+// $statement->execute();
+// $services = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+// From settings 
+$settingsStmt = $pdo->prepare("SELECT * FROM settings WHERE id=1");
+$settingsStmt->execute();
+$settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
+
+
+?>
+<?php
 $currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
 ?>
@@ -26,6 +44,14 @@ $currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <style>
+        .page_hero {
+            background: url(<?= !empty($settings['hero_cover']) ? BASE_URL . 'uploads/' . $settings['hero_cover'] : ''; ?>);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 
 
 </head>

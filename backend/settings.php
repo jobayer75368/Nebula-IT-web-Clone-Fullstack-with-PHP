@@ -15,7 +15,7 @@ $statement = $pdo->prepare("SELECT * FROM settings WHERE id=:id");
 $statement->execute([':id' => 1]);
 $settings = $statement->fetch(PDO::FETCH_ASSOC);
 
-$websiteName = $websiteLogo = $footerLogo = $heroTitle = $heroDetails = $heroImage = $heroCover = $who_we_are = $image_1 = $our_goal = $image_2 = $origin_story = $image_3 = $image_4 = $phone = $email = $location = $contactImage = $mapLocation = "";
+$websiteName = $websiteLogo = $footerLogo = $footerDetails = $heroTitle = $heroDetails = $heroImage = $heroCover = $who_we_are = $image_1 = $our_goal = $image_2 = $origin_story = $image_3 = $image_4 = $phone = $email = $location = $contactImage = $mapLocation = "";
 $errors = [];
 function sanitize(string $data)
 {
@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $websiteName = $settings['website_name'] ?? '';
     $websiteLogo = $settings['website_logo'] ?? '';
     $footerLogo = $settings['footer_logo'] ?? '';
+    $footerDetails = $settings['footer_details'] ?? '';
     // hero     
     $heroTitle = $settings['hero_title'] ?? '';
     $heroDetails = $settings['hero_details'] ?? '';
@@ -59,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['general_settings'])) {
         $websiteName = sanitize($_POST["website_name"] ?? '');
+        $footerDetails = sanitize($_POST["footer_details"] ?? '');
         $heroTitle = $_POST["hero_title"] ?? '';
         $heroDetails = $_POST["hero_details"] ?? '';
 
@@ -440,9 +442,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (empty($errors)) {
-        $sql = "UPDATE settings SET website_name =?,website_logo=?, footer_logo=?,hero_title =?,hero_details=?,hero_image=?,hero_cover=?, who_we_are =?,image_1=?, our_goal =?,image_2=?,origin_story=?,image_3=?,image_4=? ,phone = ?, email =?, location=?,contact_image=?,map_location=? WHERE id=1";
+        $sql = "UPDATE settings SET website_name =?,website_logo=?, footer_logo=?,footer_details=?,hero_title =?,hero_details=?,hero_image=?,hero_cover=?, who_we_are =?,image_1=?, our_goal =?,image_2=?,origin_story=?,image_3=?,image_4=? ,phone = ?, email =?, location=?,contact_image=?,map_location=? WHERE id=1";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$websiteName, $websiteLogo, $footerLogo, $heroTitle, $heroDetails, $heroImage, $heroCover, $who_we_are, $image_1, $our_goal, $image_2, $origin_story, $image_3, $image_4, $phone, $email, $location, $contactImage, $mapLocation]);
+        $stmt->execute([$websiteName, $websiteLogo, $footerLogo, $footerDetails, $heroTitle, $heroDetails, $heroImage, $heroCover, $who_we_are, $image_1, $our_goal, $image_2, $origin_story, $image_3, $image_4, $phone, $email, $location, $contactImage, $mapLocation]);
         header("Location: /admin/settings");
         exit();
     }
@@ -561,6 +563,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                         class="mb-2 d-block previewImg" style="display:<?= !empty($settings['footer_logo']) ? 'block' : 'none' ?>">
                                                 <?php endif; ?>
                                                 <p class="text-danger"><?= isset($errors['footer_logo']) ? $errors['footer_logo'] : ''; ?></p>
+                                            </div>
+
+                                            <!-- Footer Details  -->
+
+                                            <div class="form-group">
+                                                <label>Footer Details</label>
+                                                <textarea name="footer_details"
+                                                    class="form-control" style="height:10rem"
+                                                    placeholder="Enter Footer Details..." id="footer_details"><?= $settings['footer_details'] ?></textarea>
+                                                <p class="text-danger"><?= isset($errors['footer_details']) ? $errors['footer_details'] : ''; ?></p>
                                             </div>
 
                                             <!-- Hero Title  -->

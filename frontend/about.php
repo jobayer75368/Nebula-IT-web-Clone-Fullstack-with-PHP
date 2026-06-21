@@ -10,14 +10,8 @@
     <!-- header  -->
 
     <?php require_once __DIR__ . '/includes/header.php' ?>
-    <section class="page_hero text-white">
-        <div class="page_hero_overlay">
-            <div class="container mx-auto px-20 text-center">
-                <h1>About US</h1>
-                <p><a class="text-red-500" href="/">Home</a> / About</p>
-            </div>
-        </div>
-    </section>
+
+    <?php require_once __DIR__ . '/includes/page_hero.php' ?>
     <section class="about_about my-24 w-100">
         <div class="container mx-auto px-5 lg:px-20 sm:flex justify-between gap-10">
             <div class="about_about_img">

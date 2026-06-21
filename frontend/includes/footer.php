@@ -26,12 +26,7 @@ $settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
                 <img src="/frontend/assets/images/footer_logo.png" alt="">
 
                 <p class="mt-5 mb-5 leading-6 text-justify">
-                    At <span class="font-semibold">Nebula IT</span>, we specialize in helping
-                    businesses grow with smart digital solutions and expert strategies.
-                    Our professional team is committed to delivering high-quality
-                    services tailored to your unique goals. From web development
-                    to digital marketing and IT consulting, we provide the tools
-                    and support you need to succeed in a competitive market.
+                    <?= trim(htmlspecialchars($settings['footer_details'])) ?>
                 </p>
 
                 <div class="flex gap-3 flex-wrap">

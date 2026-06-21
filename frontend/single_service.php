@@ -9,7 +9,9 @@ $slug = $_GET['slug'] ?? '';
 $stmt = $pdo->prepare("SELECT * FROM services WHERE slug=? AND status='active'");
 $stmt->execute([$slug]);
 
-$service = $stmt->fetch(PDO::FETCH_ASSOC);
+$singleService = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
 
 ?>
 
@@ -39,15 +41,19 @@ $service = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="">
-                    <h2><?= $service['detail_title'] ?></h2>
-                    <p class="mt-5 text-justify"><?= $service['short_description'] ?></p>
+                    <h2><?= $singleService['detail_title'] ?></h2>
+                    <p class="mt-5 text-[justify]"><?= $singleService['short_description'] ?></p>
                 </div>
                 <div class="">
-                    <img class="rounded" src="<?= BASE_URL . 'uploads/' . $service['featured_image'] ?>" alt="">
+                    <?php if (!empty($singleService['featured_image'])) : ?>
+                        <img class="rounded"
+                            src="<?= BASE_URL . 'uploads/' . htmlspecialchars($singleService['featured_image']) ?>"
+                            alt="">
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="mt-20">
-                <?= $service['long_description'] ?>
+                <?= $singleService['long_description'] ?>
             </div>
 
         </div>
