@@ -77,8 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
 
                     <div class="form-group">
-                      <input type="password" class="form-control" name="password"
-                        placeholder="Password">
+                      <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        <button type="button" class="btn btn-outline-secondary toggle-password" data-target="password" tabindex="-1">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                      </div>
                       <p class="text-danger"><?= $error["password"] ?? "" ?></p>
                     </div>
 

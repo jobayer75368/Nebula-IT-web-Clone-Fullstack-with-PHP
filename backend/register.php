@@ -103,14 +103,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
 
                     <div class="form-group">
-                      <input type="password" class="form-control" name="password"
-                        placeholder="Create Password">
+                      <div class="input-group">
+                        <input type="password" id="password" class="form-control" name="password"
+                          placeholder="Create Password">
+                        <button type="button" class="btn btn-outline-secondary toggle-password" data-target="password" tabindex="-1">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                      </div>
                       <p class="text-danger"><?= $error["password"] ?? "" ?></p>
                     </div>
 
                     <div class="form-group">
-                      <input type="password" class="form-control" name="confirmPassword"
-                        placeholder="Confirm Password">
+                      <div class="input-group">
+                        <input type="password" id="confirm_password" class="form-control" name="confirmPassword"
+                          placeholder="Confirm Password">
+                        <button type="button" class="btn btn-outline-secondary toggle-password" data-target="confirm_password" tabindex="-1">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                      </div>
                       <p class="text-danger"><?= $error["confirmPassword"] ?? "" ?></p>
                     </div>
 
