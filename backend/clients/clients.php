@@ -53,7 +53,7 @@ try {
                             <div class="card">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Client List</h6>
-                                    <a class="text-white bg-primary py-2 px-1 rounded" href="/admin/blog/create">
+                                    <a class="text-white bg-primary py-2 px-1 rounded" href="/admin/client/create">
                                         <i class="fa-regular fa-square-plus fa-xl"></i>
                                     </a>
                                 </div>

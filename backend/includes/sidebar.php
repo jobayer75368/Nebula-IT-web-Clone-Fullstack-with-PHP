@@ -1,3 +1,12 @@
+<?php
+
+require_once __DIR__ . '/../../backend/includes/db_connection.php';
+
+$currentPage = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+
+
+?>
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
     <div class="sidebar-brand-icon">
@@ -6,7 +15,7 @@
     <div class="sidebar-brand-text mx-3">Nebula IT</div>
   </a>
   <hr class="sidebar-divider my-0">
-  <li class="nav-item active">
+  <li class="nav-item <?= $currentPage == '/admin/dashboard' || $currentPage == '/admin/user/profile' || $currentPage == '/admin/user/profile/update' ? 'activePage' : ''; ?>">
     <a class="nav-link" href="/admin/dashboard">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
@@ -16,14 +25,14 @@
     Features
   </div>
 
-  <li class="nav-item">
+  <li class="nav-item <?= $currentPage == '/admin/clients' || $currentPage == '/admin/client/create' || $currentPage == '/admin/client/edit' ? 'activePage' : ''; ?>">
     <a class="nav-link collapsed" href="/admin/clients">
       <i class="fa-solid fa-user-tag"></i>
       <span>Client Manage</span>
     </a>
   </li>
   <hr class="sidebar-divider">
-  <li class="nav-item mx-0">
+  <li class="nav-item mx-0 <?= $currentPage == '/admin/blog/list' || $currentPage == '/admin/blog/create' || $currentPage == '/admin/blog/edit' ? 'activePage' : ''; ?>">
     <a href="/admin/blog/list" class="nav-link collapsed">
       <i class="fas fa-fw fa-blog"></i>
       <span>Blog Manage</span>
@@ -31,35 +40,35 @@
   </li>
 
   <hr class="sidebar-divider">
-  <li class="nav-item">
+  <li class="nav-item <?= $currentPage == '/admin/comments' ? 'activePage' : ''; ?>">
     <a class="nav-link collapsed" href="/admin/comments">
       <i class="fas fa-fw fa-comments"></i>
       <span>Comments Mange</span>
     </a>
   </li>
   <hr class="sidebar-divider">
-  <li class="nav-item">
+  <li class="nav-item <?= $currentPage == '/admin/contacts' ? 'activePage' : ''; ?>">
     <a class="nav-link collapsed" href="/admin/contacts">
       <i class="fas fa-fw fa-address-book"></i>
       <span>Contact Mange</span>
     </a>
   </li>
   <hr class="sidebar-divider">
-  <li class="nav-item">
+  <li class="nav-item <?= $currentPage == '/admin/users/list' || $currentPage == '/admin/users/edit'  ? 'activePage' : ''; ?>">
     <a class="nav-link collapsed" href="/admin/users/list">
       <i class="fas fa-fw fa-users"></i>
       <span>Users Manage</span>
     </a>
   </li>
   <hr class="sidebar-divider">
-  <li class="nav-item">
+  <li class="nav-item <?= $currentPage == '/admin/services' || $currentPage == '/admin/service/create' || $currentPage == '/admin/service/edit' ? 'activePage' : ''; ?>">
     <a class="nav-link collapsed" href="/admin/services">
       <i class="fa-solid fa-screwdriver-wrench"></i>
       <span>Service Manage</span>
     </a>
   </li>
   <hr class="sidebar-divider">
-  <li class="nav-item">
+  <li class="nav-item <?= $currentPage == '/admin/portfolio' || $currentPage == '/admin/portfolio/create' || $currentPage == '/admin/portfolio/edit' ? 'activePage' : ''; ?>">
     <a class="nav-link collapsed" href="/admin/portfolio">
       <i class="fa-solid fa-briefcase"></i>
       <span>Portfolio Manage</span>
@@ -79,8 +88,7 @@
     </div>
   </li> -->
   <hr class="sidebar-divider">
-
-  <li class="nav-item">
+  <li class="nav-item <?= $currentPage == '/admin/settings' ? 'activePage' : ''; ?>">
     <a class="nav-link" href="/admin/settings">
       <i class="fas fa-fw fa-gear"></i>
       <span>Settings</span>

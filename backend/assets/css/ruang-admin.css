@@ -1922,3 +1922,9 @@ body.sidebar-toggled footer.sticky-footer {
 .pointer{
   cursor: pointer;
 }
+
+
+.activePage{
+  color: white;
+  background-color:#EEEEEE;
+}
