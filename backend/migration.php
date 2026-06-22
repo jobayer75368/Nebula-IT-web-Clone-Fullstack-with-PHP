@@ -422,3 +422,18 @@ function createTable(PDO $pdo, string $table, string $sql)
 //         updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 //     )
 // ");
+
+// try {
+//     $sql = "ALTER TABLE settings
+//     ADD facebook VARCHAR(255) NULL,
+//     ADD x VARCHAR(255) NULL,
+//     ADD linkedin VARCHAR(255) NULL,
+//     ADD website VARCHAR(255) NULL,
+//     ADD instagram VARCHAR(255) NULL
+//     ";
+//     $statement = $pdo->prepare($sql);
+//     $statement->execute();
+//     echo "Successful";
+// } catch (PDOException $e) {
+//     echo "Error Altering Data:" . $sql . "<br>" . $e->getMessage();
+// }
