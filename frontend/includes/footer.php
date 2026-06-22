@@ -78,7 +78,7 @@ $settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
                                     </a>
                                 </li>
                             <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?php endif;     ?>
                     </ul>
                 </div>
             </div>

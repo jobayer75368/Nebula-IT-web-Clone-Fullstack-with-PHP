@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="detail_title">Detail Title</label>
-                                            <input type="text" class="form-control" id="detail_title" name="detail_title" aria-describedby="detail_title" placeholder="Enter Detail Title" value="<?php echo $detail_title ?>">
+                                            <textarea class="form-control summernote" id="detail_title" name="detail_title" aria-describedby="detail_title" placeholder="Enter detail title..."><?= $detail_title ?></textarea>
 
                                             <p class="text-danger"><?php echo isset($errors['detail_title']) ? $errors['detail_title'] : ""; ?></p>
                                         </div>

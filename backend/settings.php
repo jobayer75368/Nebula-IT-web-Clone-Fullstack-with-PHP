@@ -508,6 +508,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <h6 class="font-weight-bold mr-4 pointer btn" id="contactBtn">
                                             Contact Page
                                         </h6>
+                                        <h6 class="font-weight-bold mr-4 pointer btn" id="socialBtn">
+                                            Social Links
+                                        </h6>
                                     </div>
                                     <hr class="mt-0 mb-4">
 
@@ -810,6 +813,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </form>
 
                                     </div>
+                                    <!-- Social Links -->
+
+                                    <div class="card-body" id="socialDiv">
+
+                                        <form action="" method="POST">
+                                            <div class="form-group">
+                                                <label>Facebook</label>
+                                                <input
+                                                    name="facebook"
+                                                    class="form-control"
+                                                    placeholder="https://....." value="<?= !empty($settings['facebook']) ? htmlspecialchars($settings['facebook']) : ''; ?>">
+
+                                                <p class="text-danger"><?= isset($errors["facebook"]) ? $errors["facebook"] : ''; ?></p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>X</label>
+                                                <input
+                                                    name="x"
+                                                    class="form-control"
+                                                    placeholder="https://....." value="<?= !empty($settings['x']) ? htmlspecialchars($settings['x']) : ''; ?>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>LinkeDin</label>
+                                                <input
+                                                    name="linkedin"
+                                                    class="form-control"
+                                                    placeholder="https://....." value="<?= !empty($settings['linkedin']) ? htmlspecialchars($settings['linkedin']) : ''; ?>">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Website</label>
+                                                <input
+                                                    name="website"
+                                                    class="form-control"
+                                                    placeholder="https://....." value="<?= !empty($settings['website']) ? htmlspecialchars($settings['website']) : ''; ?>">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Instagram</label>
+                                                <input
+                                                    name="instagram"
+                                                    class="form-control"
+                                                    placeholder="https://....." value="<?= !empty($settings['instagram']) ? htmlspecialchars($settings['instagram']) : ''; ?>">
+
+                                            </div>
+
+
+                                            <button type="submit" name="social_settings" class="btn btn-primary">
+                                                Save Settings
+                                            </button>
+
+                                        </form>
+
+                                    </div>
 
                                 </div>
                             </div>
@@ -841,21 +900,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         let contactBtn = document.getElementById('contactBtn');
         let contactDiv = document.getElementById('contactDiv');
 
+        let socialBtn = document.getElementById('socialBtn');
+        let socialDiv = document.getElementById('socialDiv');
+
         generalBtn.classList.add('btn-primary', 'text-white');
+
         aboutBtn.classList.add('text-primary');
         contactBtn.classList.add('text-primary');
+        socialBtn.classList.add('text-primary');
+
         aboutDiv.classList.add('d-none');
         contactDiv.classList.add('d-none');
+        socialDiv.classList.add('d-none');
 
         generalBtn.addEventListener('click', function() {
 
             generalDiv.classList.remove('d-none')
             aboutDiv.classList.add('d-none')
             contactDiv.classList.add('d-none')
+            socialDiv.classList.add('d-none')
+
             aboutBtn.classList.add('text-primary')
             aboutBtn.classList.remove('btn-primary', 'text-white')
+
             contactBtn.classList.add('text-primary')
             contactBtn.classList.remove('btn-primary', 'text-white')
+
+            socialBtn.classList.add('text-primary')
+            socialBtn.classList.remove('btn-primary', 'text-white')
+
             generalBtn.classList.remove('text-primary')
             generalBtn.classList.add('btn-primary', 'text-white')
 
@@ -866,10 +939,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             aboutDiv.classList.remove('d-none')
             generalDiv.classList.add('d-none')
             contactDiv.classList.add('d-none')
+            socialDiv.classList.add('d-none')
+
             generalBtn.classList.add('text-primary')
             generalBtn.classList.remove('btn-primary', 'text-white')
+
             contactBtn.classList.add('text-primary')
             contactBtn.classList.remove('btn-primary', 'text-white')
+
+            socialBtn.classList.add('text-primary')
+            socialBtn.classList.remove('btn-primary', 'text-white')
+
             aboutBtn.classList.remove('text-primary')
             aboutBtn.classList.add('btn-primary', 'text-white')
 
@@ -880,12 +960,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             contactDiv.classList.remove('d-none')
             aboutDiv.classList.add('d-none')
             generalDiv.classList.add('d-none')
+            socialDiv.classList.add('d-none')
+
             generalBtn.classList.add('text-primary')
             generalBtn.classList.remove('btn-primary', 'text-white')
+
             aboutBtn.classList.add('text-primary')
             aboutBtn.classList.remove('btn-primary', 'text-white')
+
+            socialBtn.classList.add('text-primary')
+            socialBtn.classList.remove('btn-primary', 'text-white')
+
             contactBtn.classList.remove('text-primary')
             contactBtn.classList.add('btn-primary', 'text-white')
+
+        })
+
+        socialBtn.addEventListener('click', function() {
+
+            socialDiv.classList.remove('d-none')
+            aboutDiv.classList.add('d-none')
+            generalDiv.classList.add('d-none')
+            contactDiv.classList.add('d-none')
+
+
+            generalBtn.classList.add('text-primary')
+            generalBtn.classList.remove('btn-primary', 'text-white')
+
+            aboutBtn.classList.add('text-primary')
+            aboutBtn.classList.remove('btn-primary', 'text-white')
+
+            contactBtn.classList.add('text-primary')
+            contactBtn.classList.remove('btn-primary', 'text-white')
+
+            socialBtn.classList.remove('text-primary')
+            socialBtn.classList.add('btn-primary', 'text-white')
 
         })
 

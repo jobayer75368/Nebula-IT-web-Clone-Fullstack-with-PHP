@@ -34,8 +34,12 @@ $singleService = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="">
-                    <h2><?= $singleService['detail_title'] ?></h2>
-                    <p class="mt-5 text-[justify]"><?= $singleService['short_description'] ?></p>
+                    <div class="">
+                        <?= $singleService['detail_title'] ?>
+                    </div>
+                    <div class="mt-5 text-[justify]">
+                        <?= $singleService['short_description'] ?>
+                    </div>
                 </div>
                 <div class="">
                     <?php if (!empty($singleService['featured_image'])) : ?>
