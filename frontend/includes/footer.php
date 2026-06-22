@@ -31,23 +31,23 @@ $settings = $settingsStmt->fetch(PDO::FETCH_ASSOC);
 
                 <div class="flex gap-3 flex-wrap">
                     <div class="social_links">
-                        <a href=""><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                        <a href="<?= !empty($settings['facebook']) ? $settings['facebook'] : ''; ?>" target="_blank"><i class="fa-brands fa-facebook-f text-xl"></i></a>
                     </div>
 
                     <div class="social_links">
-                        <a href=""><i class="fa-brands fa-twitter text-xl"></i></a>
+                        <a href="<?= !empty($settings['x']) ? $settings['x'] : ''; ?>" target="_blank"><i class="fa-brands fa-twitter text-xl"></i></a>
                     </div>
 
                     <div class="social_links">
-                        <a href=""><i class="fa-brands fa-linkedin-in text-xl"></i></a>
+                        <a href="<?= !empty($settings['linkedin']) ? $settings['linkedin'] : ''; ?>" target="_blank"><i class="fa-brands fa-linkedin-in text-xl"></i></a>
                     </div>
 
                     <div class="social_links">
-                        <a href=""><i class="fa-solid fa-basketball text-xl"></i></a>
+                        <a href="<?= !empty($settings['website']) ? $settings['website'] : ''; ?>" target="_blank"><i class="fa-solid fa-basketball text-xl"></i></a>
                     </div>
 
                     <div class="social_links">
-                        <a href=""><i class="fa-brands fa-instagram text-xl"></i></a>
+                        <a href="<?= !empty($settings['instagram']) ? $settings['instagram'] : ''; ?>" target="_blank"><i class="fa-brands fa-instagram text-xl"></i></a>
                     </div>
                 </div>
             </div>

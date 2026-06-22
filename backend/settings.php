@@ -15,7 +15,7 @@ $statement = $pdo->prepare("SELECT * FROM settings WHERE id=:id");
 $statement->execute([':id' => 1]);
 $settings = $statement->fetch(PDO::FETCH_ASSOC);
 
-$websiteName = $websiteLogo = $footerLogo = $footerDetails = $heroTitle = $heroDetails = $heroImage = $heroCover = $who_we_are = $image_1 = $our_goal = $image_2 = $origin_story = $image_3 = $image_4 = $phone = $email = $location = $contactImage = $mapLocation = "";
+$websiteName = $websiteLogo = $footerLogo = $footerDetails = $heroTitle = $heroDetails = $heroImage = $heroCover = $who_we_are = $image_1 = $our_goal = $image_2 = $origin_story = $image_3 = $image_4 = $phone = $email = $location = $contactImage = $mapLocation = $facebook = $x = $linkedin = $website = $instagram = "";
 $errors = [];
 function sanitize(string $data)
 {
@@ -55,6 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contactImage = $settings['contact_image'] ?? '';
     $mapLocation = $settings['map_location'] ?? '';
 
+    // social links 
+    $facebook = $settings['facebook'];
+    $x = $settings['x'];
+    $linkedin = $settings['linkedin'];
+    $website = $settings['website'];
+    $instagram = $settings['instagram'];
 
     // general settings 
 
@@ -439,12 +445,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
+    if (isset($_POST['social_settings'])) {
+        $facebook = htmlspecialchars($_POST["facebook"] ?? '');
+        $x = htmlspecialchars($_POST["x"] ?? '');
+        $linkedin = htmlspecialchars($_POST["linkedin"] ?? '');
+        $website = htmlspecialchars($_POST["website"] ?? '');
+        $instagram = htmlspecialchars($_POST["instagram"] ?? '');
 
+        if (empty($facebook)) {
+            $errors['facebook'] = "Facebook Link is required";
+        }
+    }
 
     if (empty($errors)) {
-        $sql = "UPDATE settings SET website_name =?,website_logo=?, footer_logo=?,footer_details=?,hero_title =?,hero_details=?,hero_image=?,hero_cover=?, who_we_are =?,image_1=?, our_goal =?,image_2=?,origin_story=?,image_3=?,image_4=? ,phone = ?, email =?, location=?,contact_image=?,map_location=? WHERE id=1";
+        $sql = "UPDATE settings SET website_name =?,website_logo=?, footer_logo=?,footer_details=?,hero_title =?,hero_details=?,hero_image=?,hero_cover=?, who_we_are =?,image_1=?, our_goal =?,image_2=?,origin_story=?,image_3=?,image_4=? ,phone = ?, email =?, location=?,contact_image=?,map_location=?,facebook =?, x =?, linkedin =?, website =?, instagram=? WHERE id=1";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$websiteName, $websiteLogo, $footerLogo, $footerDetails, $heroTitle, $heroDetails, $heroImage, $heroCover, $who_we_are, $image_1, $our_goal, $image_2, $origin_story, $image_3, $image_4, $phone, $email, $location, $contactImage, $mapLocation]);
+        $stmt->execute([$websiteName, $websiteLogo, $footerLogo, $footerDetails, $heroTitle, $heroDetails, $heroImage, $heroCover, $who_we_are, $image_1, $our_goal, $image_2, $origin_story, $image_3, $image_4, $phone, $email, $location, $contactImage, $mapLocation, $facebook, $x, $linkedin, $website, $instagram]);
         header("Location: /admin/settings");
         exit();
     }
