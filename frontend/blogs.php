@@ -45,7 +45,7 @@ $blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
                             <div class="p-4 mt-6">
                                 <p class="font-semibold blog_head transition-all duration-300"><?= $blog['title'] ?>
                                 </p>
-                                <a class="secondary_link mt-7 inline-block" href="">Learn more</a>
+                                <a class="secondary_link mt-7 inline-block" href="/blogs/<?= $blog['slug']; ?>">Learn more</a>
                             </div>
 
                         </div>
