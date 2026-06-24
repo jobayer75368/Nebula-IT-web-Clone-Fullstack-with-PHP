@@ -30,7 +30,7 @@ $blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <?php if (!empty($blogs)): ?>
                     <?php foreach ($blogs as $blog) : ?>
-                        <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative">
+                        <div class="blog-card p-5 bg-white shadow-lg rounded-lg relative" data-aos="zoom-in" data-aos-duration="700">
                             <div class="img_overlay">
                                 <img src="<?= !empty($blog["featured_image"]) ? BASE_URL . 'uploads/' . $blog["featured_image"] : '/frontend/assets/images/no-image.png';  ?>" alt="">
                                 <a href="/blogs/<?= $blog['slug']; ?>">
@@ -43,8 +43,7 @@ $blogs = $statement->fetchAll(PDO::FETCH_ASSOC);
                                 </a>
                             </div>
                             <div class="p-4 mt-6">
-                                <p class="font-semibold blog_head transition-all duration-300">Nebula IT vs. Competitors- What
-                                    Makes Them The Best Choice?
+                                <p class="font-semibold blog_head transition-all duration-300"><?= $blog['title'] ?>
                                 </p>
                                 <a class="secondary_link mt-7 inline-block" href="">Learn more</a>
                             </div>

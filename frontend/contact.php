@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container mx-auto px-5 lg:px-20">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
                 <div
-                    class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md">
+                    class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md" data-aos="fade-right" data-aos-duration="1000">
                     <div class="card_icon">
                         <i class="fa-solid fa-location-dot"></i>
                     </div>
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p class="font-medium text-zinc-500"><?= $settings['location'] ?></p>
                 </div>
                 <div
-                    class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md">
+                    class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="card_icon">
                         <i class="fa-solid fa-phone-volume"></i>
                     </div>
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p class="font-medium text-zinc-500 w-[12rem]"><?= $settings['phone'] ?></p>
                 </div>
                 <div
-                    class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md">
+                    class="grid_card border border-gray-300 flex flex-col gap-5 justify-center items-center text-center py-14 rounded-md" data-aos="fade-left" data-aos-duration="1000">
                     <div class="card_icon">
                         <i class="fa-solid fa-envelope-open"></i>
                     </div>
@@ -100,9 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <section class="contact_form my-20">
         <div class="container mx-auto px-5 lg:px-20 sm:flex justify-between">
             <div class="form_info w-100">
-                <h2 class="mb-5"><span>Send Us a</span> message</h2>
-                <img class="lg:hidden" src="<?= BASE_URL . 'uploads/' . $settings['contact_image']; ?>" alt="Contact Image">
-                <form class="bg-white p-5 rounded-md shadow-lg w-100 flex flex-col" action="" method="POST">
+                <h2 class="mb-5" data-aos="fade-down" data-aos-duration="1000"><span>Send Us a</span> message</h2>
+                <img class="lg:hidden" data-aos="fade-left" data-aos-duration="1000" src="<?= BASE_URL . 'uploads/' . $settings['contact_image']; ?>" alt="Contact Image">
+                <form class="bg-white p-5 rounded-md shadow-lg w-100 flex flex-col" action="" method="POST" data-aos="fade-right" data-aos-duration="1000">
                     <?= $sent; ?>
                     <div class="mb-4 mt-5">
                         <label for="name">Your Name</label>
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
             </div>
             <div>
-                <img class="hidden lg:block" src="<?= BASE_URL . 'uploads/' . $settings['contact_image'] ?>" alt="">
+                <img class="hidden lg:block" src="<?= BASE_URL . 'uploads/' . $settings['contact_image'] ?>" alt="" data-aos="fade-left" data-aos-duration="1000">
             </div>
         </div>
     </section>

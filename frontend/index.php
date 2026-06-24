@@ -30,16 +30,17 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
     <section class="hero bg-violet-70 flex items-center mb-8">
         <div class="container mx-auto px-5 lg:px-20 sm:flex items-center justify-between gap-10">
             <div>
-                <div class="capitalize mb-5">
+                <div class="capitalize mb-5 animate__animated animate__fadeInDown">
                     <?= $settings['hero_title'] ?>
                 </div>
-                <div>
-                    <img class="hero_img lg:hidden w-100" src="/frontend/assets/images/hero_img.PNG" alt="">
+                <div class="animate__animated animate__fadeInRight">
+                    <img class="hero_img lg:hidden w-100 " src="<?= !empty($settings['hero_image']) ? BASE_URL . 'uploads/' . $settings['hero_image'] : ''; ?>" alt="">
                 </div>
-                <div class="mt-5 mb-5 leading-8 text-justify"><?= $settings['hero_details'] ?></div>
-                <a class="primary_link hero_contact" href="/contact">Contact Us</a>
+                <div class="mt-5 mb-5 leading-8 text-justify animate__animated animate__fadeInLeft"><?= $settings['hero_details'] ?></div>
+
+                <a class="primary_link hero_contact animate__animated animate__fadeInUp" href="/contact">Contact Us</a>
             </div>
-            <div>
+            <div class="animate__animated animate__fadeInRight">
                 <img class="hero_img hidden lg:block" src="<?= !empty($settings['hero_image']) ? BASE_URL . 'uploads/' . $settings['hero_image'] : ''; ?>" alt="">
             </div>
         </div>
@@ -48,7 +49,7 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Services  -->
     <section class="service_section">
         <div class="container mx-auto my-10 px-5 lg:px-20 ">
-            <div class="my-10 flex flex-col items-center">
+            <div class="my-10 flex flex-col items-center" data-aos="fade-down" data-aos-duration="1000">
                 <h2 class="text-center"><span>Reach your</span> Business <span>Goals with our</span> services
                 </h2>
                 <div class="Under_line"><span class="udot"></span><span class="udot"></span><span
@@ -57,7 +58,7 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="service_grid grid grid-cols-1 lg:grid-cols-3 gap-6 my-10">
                 <?php if (!empty($services)): ?>
                     <?php foreach ($services as $service) : ?>
-                        <div class="shadow shadow-black/35 p-10 w-full rounded-md">
+                        <div class="shadow shadow-black/35 p-10 w-full rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                             <h2 class="my-5"><?= $service['service_icon'] ?></h2>
                             <h4 class="font-semibold my-3"><?= $service['title'] ?></h4>
                             <p class="my-3 text-justify"><?= $service['featured_description'] ?></p>
@@ -73,7 +74,7 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
 
     <section class="expertise_section py-8 bg-[var(--expertise-color)]">
         <div class="container mx-auto pb-8 px-5 lg:px-20">
-            <div class="my-10 flex flex-col items-center">
+            <div class="my-10 flex flex-col items-center" data-aos="fade-down" data-aos-duration="1000">
                 <h2><span>Industry </span>expertise
                 </h2>
                 <div class="Under_line"><span class="udot"></span><span class="udot"></span><span
@@ -81,42 +82,42 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="expertise_grid grid grid-cols-1 lg:grid-cols-4 gap-5">
                 <div
-                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md">
+                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                     <i class="fa-solid fa-house-chimney text-5xl"></i>
                     <p>Real Estate</p>
                 </div>
                 <div
-                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md">
+                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                     <i class="fa-solid fa-sack-dollar text-5xl"></i>
                     <p>Financeial Services</p>
                 </div>
                 <div
-                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md">
+                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                     <i class="fa-solid fa-cart-shopping text-5xl"></i>
                     <p>E-Commerce</p>
                 </div>
                 <div
-                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md">
+                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                     <i class="fa-solid fa-code text-5xl"></i>
                     <p>Software</p>
                 </div>
                 <div
-                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md">
+                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                     <i class="fa-solid fa-school text-5xl"></i>
                     <p>Public Sector</p>
                 </div>
                 <div
-                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md">
+                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                     <i class="fa-solid fa-wifi text-5xl"></i>
                     <p>IT Services</p>
                 </div>
                 <div
-                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md">
+                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                     <i class="fa-solid fa-file-video text-5xl"></i>
                     <p>Entertainment</p>
                 </div>
                 <div
-                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md">
+                    class="h-52 border border-gray-300 flex flex-col gap-5 justify-center items-center w-100 rounded-md" data-aos="zoom-in" data-aos-duration="1000">
                     <i class="fa-solid fa-gears text-5xl my-5"></i>
                     <p>Manufacturing</p>
                 </div>
@@ -127,7 +128,7 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- POrtfolio  -->
     <section class="portfolio_section py-8">
         <div class="container mx-auto px-5 lg:px-20">
-            <div class="my-10 flex flex-col items-center">
+            <div class="my-10 flex flex-col items-center" data-aos="fade-down" data-aos-duration="1000">
                 <h2><span>Our </span>Portfolio
                 </h2>
                 <div class="Under_line"><span class="udot"></span><span class="udot"></span><span
@@ -136,7 +137,7 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <?php if (!empty($portfolios)): ?>
                     <?php foreach ($portfolios as $portfolio): ?>
-                        <div class="preview_card p-4">
+                        <div class="preview_card p-4" data-aos="zoom-in" data-aos-duration="1000">
                             <div class="grid_site">
                                 <iframe src="<?= !empty($portfolio['website_link']) ? $portfolio['website_link'] : ''; ?>"></iframe>
                             </div>
@@ -151,14 +152,14 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </section>
-    <div class="w-100 text-center">
+    <div class="w-100 text-center" data-aos="fade-up" data-aos-duration="1000">
         <a class="primary_link" href="/portfolio">View More</a>
     </div>
 
     <!-- Our Clients  -->
     <section class="clients_section mt-20 py-8">
         <div class="container mx-auto px-20">
-            <div class="my-10 flex flex-col items-center">
+            <div class="my-10 flex flex-col items-center" data-aos="fade-down" data-aos-duration="1000">
                 <h2><span>Our </span>Clients
                 </h2>
                 <div class="Under_line"><span class="udot"></span><span class="udot"></span><span
@@ -166,7 +167,7 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div id="default-carousel" class="relative w-full" data-carousel="slide">
                 <!-- Carousel wrapper -->
-                <div class="relative h-56 overflow-hidden rounded-base md:h-96">
+                <div class="relative h-56 overflow-hidden rounded-base md:h-96" data-aos="zoom-in" data-aos-duration="1000">
                     <!-- Item 1 -->
                     <?php if (!empty($clients)): ?>
                         <?php foreach ($clients as $client): ?>
@@ -207,7 +208,7 @@ $portfolios = $ptflStmt->fetchAll(PDO::FETCH_ASSOC);
                     </span>
                 </button>
             </div>
-            <div class="w-100 text-center mb-8">
+            <div class="w-100 text-center mb-8" data-aos="fade-up">
                 <a class="primary_link" href="/clients">View More</a>
             </div>
         </div>

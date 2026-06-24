@@ -81,7 +81,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <div class="w-full lg:w-[68%]">
 
                     <!-- Featured Image -->
-                    <div class="mb-6 rounded-lg overflow-hidden shadow-sm">
+                    <div class="mb-6 rounded-lg overflow-hidden shadow-sm" data-aos="fade-down" data-aos-duration="1000">
                         <img
                             src="<?= !empty($blog["featured_image"]) ? BASE_URL . 'uploads/' . $blog["featured_image"] : '/frontend/assets/images/no-image.png';  ?>" alt="">
                         <a href="/blogs/<?= $blog['slug']; ?> ?>"
@@ -90,7 +90,7 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
                     </div>
 
                     <!-- Post Header -->
-                    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3 leading-snug">
+                    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3 leading-snug" data-aos="fade-right" data-aos-duration="1000">
                         <?= $blog['title']; ?>
                     </h1>
                     <p class="text-sm text-[var(--primary-color)] mb-8">
@@ -98,17 +98,17 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
                     </p>
 
                     <!-- Short Description -->
-                    <div class="mb-8">
+                    <div class="mb-8" data-aos="fade-right" data-aos-duration="1000">
                         <?= $blog['short_description'] ?>
                     </div>
 
                     <!--Long Description -->
-                    <div class="mb-8">
+                    <div class="mb-8" data-aos="fade-right" data-aos-duration="1000">
                         <?= $blog['long_description']; ?>
                     </div>
 
                     <!-- Leave a Comment -->
-                    <form action="" method="POST">
+                    <form action="" method="POST" data-aos="fade-right" data-aos-duration="1000">
                         <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
                             <h2 class="text-xl not-italic font-bold text-gray-800 mb-1">Leave a Comment</h2>
                             <p class="text-sm text-gray-500 mb-5">Your email address will not be published. Required fields are marked *</p>
@@ -156,14 +156,14 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </form>
                     <!-- Comment List  -->
-                    <div class="card border-0 shadow-sm">
+                    <div class="card border-0 shadow-sm" data-aos="fade-right" data-aos-duration="1000">
                         <div class="card-body p-4">
                             <h3 class="mb-4">
                                 Comments (<?= count($comments); ?>)
                             </h3>
                             <?php if (!empty($comments)): ?>
                                 <?php foreach ($comments as $singleComment): ?>
-                                    <div class="border-bottom pb-3 mb-3">
+                                    <div class="border-bottom pb-3 mb-3" data-aos="zoom-in" data-aos-duration="1000">
                                         <h6 class="mb-1 fw-bold">
                                             <?= htmlspecialchars($singleComment['name']); ?>
                                         </h6>
@@ -194,13 +194,13 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
                     <!-- Recent Posts -->
-                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sticky top-24">
+                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 sticky top-24" data-aos="fade-left" data-aos-duration="1000">
                         <h3 class="text-lg font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">Recent Posts</h3>
                         <div class="space-y-4">
 
                             <?php if (!empty($blogs)): ?>
                                 <?php foreach ($blogs as $recBlog): ?>
-                                    <a href="#" class="flex gap-3 group">
+                                    <a href="#" class="flex gap-3 group" data-aos="zoom-in" data-aos-duration="1000">
                                         <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                                             <img
                                                 src="<?= !empty($recBlog['featured_image']) ? BASE_URL . 'uploads/' . $recBlog['featured_image'] : '/frontend/assets/images/no-image.png'; ?>"

@@ -14,13 +14,13 @@
     <?php require_once __DIR__ . '/includes/page_hero.php' ?>
     <section class="about_about my-24 w-100">
         <div class="container mx-auto px-5 lg:px-20 sm:flex justify-between gap-10">
-            <div class="about_about_img">
+            <div class="about_about_img" data-aos="fade-right" data-aos-duration="1000">
                 <img class="hidden lg:block" src="<?= !empty($settings['image_1']) ? BASE_URL . 'uploads/' . $settings['image_1'] : ''; ?>" alt="">
             </div>
             <div>
-                <h2 class="mb-5"><span>Who </span>We Are</h2>
-                <img class="lg:hidden mb-5" src="/frontend/assets/images/about_img.PNG" alt="">
-                <div>
+                <h2 class="mb-5" data-aos="fade-down" data-aos-duration="1000"><span>Who </span>We Are</h2>
+                <img class="lg:hidden mb-5" data-aos="fade-right" data-aos-duration="1000" src="<?= !empty($settings['image_1']) ? BASE_URL . 'uploads/' . $settings['image_1'] : ''; ?>" alt="">
+                <div data-aos="fade-left" data-aos-duration="1000">
                     <?= $settings['who_we_are'] ?>
                 </div>
             </div>
@@ -29,27 +29,27 @@
     <section class="about_goal my-20 bg-[var(--expertise-color)] py-20">
         <div class="container mx-auto px-5 lg:px-20 sm:flex justify-between gap-10">
             <div class="text-[var(--tertiary-font-color)] text-justify">
-                <h2 class="mb-5"><span>Our</span> Goal</h2>
-                <img class="lg:hidden mb-5" src="<?= !empty($settings['image_2']) ? BASE_URL . 'uploads/' . $settings['image_2'] : ''; ?>" alt="">
-                <div>
+                <h2 class="mb-5" data-aos="fade-down" data-aos-duration="1000"><span>Our</span> Goal</h2>
+                <img class="lg:hidden mb-5" data-aos="fade-left" data-aos-duration="1000" src="<?= !empty($settings['image_2']) ? BASE_URL . 'uploads/' . $settings['image_2'] : ''; ?>" alt="">
+                <div data-aos="fade-right" data-aos-duration="1000">
                     <?= $settings['our_goal'] ?>
                 </div>
 
             </div>
-            <div class="about_goal_img hidden lg:block">
-                <img src="/frontend/assets/images/about_img2.PNG" alt="">
+            <div class="about_goal_img hidden lg:block" data-aos="fade-left" data-aos-duration="1000">
+                <img src="<?= !empty($settings['image_2']) ? BASE_URL . 'uploads/' . $settings['image_2'] : ''; ?>" alt="">
             </div>
         </div>
     </section>
     <section class="about_story mb-20">
         <div class="container mx-auto px-5 lg:px-20 sm:flex justify-between items-center gap-10">
             <div class="about_story_img">
-                <img class="hidden lg:block" src="<?= !empty($settings['image_3']) ? BASE_URL . 'uploads/' . $settings['image_3'] : ''; ?>" alt="">
+                <img class="hidden lg:block" data-aos="fade-right" data-aos-duration="1000" src="<?= !empty($settings['image_3']) ? BASE_URL . 'uploads/' . $settings['image_3'] : ''; ?>" alt="">
             </div>
             <div class="text-[var(--tertiary-font-color)] text-justify">
-                <h2 class="mb-5"><span>Origin</span> Story</h2>
-                <img class="lg:hidden" src="/frontend/assets/images/about_img3.PNG" alt="">
-                <div>
+                <h2 class="mb-5" data-aos="fade-down" data-aos-duration="1000"><span>Origin</span> Story</h2>
+                <img class="lg:hidden" data-aos="fade-right" data-aos-duration="1000" src="<?= !empty($settings['image_3']) ? BASE_URL . 'uploads/' . $settings['image_3'] : ''; ?>" alt="">
+                <div data-aos="fade-left" data-aos-duration="1000">
                     <?= $settings['origin_story'] ?>
                 </div>
             </div>
@@ -57,8 +57,8 @@
     </section>
     <section class="about_choose bg-[var(--expertise-color)] py-20">
         <div class="container mx-auto px-5 lg:px-20">
-            <h2><span>Why</span> Choose Us</h2>
-            <div class="flex flex-col lg:flex-row justify-between  my-20 items-center gap-10">
+            <h2 data-aos="fade-down" data-aos-duration="1000"><span>Why</span> Choose Us</h2>
+            <div class="flex flex-col lg:flex-row justify-between  my-20 items-center gap-10" data-aos="fade-right" data-aos-duration="1000">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     <div class="flex gap-10">
                         <div
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="about_choose_img hidden lg:block">
+                <div class="about_choose_img hidden lg:block" data-aos="fade-left" data-aos-duration="1000">
                     <img src="<?= !empty($settings['image_4']) ? BASE_URL . 'uploads/' . $settings['image_4'] : ''; ?>" alt="">
                 </div>
             </div>

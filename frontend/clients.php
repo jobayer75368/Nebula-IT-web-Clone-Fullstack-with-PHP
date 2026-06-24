@@ -31,7 +31,7 @@ require_once __DIR__ . "/../backend/config.php";
             <div class="grid_cont grid grid-cols-2 lg:grid-cols-5 gap-10">
                 <?php if (!empty($clients)): ?>
                     <?php foreach ($clients as $client): ?>
-                        <div class="client_card">
+                        <div class="client_card" data-aos="zoom-in" data-aos-duration="1000">
                             <img class="client_image" src="<?= !empty($client['image']) ? BASE_URL . 'uploads/' . $client['image'] : '/frontend/assets/images/no-image.png'; ?>" alt="">
                             <div class="client_name">
                                 <p><?= $client['name'] ?></p>

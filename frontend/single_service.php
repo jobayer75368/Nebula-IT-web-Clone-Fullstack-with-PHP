@@ -34,14 +34,14 @@ $singleService = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="">
-                    <div class="">
+                    <div class="" data-aos="fade-right" data-aos-duration="1000">
                         <?= $singleService['detail_title'] ?>
                     </div>
-                    <div class="mt-5 text-[justify]">
+                    <div class="mt-5 text-[justify]" data-aos="fade-right" data-aos-duration="1000">
                         <?= $singleService['short_description'] ?>
                     </div>
                 </div>
-                <div class="">
+                <div class="" data-aos="fade-left" data-aos-duration="1000">
                     <?php if (!empty($singleService['featured_image'])) : ?>
                         <img class="rounded"
                             src="<?= BASE_URL . 'uploads/' . htmlspecialchars($singleService['featured_image']) ?>"
@@ -49,11 +49,12 @@ $singleService = $stmt->fetch(PDO::FETCH_ASSOC);
                     <?php endif; ?>
                 </div>
             </div>
-            <div class="mt-20">
-                <?= $singleService['long_description'] ?>
-            </div>
+            <div class="mt-5 text-[justify]" data-aos="fade-right" data-aos-duration="1000">
+                <div class="mt-20">
+                    <?= $singleService['long_description'] ?>
+                </div>
 
-        </div>
+            </div>
     </section>
     <!-- Footer  -->
     <?php require_once __DIR__ . '/includes/footer.php' ?>
